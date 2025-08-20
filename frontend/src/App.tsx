@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Sidebar from "../components/sidebar";
+import Dashboard from "../pages/Dashboard";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -28,23 +30,11 @@ function App() {
 
 
   return (
-    <div>
-      <h1>My Todos</h1>
-      <ul>
-        {todos.map((t) => (
-          <li key={t.id}>
-            {t.title} <small>({new Date(t.created_at).toLocaleString()})</small>
-          </li>
-        ))}
-      </ul>
-      <input
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="New todo"
-      />
-      <button onClick={addTodo}>Add</button>
-    </div>
-  );
+  <>
+    <Sidebar />
+    <Dashboard />
+  </>
+);
 }
 
 export default App;
