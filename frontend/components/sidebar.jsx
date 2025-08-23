@@ -1,23 +1,10 @@
 "use client"
 
-import type React from "react"
-import { type ReactNode, useState } from "react"
+import { useState } from "react"
 import { FiGrid, FiEdit3, FiFileText, FiTrendingUp, FiChevronRight } from "react-icons/fi"
 import { Link, useLocation } from "react-router-dom"
 
-interface SubItem {
-  label: string
-  link: string
-}
-
-interface SidebarItem {
-  label: string
-  icon: ReactNode
-  link?: string
-  subItems?: SubItem[]
-}
-
-const sidebarItems: SidebarItem[] = [
+const sidebarItems = [
   { label: "Dashboard", icon: <FiGrid />, link: "/" },
   {
     label: "Content Hub",
@@ -32,9 +19,9 @@ const sidebarItems: SidebarItem[] = [
   { label: "Ads Manager", icon: <FiTrendingUp />, link: "/ads" },
 ]
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const location = useLocation()
-  const [openItem, setOpenItem] = useState<string | null>(
+  const [openItem, setOpenItem] = useState(
     location.pathname.startsWith("/content") ? "Content Hub" : null
   )
 
@@ -58,7 +45,7 @@ const Sidebar: React.FC = () => {
         {sidebarItems.map((item, index) => {
           const isActiveTopLevel =
             item.link === location.pathname ||
-            (item.subItems && item.subItems.some(sub => sub.link === location.pathname))
+            (item.subItems && item.subItems.some((sub) => sub.link === location.pathname))
 
           return (
             <div key={index} className="mb-2">
