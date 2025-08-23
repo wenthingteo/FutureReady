@@ -1,6 +1,6 @@
 import React from "react";
 
-const Campaigns: React.FC = () => {
+const Campaigns = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Campaign Hub</h1>

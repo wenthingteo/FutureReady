@@ -1,6 +1,6 @@
 import React from "react";
 
-const Competitor: React.FC = () => {
+const Competitor = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Competitor Analysis</h1>
