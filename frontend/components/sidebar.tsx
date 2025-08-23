@@ -3,6 +3,7 @@
 import type React from "react"
 import { type ReactNode, useState } from "react"
 import { FiGrid, FiEdit3, FiFileText, FiTrendingUp } from "react-icons/fi"
+import { Link } from "react-router-dom"
 
 interface SubItem {
   label: string
@@ -57,44 +58,66 @@ const Sidebar: React.FC = () => {
       <nav className="flex-1 mt-6 px-4">
         {sidebarItems.map((item, index) => (
           <div key={index} className="mb-2">
-            <button
-              onClick={() => setOpenItem(openItem === item.label ? null : item.label)}
-              className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-all duration-200 ${
-                item.active
-                  ? "bg-blue-600 text-white shadow-md hover:bg-blue-700"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-              }`}
-            >
-              <span className={`text-lg ${item.active ? "text-white" : "text-gray-500"}`}>{item.icon}</span>
-              <span className="font-medium">{item.label}</span>
-              {item.subItems && (
-                <span
-                  className={`ml-auto text-sm transition-transform duration-200 ${
-                    openItem === item.label ? "rotate-90" : ""
-                  } ${item.active ? "text-white" : "text-gray-400"}`}
-                >
-                  ▶
+            {item.link && !item.subItems ? (
+              // Top-level link items (Dashboard, Campaign Hub, Ads Manager)
+              <Link
+                to={item.link}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  item.active
+                    ? "bg-blue-600 text-white shadow-md hover:bg-blue-700"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                }`}
+              >
+                <span className={`text-lg ${item.active ? "text-white" : "text-gray-500"}`}>
+                  {item.icon}
                 </span>
-              )}
-            </button>
+                <span className="font-medium">{item.label}</span>
+              </Link>
+            ) : (
+              // Dropdown items (Content Hub)
+              <>
+                <button
+                  onClick={() => setOpenItem(openItem === item.label ? null : item.label)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-all duration-200 ${
+                    item.active
+                      ? "bg-blue-600 text-white shadow-md hover:bg-blue-700"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                  }`}
+                >
+                  <span className={`text-lg ${item.active ? "text-white" : "text-gray-500"}`}>
+                    {item.icon}
+                  </span>
+                  <span className="font-medium">{item.label}</span>
+                  {item.subItems && (
+                    <span
+                      className={`ml-auto text-sm transition-transform duration-200 ${
+                        openItem === item.label ? "rotate-90" : ""
+                      } ${item.active ? "text-white" : "text-gray-400"}`}
+                    >
+                      ▶
+                    </span>
+                  )}
+                </button>
 
-            {/* Submenu */}
-            {item.subItems && openItem === item.label && (
-              <div className="ml-8 mt-2 space-y-1 bg-blue-50 rounded-lg p-3 border border-blue-100">
-                {item.subItems.map((sub, i) => (
-                  <a
-                    key={i}
-                    href={sub.link}
-                    className={`block text-sm px-3 py-2 rounded-md transition-colors duration-150 ${
-                      sub.active
-                        ? "text-blue-700 font-semibold bg-blue-100"
-                        : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
-                    }`}
-                  >
-                    {sub.label}
-                  </a>
-                ))}
-              </div>
+                {/* Submenu */}
+                {item.subItems && openItem === item.label && (
+                  <div className="ml-8 mt-2 space-y-1 bg-blue-50 rounded-lg p-3 border border-blue-100">
+                    {item.subItems.map((sub, i) => (
+                      <Link
+                        key={i}
+                        to={sub.link}
+                        className={`block text-sm px-3 py-2 rounded-md transition-colors duration-150 ${
+                          sub.active
+                            ? "text-blue-700 font-semibold bg-blue-100"
+                            : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                        }`}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         ))}
