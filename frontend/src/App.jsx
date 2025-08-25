@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "../components/sidebar";
+import Sidebar from "./components/sidebar";
 
 // Pages
-import Dashboard from "../pages/Dashboard";
-import Workplace from "../pages/Workplace";
-import Ideation from "../pages/Ideation";
-import Competitor from "../pages/Competitor";
-import Campaigns from "../pages/Campaigns";
-import Ads from "../pages/Ads";
+import Dashboard from "./pages/Dashboard";
+import Workplace from "./pages/Workplace";
+import Ideation from "./pages/Ideation";
+import Competitor from "./pages/Competitor";
+import Campaigns from "./pages/Campaigns";
+import Ads from "./pages/Ads";
 
 function App() {
   return (
