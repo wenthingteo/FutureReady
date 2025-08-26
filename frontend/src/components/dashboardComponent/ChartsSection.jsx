@@ -25,14 +25,14 @@ const ChartsSection = () => {
   const COLORS = ["#3264DF", "#769BF4", "#ADC7F7"]
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
       {/* ROI Line Chart */}
-      <div className="bg-white p-6 rounded-2xl shadow-md">
-        <div className="flex items-center gap-2 mb-4">
+      <div className="bg-white p-6 rounded-2xl shadow-md w-full lg:col-span-4">
+        <div className="flex items-center gap-2 mb-4"> 
           <h2 className="text-xl font-bold text-gray-800">ROI Over Time</h2>
           <span className="text-blue-500">💹</span>
         </div>
-        <LineChart width={500} height={300} data={roiData}>
+        <LineChart width={610} height={300} data={roiData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" label={{ value: "Months", position: "insideBottom", offset: -5 }} />
           <YAxis
@@ -51,32 +51,36 @@ const ChartsSection = () => {
       </div>
 
       {/* Donut Chart */}
-      <div className="bg-white p-6 rounded-2xl shadow-md">
-        <div className="flex items-center gap-2 mb-4">
-          <h2 className="text-xl font-bold text-gray-800">Content Interactions Breakdown</h2>
-          <span className="text-xl">🤖</span>
-        </div>
-        <div className="flex justify-center">
-          <PieChart width={300} height={300}>
-            <Pie
-              data={interactionData}
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={100}
-              dataKey="value"
-              labelLine={false}
-              label={({ name, value }) => `${value}%`}
-            >
-              {interactionData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(value) => `${value}%`} />
-            <Legend />
-          </PieChart>
+
+      <div className="bg-white p-6 rounded-2xl shadow-md flex justify-center max-w-53l ml-auto">
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-xl font-bold text-gray-800">Content Interactions Breakdown</h2>
+            <span className="text-xl">🤖</span>
+          </div>
+          <div className="flex justify-center px-20">
+            <PieChart width={300} height={300}>
+              <Pie
+                data={interactionData}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={100}
+                dataKey="value"
+                labelLine={false}
+                label={({ name, value }) => `${value}%`}
+              >
+                {interactionData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip formatter={(value) => `${value}%`} />
+              <Legend />
+            </PieChart>
+          </div>
         </div>
       </div>
+
     </div>
   )
 }

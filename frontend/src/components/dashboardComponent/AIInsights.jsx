@@ -146,7 +146,7 @@ const AIInsights = () => {
       trend: "up",
       reason: "new users joined from shares",
       suggestion: "Try shorter videos to boost responses",
-      color: "blue",
+      color: "green",
     },
     {
       metric: "Retention",

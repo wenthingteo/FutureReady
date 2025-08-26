@@ -463,7 +463,6 @@
 // }
 
 // export default Dashboard
-
 import DashboardHeader from "../components/dashboardComponent/DashboardHeader";
 import MetricCards from "../components/dashboardComponent/MetricCards";
 import ChartsSection from "../components/dashboardComponent/ChartsSection";
@@ -473,16 +472,21 @@ import AIContentSection from "../components/dashboardComponent/AIContentSection"
 
 const Dashboard = () => {
   return (
-    <div id="dashboard"> {/* Add the ID here */}
+    <div>
       <DashboardHeader />
-      <MetricCards />
-      <ChartsSection />
-      <AIInsights />
-      <ROIForecasting />
-      <AIContentSection />
+
+      {/* Only the main content is wrapped for screenshot */}
+      <div id="dashboard">
+        <MetricCards />
+        <ChartsSection />
+        <AIInsights />
+        <ROIForecasting />
+        <AIContentSection />
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
+
 
