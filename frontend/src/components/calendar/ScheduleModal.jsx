@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { X, Facebook, Instagram, Linkedin, Music, Youtube } from 'lucide-react';
+import { X } from 'lucide-react';
+import ChannelSelectionStep from './steps/ChannelSelectionStep';
+import ContentSelectionStep from './steps/ContentSelectionStep';
+import ContentEditingStep from './steps/ContentEditingStep';
 
 const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    platforms: editingPost?.platforms || []
+    platforms: editingPost?.platforms || [],
+    selectedContent: null,
+    editedContent: null
   });
 
   const [errors, setErrors] = useState({});
@@ -21,13 +27,7 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
     };
   }, [isOpen]);
 
-  const platforms = [
-    { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'bg-blue-500' },
-    { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'bg-pink-500' },
-    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'bg-blue-700' },
-    { id: 'tiktok', name: 'TikTok', icon: Music, color: 'bg-black' },
-    { id: 'youtube', name: 'YouTube', icon: Youtube, color: 'bg-red-500' }
-  ];
+
 
   const handlePlatformToggle = (platformId) => {
     setFormData(prev => ({
@@ -38,26 +38,59 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
     }));
   };
 
-  const validateForm = () => {
-    if (formData.platforms.length === 0) {
-      setErrors({ platforms: 'Please select at least one channel' });
-      return false;
+  const handleContentSelect = (content) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedContent: content
+    }));
+  };
+
+  const handleContentUpdate = (updatedContent) => {
+    setFormData(prev => ({
+      ...prev,
+      editedContent: updatedContent
+    }));
+  };
+
+
+
+  const validateCurrentStep = () => {
+    if (currentStep === 1) {
+      if (formData.platforms.length === 0) {
+        setErrors({ platforms: 'Please select at least one channel' });
+        return false;
+      }
     }
     setErrors({});
     return true;
   };
 
-  const handleSubmit = () => {
-    if (!validateForm()) return;
+  const nextStep = () => {
+    if (!validateCurrentStep()) return;
+    setCurrentStep(prev => prev + 1);
+  };
 
-    // For now, just close the modal since we only have channel selection
-    // In the future, this would proceed to the next step
+  const prevStep = () => {
+    setCurrentStep(prev => prev - 1);
+    setErrors({});
+  };
+
+  const skipStep = () => {
+    setCurrentStep(prev => prev + 1);
+    setErrors({});
+  };
+
+  const handleSubmit = () => {
+    // For now, just close the modal - will be extended for final submission
     handleClose();
   };
 
   const handleClose = () => {
+    setCurrentStep(1);
     setFormData({
-      platforms: []
+      platforms: [],
+      selectedContent: null,
+      editedContent: null
     });
     setErrors({});
     onClose();
@@ -81,66 +114,89 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
         {/* Main Content Area */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-8 h-full flex flex-col justify-center">
-            {/* Channel Selection */}
-            <div className="space-y-12">
-              <div className="text-center">
-                <div className="inline-flex items-center gap-4 mb-8">
-                  <div className="w-8 h-8 bg-[#3264DF]/80 rounded-full flex items-center justify-center text-white font-medium text-sm shadow-sm">
-                    1
-                  </div>
-                  <h3 className="text-3xl font-normal text-gray-800 tracking-tight">Choose Your Channels</h3>
-                </div>
-                <p className="text-gray-600 text-base max-w-lg mx-auto leading-relaxed">Select the platforms where you want to publish your content</p>
-              </div>
+            {/* Step 1: Channel Selection */}
+            {currentStep === 1 && (
+              <ChannelSelectionStep
+                formData={formData}
+                onPlatformToggle={handlePlatformToggle}
+                errors={errors}
+              />
+            )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                {platforms.map((platform) => (
-                  <button
-                    key={platform.id}
-                    type="button"
-                    onClick={() => handlePlatformToggle(platform.id)}
-                    className={`p-8 border rounded-2xl text-center transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg ${
-                      formData.platforms.includes(platform.id)
-                        ? 'border-[#3264DF]/30 bg-[#3264DF]/8 shadow-md ring-1 ring-[#3264DF]/10'
-                        : 'border-gray-200/60 hover:border-[#3264DF]/20 bg-white hover:shadow-md hover:bg-gray-50/50'
-                    }`}
-                  >
-                    <div className="mb-4">
-                      <platform.icon className={`w-10 h-10 mx-auto ${
-                        formData.platforms.includes(platform.id) 
-                          ? 'text-[#3264DF]' 
-                          : 'text-gray-500'
-                      }`} />
-                    </div>
-                    <div className={`font-medium text-base ${
-                      formData.platforms.includes(platform.id) 
-                        ? 'text-[#3264DF]' 
-                        : 'text-gray-700'
-                    }`}>{platform.name}</div>
-                  </button>
-                ))}
-              </div>
+            {/* Step 2: Content Selection */}
+            {currentStep === 2 && (
+              <ContentSelectionStep
+                formData={formData}
+                onContentSelect={handleContentSelect}
+              />
+            )}
 
-              {errors.platforms && (
-                <div className="mt-8 p-4 bg-red-50/70 border border-red-200/50 rounded-xl text-center">
-                  <p className="text-red-600 text-sm font-medium">{errors.platforms}</p>
-                </div>
-              )}
-            </div>
+            {/* Step 3: Content Editing */}
+            {currentStep === 3 && (
+              <ContentEditingStep
+                formData={formData}
+                onContentUpdate={handleContentUpdate}
+                errors={errors}
+              />
+            )}
           </div>
         </div>
 
         {/* Footer */}
         <div className="border-t border-gray-100/40 p-8 bg-gray-50/40">
-          <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={formData.platforms.length === 0}
-              className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
-            >
-              Continue
-            </button>
+          <div className="flex justify-between items-center">
+            {/* Back Button */}
+            <div>
+              {currentStep > 1 && (
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className="px-6 py-2.5 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
+                >
+                  ← Back
+                </button>
+              )}
+            </div>
+
+            {/* Next/Skip Buttons */}
+            <div className="flex gap-3">
+              {currentStep === 2 && (
+                <button
+                  type="button"
+                  onClick={skipStep}
+                  className="px-8 py-2.5 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors border border-gray-300 rounded-xl hover:bg-gray-50"
+                >
+                  Skip
+                </button>
+              )}
+              
+              {currentStep === 1 ? (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  disabled={formData.platforms.length === 0}
+                  className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+                >
+                  Continue
+                </button>
+              ) : currentStep === 2 ? (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                >
+                  Continue
+                </button>
+              ) : currentStep === 3 ? (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
+                >
+                  Schedule
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
