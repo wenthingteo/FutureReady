@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { DndContext, DragOverlay } from "@dnd-kit/core"
-import { KanbanColumn } from "@/components/kanban-column"
-import { TaskFormPanel } from "@/components/task-form-panel"
-import { TaskCard } from "@/components/task-card"
-import { TaskDetailPanel } from "@/components/task-detail-panel" // Import the detail panel
+import { KanbanColumn } from "@/components/Workplace/kanban-column"
+import { TaskFormPanel } from "@/components/Workplace/task-form-panel"
+import { TaskCard } from "@/components/Workplace/task-card"
+import { TaskDetailPanel } from "@/components/Workplace/task-detail-panel" // Import the detail panel
 
 // Dummy data for initial state
 const initialTasks = [

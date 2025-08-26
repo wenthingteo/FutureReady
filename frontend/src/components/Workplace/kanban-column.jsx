@@ -14,7 +14,7 @@ export function KanbanColumn({ title, status, tasks, onAddTask, onTaskClick }) {
   return (
     <div
       ref={setNodeRef} // Set the droppable node ref on the column container
-      className={`flex-1 min-h-[600px] bg-[#E8ECFF] border-2 border-dashed border-[#475ECD] rounded-lg ${isOver ? "ring-2 ring-blue-500" : ""}`}
+      className={`flex-1 max-h-[600px] bg-[#E8ECFF] border-2 border-dashed border-[#475ECD] rounded-lg ${isOver ? "ring-2 ring-blue-500" : ""}`}
     >
     <div className="p-4 border-b border-gray-200">
       <div className="flex items-center justify-between text-lg font-medium text-gray-600">
