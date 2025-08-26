@@ -1,12 +1,8 @@
-import React from "react";
+import React from 'react';
+import { CampaignContainer } from '../features/campaign';
 
 const Campaigns = () => {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Campaign Hub</h1>
-      <p className="text-gray-600">This is the Campaigns page.</p>
-    </div>
-  );
+  return <CampaignContainer />;
 };
 
 export default Campaigns;

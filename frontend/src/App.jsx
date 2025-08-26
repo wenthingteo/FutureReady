@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Workplace from "./pages/Workplace";
 import Ideation from "./pages/Ideation";
 import Competitor from "./pages/Competitor";
-import Campaigns from "./pages/Campaigns";
+import CampaignsContainer from "./pages/campaign/CampaignsContainer";
 import Ads from "./pages/Ads";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Route path="/content/workplace" element={<Workplace />} />
           <Route path="/content/ideation" element={<Ideation />} />
           <Route path="/content/competitor" element={<Competitor />} />
-          <Route path="/campaigns" element={<Campaigns />} />
+          <Route path="/campaigns" element={<CampaignsContainer />} />
           <Route path="/ads" element={<Ads />} />
         </Routes>
       </main>
