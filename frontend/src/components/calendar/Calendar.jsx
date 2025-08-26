@@ -15,7 +15,16 @@ import {
   MessageCircle,
   Camera,
   Music,
+  TrendingUp,
+  Zap,
 } from "lucide-react"
+
+// Custom TikTok Icon Component
+const TikTokIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.10z"/>
+  </svg>
+);
 
 const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPost }) => {
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -35,40 +44,52 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
   const samplePosts = [
     {
       id: 1,
-      title: "Growing your business with AI",
-      content:
-        "Discover how artificial intelligence can transform your business operations and drive growth in the digital age.",
-      time: "08:00",
+      title: "🚀 5 AI Tools That Will Revolutionize Your Workflow",
+      content: "Discover cutting-edge AI tools that are transforming how modern businesses operate and scale in 2024",
+      time: "11:00",
       date: getTodayDate(),
-      platforms: ["facebook", "instagram", "linkedin"],
-      image: "/neoneo.jpeg",
+      platforms: ["instagram", "linkedin"],
+      image: "/src/assets/random_photos/random_photo_1.jpg",
+      optimalTiming: true,
+      engagement: "92%",
+      type: "educational"
     },
     {
       id: 2,
-      title: "Marketing Tips & Strategies",
-      content: "Essential marketing strategies that every business owner should know to boost their online presence.",
+      title: "✨ The Magic Behind Our Creative Process",
+      content: "An intimate look at how we transform wild ideas into stunning visual experiences that captivate audiences",
       time: "14:00",
       date: getTodayDate(),
-      platforms: ["linkedin"],
-      image: "/neoneo.jpeg",
+      platforms: ["instagram", "facebook"],
+      image: "/src/assets/random_photos/random_photo_2.jpg",
+      optimalTiming: true,
+      engagement: "88%",
+      type: "behind-the-scenes"
     },
     {
       id: 3,
-      title: "Social Media Growth Hacks",
-      content: "Explore effective growth hacks to boost your social media presence and engagement.",
-      time: "10:00",
+      title: "🌍 Remote Work Setup Tour",
+      content: "Take a virtual tour of our team's amazing home office setups from around the world",
+      time: "19:00",
       date: getDateOffset(1), // Tomorrow
-      platforms: ["tiktok", "youtube"],
-      image: "/neoneo.jpeg",
+      platforms: ["youtube", "linkedin"],
+      image: "/src/assets/random_photos/random_photo_3.jpg",
+      optimalTiming: false,
+      engagement: "76%",
+      type: "tutorial",
+      duration: "3:28"
     },
     {
       id: 4,
-      title: "Content Creation Tips",
-      content: "Learn how to create compelling content that resonates with your audience.",
-      time: "16:00",
+      title: "🎨 Brand Transformation That Broke the Internet",
+      content: "The complete visual makeover that turned a struggling brand into a social media sensation overnight",
+      time: "20:00",
       date: getDateOffset(2), // Day after tomorrow
-      platforms: ["instagram", "tiktok"],
-      image: "/neoneo.jpeg",
+      platforms: ["instagram", "youtube"],
+      image: "/src/assets/random_photos/random_photo_4.jpg",
+      optimalTiming: true,
+      engagement: "94%",
+      type: "case-study"
     },
     {
       id: 5,
@@ -242,11 +263,20 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
 
     return (
       <div
-        className={`${cardColors.bg} border ${cardColors.border} rounded cursor-pointer hover:shadow-sm transition-all duration-200 ${
+        className={`${cardColors.bg} border ${cardColors.border} rounded cursor-pointer hover:shadow-sm transition-all duration-200 relative ${
           isMonthView ? "p-1 mb-1 text-xs" : isCompact ? "p-2 mb-1 text-xs" : "p-4 mb-2 text-sm"
         }`}
         onClick={() => onEditPost && onEditPost(post)}
       >
+        {/* Optimal Timing Indicator */}
+        {post.optimalTiming && (
+          <div className="absolute -top-1 -right-1">
+            <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+              <TrendingUp className="w-2 h-2 text-white" />
+            </div>
+          </div>
+        )}
+
         {/* Title */}
         <h3 className={`font-medium text-gray-900 leading-tight ${
           isMonthView ? "text-xs mb-1" : "text-sm mb-2"
@@ -259,32 +289,64 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
         }}>
           {post.title}
         </h3>
+
+        {/* Engagement Rate */}
+        {post.engagement && !isMonthView && (
+          <div className="flex items-center gap-1 mb-2">
+            <div className={`w-2 h-2 rounded-full ${
+              parseInt(post.engagement) >= 90 ? 'bg-green-500' :
+              parseInt(post.engagement) >= 80 ? 'bg-yellow-500' : 'bg-red-500'
+            }`}></div>
+            <span className="text-xs text-gray-600">{post.engagement} engagement</span>
+          </div>
+        )}
         
         {/* Footer with time and platforms */}
         <div className="flex items-center justify-between">
-          <span className={`px-1 py-0.5 rounded font-medium ${cardColors.text} bg-white/50 ${
-            isMonthView ? "text-xs" : "text-xs"
-          }`}>
-            {post.time}
-          </span>
+          <div className="flex items-center gap-1">
+            <span className={`px-1 py-0.5 rounded font-medium ${cardColors.text} bg-white/50 ${
+              isMonthView ? "text-xs" : "text-xs"
+            }`}>
+              {post.time}
+            </span>
+            {post.duration && (
+              <span className="text-xs text-gray-500 bg-gray-100 px-1 py-0.5 rounded">
+                {post.duration}
+              </span>
+            )}
+          </div>
           
           <div className="flex items-center gap-0.5">
-            {post.platforms.slice(0, isMonthView ? 1 : 2).map((platform, idx) => (
-              <div 
-                key={idx} 
-                className={`rounded-full flex items-center justify-center ${getPlatformColor(platform, selectedPlatforms.includes(platform))} ${
-                  isMonthView ? "w-3 h-3" : "w-4 h-4"
-                }`}
-              >
-                <div className={isMonthView ? "w-2 h-2" : "w-3 h-3"}>
-                  {getPlatformIcon(platform, selectedPlatforms.includes(platform))}
+            {post.platforms.slice(0, isMonthView ? 1 : 3).map((platform, idx) => {
+              const PlatformIcon = platform === 'tiktok' ? TikTokIcon : 
+                                  platform === 'facebook' ? Facebook :
+                                  platform === 'instagram' ? Instagram :
+                                  platform === 'linkedin' ? Linkedin :
+                                  platform === 'youtube' ? Youtube : Music;
+              
+              const platformColors = {
+                instagram: 'bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400',
+                facebook: 'bg-blue-600',
+                linkedin: 'bg-blue-700',
+                youtube: 'bg-red-500',
+                tiktok: 'bg-black'
+              };
+
+              return (
+                <div 
+                  key={idx} 
+                  className={`rounded-full flex items-center justify-center ${platformColors[platform] || 'bg-gray-500'} ${
+                    isMonthView ? "w-3 h-3" : "w-5 h-5"
+                  }`}
+                >
+                  <PlatformIcon className={`text-white ${isMonthView ? "w-1.5 h-1.5" : "w-2.5 h-2.5"}`} />
                 </div>
-              </div>
-            ))}
-            {post.platforms.length > (isMonthView ? 1 : 2) && (
+              );
+            })}
+            {post.platforms.length > (isMonthView ? 1 : 3) && (
               <span className={`font-medium ${cardColors.text} ${
                 isMonthView ? "text-xs" : "text-xs"
-              }`}>+{post.platforms.length - (isMonthView ? 1 : 2)}</span>
+              }`}>+{post.platforms.length - (isMonthView ? 1 : 3)}</span>
             )}
           </div>
         </div>

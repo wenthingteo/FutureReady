@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import ChannelSelectionStep from './steps/ChannelSelectionStep';
 import ContentSelectionStep from './steps/ContentSelectionStep';
 import ContentEditingStep from './steps/ContentEditingStep';
+import SchedulingStep from './steps/SchedulingStep';
 
 const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -139,6 +140,15 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
                 errors={errors}
               />
             )}
+
+            {/* Step 4: Scheduling */}
+            {currentStep === 4 && (
+              <SchedulingStep
+                formData={formData}
+                onSchedule={onSchedule}
+                errors={errors}
+              />
+            )}
           </div>
         </div>
 
@@ -190,10 +200,10 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null }) => {
               ) : currentStep === 3 ? (
                 <button
                   type="button"
-                  onClick={handleSubmit}
+                  onClick={nextStep}
                   className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md"
                 >
-                  Schedule
+                  Continue
                 </button>
               ) : null}
             </div>

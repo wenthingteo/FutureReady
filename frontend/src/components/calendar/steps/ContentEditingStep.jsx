@@ -195,12 +195,6 @@ const ContentEditingStep = ({ formData, onContentUpdate, errors }) => {
                 {/* Platform Header */}
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-3 mb-4">
-                    <div className={`w-10 h-10 rounded-xl ${getPlatformIcon(activeTab.toLowerCase()).bgClass} flex items-center justify-center shadow-lg`}>
-                      {React.createElement(getPlatformIcon(activeTab.toLowerCase()).icon, { className: "w-5 h-5 text-white" })}
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-800">
-                      Customize for {activeTab}
-                    </h3>
                   </div>
                   <p className="text-gray-600 text-sm">
                     {activeTab.toLowerCase() === 'instagram' && "Perfect for visual storytelling with hashtags and music"}
