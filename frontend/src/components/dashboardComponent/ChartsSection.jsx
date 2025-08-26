@@ -1,4 +1,16 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from "recharts"
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+} from "recharts"
 
 const ChartsSection = () => {
   const roiData = [
@@ -32,34 +44,37 @@ const ChartsSection = () => {
           <h2 className="text-xl font-bold text-gray-800">ROI Over Time</h2>
           <span className="text-blue-500">💹</span>
         </div>
-        <LineChart width={610} height={300} data={roiData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" label={{ value: "Months", position: "insideBottom", offset: -5 }} />
-          <YAxis
-            tickFormatter={(value) => `${value}%`}
-            label={{
-              value: "ROI (%)",
-              angle: -90,
-              position: "insideLeft",
-              offset: 10,
-            }}
-          />
-          <Tooltip formatter={(value) => `${value}%`} />
-          <Legend />
-          <Line type="monotone" dataKey="roi" stroke="#3264DF" />
-        </LineChart>
+        <div className="w-full h-80"> {/* set container height */}
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={roiData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" label={{ value: "Months", position: "insideBottom", offset: -5 }} />
+              <YAxis
+                tickFormatter={(value) => `${value}%`}
+                label={{
+                  value: "ROI (%)",
+                  angle: -90,
+                  position: "insideLeft",
+                  offset: 10,
+                }}
+              />
+              <Tooltip formatter={(value) => `${value}%`} />
+              <Legend />
+              <Line type="monotone" dataKey="roi" stroke="#3264DF" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Donut Chart */}
-
-      <div className="bg-white p-6 rounded-2xl shadow-md flex justify-center max-w-53l ml-auto">
-        <div>
+      <div className="bg-white p-6 rounded-2xl shadow-md flex justify-center w-full lg:col-span-3">
+        <div className="w-full h-80">
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-xl font-bold text-gray-800">Content Interactions Breakdown</h2>
             <span className="text-xl">🤖</span>
           </div>
-          <div className="flex justify-center px-20">
-            <PieChart width={300} height={300}>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
               <Pie
                 data={interactionData}
                 cx="50%"
@@ -68,7 +83,7 @@ const ChartsSection = () => {
                 outerRadius={100}
                 dataKey="value"
                 labelLine={false}
-                label={({ name, value }) => `${value}%`}
+                label={({ value }) => `${value}%`}
               >
                 {interactionData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -77,10 +92,9 @@ const ChartsSection = () => {
               <Tooltip formatter={(value) => `${value}%`} />
               <Legend />
             </PieChart>
-          </div>
+          </ResponsiveContainer>
         </div>
       </div>
-
     </div>
   )
 }
