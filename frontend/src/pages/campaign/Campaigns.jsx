@@ -1,6 +1,6 @@
 import React from "react";
-import Calendar from "../components/calendar/Calendar";
-import ScheduleModal from "../components/calendar/ScheduleModal";
+import Calendar from "../../components/calendar/Calendar";
+import ScheduleModal from "../../components/calendar/ScheduleModal";
 
 const Campaigns = ({
   view,
