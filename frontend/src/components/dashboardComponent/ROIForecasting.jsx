@@ -141,8 +141,8 @@ const ROIForecasting = () => {
             <Sparkles className="w-4 h-4 text-orange-600" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-gray-800 mb-1">AI Insight</h4>
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <h4 className="text-m font-semibold text-gray-800 mb-1">AI Insight</h4>
+            <p className="text-m text-gray-600 leading-relaxed">
               Based on current trends, your ROI is projected to increase significantly in Q4 2025. 
               <span className="font-medium text-orange-600"> Consider scaling content production</span> during high-performing months.
             </p>
