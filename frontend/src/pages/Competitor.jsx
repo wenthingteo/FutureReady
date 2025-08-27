@@ -21,11 +21,6 @@ import {
   Play,
   Loader2,
   CheckCircle,
-  User,
-  LayoutDashboard,
-  Briefcase,
-  BarChart3,
-  Megaphone,
 } from "lucide-react"
 
 // Mock data for trending posts
@@ -33,35 +28,45 @@ const trendingPosts = [
   {
     id: 1,
     title: "COVID-19 Health Products",
-    platform: "Instagram",
+    platform: "instagram",
+    topic: "health",
+    timeRange: "7d",
     engagement: "12.5K",
     image: "/covid-health-products-blue-medical.png",
   },
   {
     id: 2,
     title: "5 Steps to Maintain Your Health",
-    platform: "TikTok",
+    platform: "tiktok",
+    topic: "health",
+    timeRange: "30d",
     engagement: "8.2K",
     image: "/health-steps-infographic-green.png",
   },
   {
     id: 3,
     title: "International Company Presentation",
-    platform: "LinkedIn",
+    platform: "linkedin",
+    topic: "business",
+    timeRange: "90d",
     engagement: "15.7K",
     image: "/business-presentation-corporate-blue.png",
   },
   {
     id: 4,
     title: "Medical Equipment Guide",
-    platform: "YouTube",
+    platform: "youtube",
+    topic: "health",
+    timeRange: "7d",
     engagement: "22.1K",
     image: "/medical-equipment-stethoscope.png",
   },
   {
     id: 5,
     title: "Medical Check-up Process",
-    platform: "Instagram",
+    platform: "instagram",
+    topic: "health",
+    timeRange: "7d",
     engagement: "9.8K",
     image: "/medical-checkup-doctor-patient.png",
   },
@@ -94,11 +99,24 @@ export default function CompetitorAnalysis() {
   const [aiState, setAiState] = useState(0)
   const [showResults, setShowResults] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
+
   const [filters, setFilters] = useState({
-    timeRange: "7d",
+    timeRange: "all",
     topic: "all",
     platform: "all",
   })
+  const [filteredPosts, setFilteredPosts] = useState(trendingPosts)
+
+  const applyFilters = () => {
+    const result = trendingPosts.filter((post) => {
+      const matchTime = filters.timeRange === "all" || post.timeRange === filters.timeRange
+      const matchTopic = filters.topic === "all" || post.topic === filters.topic
+      const matchPlatform = filters.platform === "all" || post.platform === filters.platform
+      return matchTime && matchTopic && matchPlatform
+    })
+    setFilteredPosts(result.length > 0 ? result : [])
+    setCurrentPostIndex(0)
+  }
 
   const startAnalysis = () => {
     setIsAnalyzing(true)
@@ -119,22 +137,20 @@ export default function CompetitorAnalysis() {
   }
 
   const nextPost = () => {
-    setCurrentPostIndex((prev) => (prev + 1) % trendingPosts.length)
+    setCurrentPostIndex((prev) => (prev + 1) % filteredPosts.length)
   }
 
   const prevPost = () => {
-    setCurrentPostIndex((prev) => (prev - 1 + trendingPosts.length) % trendingPosts.length)
+    setCurrentPostIndex((prev) => (prev - 1 + filteredPosts.length) % filteredPosts.length)
   }
 
-  const visiblePosts = trendingPosts.slice(currentPostIndex, currentPostIndex + 3)
-  if (visiblePosts.length < 3) {
-    visiblePosts.push(...trendingPosts.slice(0, 3 - visiblePosts.length))
+  const visiblePosts = filteredPosts.slice(currentPostIndex, currentPostIndex + 3)
+  if (visiblePosts.length < 3 && filteredPosts.length > 0) {
+    visiblePosts.push(...filteredPosts.slice(0, 3 - visiblePosts.length))
   }
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-
-      {/* Main Content */}
       <div className="flex-1">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -160,13 +176,14 @@ export default function CompetitorAnalysis() {
           <div className="flex items-center gap-2 mb-4 text-gray-700 font-medium">
             <Filter className="w-5 h-5" /> Filters
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <select
               value={filters.timeRange}
               onChange={(e) => setFilters((prev) => ({ ...prev, timeRange: e.target.value }))}
               className="border border-gray-300 rounded-md px-3 py-2"
             >
-              <option value="1Ad">Last 24h</option>
+              <option value="all">All Time</option>
+              <option value="1d">Last 24h</option>
               <option value="7d">Last 7 days</option>
               <option value="30d">Last 30 days</option>
               <option value="90d">Last 90 days</option>
@@ -195,50 +212,66 @@ export default function CompetitorAnalysis() {
               <option value="youtube">YouTube</option>
               <option value="linkedin">LinkedIn</option>
             </select>
+
+            <button
+              onClick={applyFilters}
+              className="px-4 py-2 bg-[#475ECD] text-white rounded-md hover:bg-blue-700 flex items-center gap-2"
+            >
+              <Search className="w-4 h-4" /> Search
+            </button>
           </div>
         </div>
 
         {/* Trending Posts Section */}
         <div className="bg-white border border-gray-200 rounded-lg mb-6 p-4">
           <h2 className="text-lg font-semibold mb-2">Analyzing Competitor's Current Trends</h2>
-          <p className="text-sm text-gray-500 mb-4">Trending posts from your competitors across platforms</p>
+          <p className="text-sm text-gray-500 mb-4">
+            Trending posts from your competitors across platforms
+          </p>
 
-          <div className="relative">
-            <div className="flex justify-center gap-4 overflow-hidden">
-              {visiblePosts.map((post, index) => (
-                <div key={`${post.id}-${index}`} className="flex-shrink-0 w-80">
-                  <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                    <div className="p-4">
-                      <img
-                        src={post.image || "/placeholder.svg"}
-                        alt={post.title}
-                        className="w-full h-48 object-cover rounded-lg mb-3"
-                      />
-                      <h3 className="font-semibold mb-2">{post.title}</h3>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="px-2 py-1 bg-gray-100 rounded">{post.platform}</span>
-                        <span className="text-gray-500">{post.engagement} engagements</span>
+          {filteredPosts.length === 0 ? (
+            <p className="text-center text-gray-500">No posts found for the selected filters.</p>
+          ) : (
+            <div className="relative">
+              <div className="flex justify-center gap-4 overflow-hidden">
+                {visiblePosts.map((post, index) => (
+                  <div key={`${post.id}-${index}`} className="flex-shrink-0 w-80">
+                    <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                      <div className="p-4">
+                        <img
+                          src={post.image || "/placeholder.svg"}
+                          alt={post.title}
+                          className="w-full h-48 object-cover rounded-lg mb-3"
+                        />
+                        <h3 className="font-semibold mb-2">{post.title}</h3>
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="px-2 py-1 bg-gray-100 rounded">{post.platform}</span>
+                          <span className="text-gray-500">{post.engagement} engagements</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {filteredPosts.length > 3 && (
+                <>
+                  <button
+                    onClick={prevPost}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-gray-50"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={nextPost}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-gray-50"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </>
+              )}
             </div>
-
-            <button
-              onClick={prevPost}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-gray-50"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={nextPost}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white border rounded-full p-2 shadow hover:bg-gray-50"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+          )}
 
           <div className="mt-6 text-center">
             <button
@@ -255,21 +288,26 @@ export default function CompetitorAnalysis() {
         {(isAnalyzing || showResults) && (
           <div className="bg-white border border-gray-200 rounded-lg mb-6 p-6">
             <div className="text-center space-y-4">
-              {aiStates.slice(0, aiState + 1).map((state, index) => {
+              {(() => {
+                const state = aiStates[aiState]
                 const Icon = state.icon
                 return (
-                  <div key={index} className="flex items-center justify-center gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Icon
                       className={`w-5 h-5 ${
-                        index === aiState && isAnalyzing ? "animate-spin" : ""
-                      } ${index < aiState ? "text-green-500" : "text-blue-500"}`}
+                        isAnalyzing && aiState < aiStates.length - 1 ? "animate-spin text-blue-500" : ""
+                      } ${aiState === aiStates.length - 1 ? "text-green-500" : ""}`}
                     />
-                    <span className={index < aiState ? "text-green-500" : "text-gray-700"}>
+                    <span
+                      className={
+                        aiState === aiStates.length - 1 ? "text-green-500" : "text-gray-700"
+                      }
+                    >
                       {state.text}
                     </span>
                   </div>
                 )
-              })}
+              })()}
             </div>
           </div>
         )}
@@ -316,7 +354,9 @@ export default function CompetitorAnalysis() {
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold mb-2">Keywords:</h4>
-                  <p className="text-gray-600">step, up, special for, health, medical, check-up, professional</p>
+                  <p className="text-gray-600">
+                    step, up, special for, health, medical, check-up, professional
+                  </p>
                 </div>
                 <div>
                   <h4 className="font-semibold mb-2">Template Patterns:</h4>

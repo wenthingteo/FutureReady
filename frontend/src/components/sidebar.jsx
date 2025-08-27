@@ -93,7 +93,7 @@ const Sidebar = () => {
                   </button>
                   {/* Submenu */}
                   {item.subItems && openItem === item.label && (
-                    <div className="ml-8 mt-2 space-y-1 bg-blue-50 rounded-lg p-3 border border-blue-100">
+                    <div className="mt-2 space-y-1 bg-blue-50 rounded-lg p-3 border border-blue-100">
                       {item.subItems.map((sub, i) => {
                         const isActiveSub = sub.link === location.pathname
                         return (

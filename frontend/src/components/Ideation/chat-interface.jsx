@@ -119,8 +119,8 @@ Would you like me to elaborate on any of these suggestions or help you develop s
 
   return (
     <div className="flex h-screen">
-      {/* Sidebar */}
-      <div className="w-96 border-r border-gray-200 bg-white">
+      {/* AiContent */}
+      <div className="w-120 border-r border-gray-200 bg-white">
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center gap-2 mb-2">
             <button
