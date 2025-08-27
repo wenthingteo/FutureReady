@@ -11,7 +11,7 @@ import Ads from "./pages/Ads";
 
 function App() {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-blue-50">
       {/* Sidebar stays on all pages */}
       <Sidebar />
 
