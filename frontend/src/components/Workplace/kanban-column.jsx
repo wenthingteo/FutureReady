@@ -4,7 +4,7 @@ import { TaskCard } from "./task-card"
 import { useDroppable } from "@dnd-kit/core"
 import { Plus } from "lucide-react"
 
-export function KanbanColumn({ title, status, tasks, onAddTask, onTaskClick }) {
+export function KanbanColumn({ title, status, tasks, onAddTask, onTaskClick, newTaskId }) {
   const { isOver, setNodeRef } = useDroppable({
     id: status,
   })
@@ -16,17 +16,26 @@ export function KanbanColumn({ title, status, tasks, onAddTask, onTaskClick }) {
       ref={setNodeRef} // Set the droppable node ref on the column container
       className={`flex-1 max-h-[600px] bg-[#E8ECFF] border-2 border-dashed border-[#475ECD] rounded-lg ${isOver ? "ring-2 ring-blue-500" : ""}`}
     >
-    <div className="p-4 border-b border-gray-200">
-      <div className="flex items-center justify-between text-lg font-medium text-gray-600">
-        {title}
-        <span className="bg-[#475ECD] text-white rounded-full px-2 py-1 text-xs">{tasks.length}</span>
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between text-lg font-medium text-gray-600">
+          {title}
+          <span className="bg-[#475ECD] text-white rounded-full px-2 py-1 text-xs">{tasks.length}</span>
+        </div>
       </div>
-    </div>
 
-    <div className="p-4 space-y-3 min-h-[500px]">
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} onClick={onTaskClick} />
-      ))}
+      <div className="p-4 space-y-3 min-h-[500px]">
+        {tasks.map((task) => (
+          <div
+            key={task.id}
+            className={`transition-all duration-500 ${
+              newTaskId === task.id 
+                ? "ring-2 ring-green-400 shadow-lg transform scale-105 animate-pulse" 
+                : ""
+            }`}
+          >
+            <TaskCard task={task} onClick={onTaskClick} />
+          </div>
+        ))}
 
         {isUnassigned && (
           <button
