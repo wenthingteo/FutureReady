@@ -150,13 +150,12 @@ export default function CompetitorAnalysis() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div>
       <div className="flex-1">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-[#3264DF]">Workplace</h1>
-            <p className="text-gray-500">Analyze trending content and competitor strategies</p>
+            <h1 className="text-3xl font-bold text-[#3264DF]">Competitor Analysis</h1>
           </div>
           <div className="flex items-center gap-4">
             <div className="relative">
