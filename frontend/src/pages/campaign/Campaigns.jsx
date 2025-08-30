@@ -13,6 +13,8 @@ const Campaigns = ({
   handleSchedulePost,
   editingPost,
   setEditingPost,
+  isSchedulingMode,
+  onBackToCalendar,
 }) => {
   return (
     <div className="space-y-6">
@@ -21,25 +23,42 @@ const Campaigns = ({
         <h1 className="text-3xl font-bold text-[#3264DF]">Campaign Hub</h1>
       </div>
 
-      {/* Calendar Component */}
-      <Calendar
-        view={view}
-        setView={setView}
-        posts={posts}
-        onSchedulePost={handleOpenScheduleModal}
-        onEditPost={handleEditPost}
-      />
+      {/* Conditional Rendering */}
+      {isSchedulingMode ? (
+        /* Scheduling Interface */
+        <div className="min-h-screen">
+          <ScheduleModal
+            isOpen={true}
+            onClose={onBackToCalendar}
+            onSchedule={handleSchedulePost}
+            editingPost={editingPost}
+            isFullPage={true}
+          />
+        </div>
+      ) : (
+        /* Calendar View */
+        <>
+          <Calendar
+            view={view}
+            setView={setView}
+            posts={posts}
+            onSchedulePost={handleOpenScheduleModal}
+            onEditPost={handleEditPost}
+          />
 
-      {/* Schedule Modal */}
-      <ScheduleModal
-        isOpen={isScheduleModalOpen}
-        onClose={() => {
-          setIsScheduleModalOpen(false);
-          setEditingPost(null);
-        }}
-        onSchedule={handleSchedulePost}
-        editingPost={editingPost}
-      />
+          {/* Legacy Modal (keeping for backward compatibility) */}
+          <ScheduleModal
+            isOpen={isScheduleModalOpen}
+            onClose={() => {
+              setIsScheduleModalOpen(false);
+              setEditingPost(null);
+            }}
+            onSchedule={handleSchedulePost}
+            editingPost={editingPost}
+            isFullPage={false}
+          />
+        </>
+      )}
     </div>
   );
 };

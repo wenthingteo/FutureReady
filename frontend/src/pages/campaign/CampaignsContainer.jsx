@@ -6,6 +6,7 @@ const CampaignsContainer = () => {
   const [posts, setPosts] = useState([]);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
+  const [isSchedulingMode, setIsSchedulingMode] = useState(false);
 
   // Handle scheduling a new post or updating an existing one
   const handleSchedulePost = (postData) => {
@@ -21,19 +22,26 @@ const CampaignsContainer = () => {
       // Add new post
       setPosts(prevPosts => [...prevPosts, postData]);
     }
+    setIsSchedulingMode(false);
     setIsScheduleModalOpen(false);
   };
 
   // Handle editing a post
   const handleEditPost = (post) => {
     setEditingPost(post);
-    setIsScheduleModalOpen(true);
+    setIsSchedulingMode(true);
   };
 
   // Handle opening schedule modal for new post
   const handleOpenScheduleModal = () => {
     setEditingPost(null);
-    setIsScheduleModalOpen(true);
+    setIsSchedulingMode(true);
+  };
+
+  // Handle going back to calendar view
+  const handleBackToCalendar = () => {
+    setIsSchedulingMode(false);
+    setEditingPost(null);
   };
 
   return (
@@ -48,6 +56,8 @@ const CampaignsContainer = () => {
       handleSchedulePost={handleSchedulePost}
       editingPost={editingPost}
       setEditingPost={setEditingPost}
+      isSchedulingMode={isSchedulingMode}
+      onBackToCalendar={handleBackToCalendar}
     />
   );
 };
