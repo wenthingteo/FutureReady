@@ -123,112 +123,119 @@ export default function TargetingStep({ campaignData, setCampaignData }) {
       {campaignData.targetingMethod === "manual" && (
         <div className="space-y-6">
           {/* Audience Options */}
-          <div className="space-y-4">
-            <h4 className="font-medium text-gray-900">Your Audiences</h4>
+            <div className="space-y-4">
+            <h4 className="font-medium text-gray-900">Who will see your ad?</h4>
             <div className="space-y-3">
-              {[
+                {[
                 {
-                  title: "Existing customers",
-                  desc: "Customers who ordered from you in the past 30 days",
+                    title: "Everyone",
+                    desc: "Including potential customers and all customers who ordered from you in the past 30 days",
                 },
                 {
-                  title: "Prospective customers",
-                  desc: "People similar to your current customers but not purchased yet",
+                    title: "Potential customers",
+                    desc: "People similar to your current customers but not purchased yet",
                 },
-                {
-                  title: "Churned customers",
-                  desc: "Customers who haven’t ordered in the past 30 days",
-                },
-              ].map((aud) => (
+                ].map((aud) => (
                 <label
-                  key={aud.title}
-                  className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
+                    key={aud.title}
+                    className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer"
                 >
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4 text-[#475ECD] rounded focus:ring-[#475ECD]"
-                  />
-                  <div className="flex-1">
+                    <input
+                    type="radio"
+                    name="audience" // same name groups them together
+                    className="w-4 h-4 accent-[#475ECD]"
+                    />
+                    <div className="flex-1">
                     <div className="font-medium text-gray-900">{aud.title}</div>
                     <div className="text-sm text-gray-600">{aud.desc}</div>
-                  </div>
+                    </div>
                 </label>
-              ))}
+                ))}
             </div>
-          </div>
+            </div>
+
 
           {/* Demographics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Age Range */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Age Range
-              </label>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">18</span>
-                  <span className="text-sm font-semibold text-gray-900">
-                    {campaignData.targeting.age[0]} - {campaignData.targeting.age[1]}
-                  </span>
-                  <span className="text-sm text-gray-600">65+</span>
-                </div>
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="18"
-                    max="65"
-                    value={campaignData.targeting.age[0]}
-                    onChange={(e) =>
-                      setCampaignData({
-                        ...campaignData,
-                        targeting: {
-                          ...campaignData.targeting,
-                          age: [
-                            parseInt(e.target.value),
-                            campaignData.targeting.age[1],
-                          ],
-                        },
-                      })
+          <div className="space-y-6 flex flex-col items-stretch">
+            {/* Age Groups - Generation Based */}
+                <div>
+                <label className="block text-sm font-medium text-gray-700 mb-4">Age Groups</label>
+                <div className="flex flex-wrap gap-3 w-full">
+            {[
+                { id: 'genz', label: 'Gen Z', range: '18-26', icon: '🎮' },
+                { id: 'millennials', label: 'Millennials', range: '27-42', icon: '💻' },
+                { id: 'genx', label: 'Gen X', range: '43-58', icon: '📱' },
+                { id: 'boomers', label: 'Boomers', range: '59+', icon: '📺' }
+            ].map((group) => (
+                <button
+                key={group.id}
+                onClick={() => {
+                    const selectedGroups = campaignData.targeting.ageGroups || [];
+                    const newGroups = selectedGroups.includes(group.id)
+                    ? selectedGroups.filter(g => g !== group.id)
+                    : [...selectedGroups, group.id];
+                    setCampaignData({
+                    ...campaignData,
+                    targeting: {
+                        ...campaignData.targeting,
+                        ageGroups: newGroups
                     }
-                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                  />
+                    });
+                }}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all hover:scale-105 flex-1 ${
+                    (campaignData.targeting.ageGroups || []).includes(group.id)
+                    ? 'border-[#475ECD] bg-blue-50 text-[#475ECD] shadow-md'
+                    : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300 shadow-sm'
+                }`}
+                >
+                <span className="text-xl">{group.icon}</span>
+                <div className="text-left">
+                    <div className="font-semibold text-sm">{group.label}</div>
+                    <div className="text-xs opacity-75">{group.range}</div>
                 </div>
-              </div>
+                </button>
+            ))}
+            </div>
+
             </div>
 
             {/* Gender */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Gender
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                {["All", "Male", "Female"].map((gender) => (
+              <label className="block text-sm font-medium text-gray-700 mb-4">Gender</label>
+              <div className="flex gap-3">
+                {[
+                  { id: 'all', label: 'All Genders', icon: '👥' },
+                  { id: 'male', label: 'Male', icon: '👨' },
+                  { id: 'female', label: 'Female', icon: '👩' }
+                ].map((gender) => (
                   <button
-                    key={gender}
+                    key={gender.id}
                     onClick={() =>
                       setCampaignData({
                         ...campaignData,
                         targeting: {
                           ...campaignData.targeting,
-                          gender: gender.toLowerCase(),
+                          gender: gender.id,
                         },
                       })
                     }
-                    className={`p-3 rounded-lg text-sm font-medium transition-all ${
-                      campaignData.targeting.gender === gender.toLowerCase()
-                        ? "bg-[#475ECD] text-white"
-                        : "border border-gray-200 text-gray-700 hover:border-[#475ECD]"
+                    className={`flex items-center gap-2 px-4 py-3 rounded-xl border-2 transition-all hover:scale-105 flex-1 justify-center ${
+                      campaignData.targeting.gender === gender.id
+                        ? "border-[#475ECD] bg-blue-50 text-[#475ECD] shadow-md"
+                        : "border-gray-200 bg-white text-gray-700 hover:border-gray-300 shadow-sm"
                     }`}
                   >
-                    {gender}
+                    <span className="text-lg">{gender.icon}</span>
+                    <span className="font-semibold text-sm">{gender.label}</span>
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
+
           {/* Location */}
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Location
             </label>
@@ -246,10 +253,10 @@ export default function TargetingStep({ campaignData, setCampaignData }) {
                 })
               }
             />
-          </div>
+          </div> */}
 
           {/* Interests */}
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Interests & Behaviors
             </label>
@@ -291,7 +298,7 @@ export default function TargetingStep({ campaignData, setCampaignData }) {
                 </label>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
