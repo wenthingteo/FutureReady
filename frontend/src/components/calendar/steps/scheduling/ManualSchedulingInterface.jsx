@@ -12,7 +12,8 @@ export const ManualSchedulingInterface = ({
   onDateChange,
   onTimeSlotClick,
   onPlatformChange,
-  onManualTimeChange
+  onManualTimeChange,
+  updateSchedulingData
 }) => {
   // Sample existing events for demonstration (August 24-30, 2024)
   const existingEvents = [
@@ -96,6 +97,7 @@ export const ManualSchedulingInterface = ({
         selectedPlatformForHeatmap={selectedPlatformForHeatmap}
         selectedDate={selectedDate}
         onManualTimeChange={onManualTimeChange}
+        updateSchedulingData={updateSchedulingData}
       />
     </div>
   );

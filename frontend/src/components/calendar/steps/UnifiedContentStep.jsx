@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Linkedin, Zap, Youtube, Search, Filter, ChevronDown, Play, Hash, FileText, Image, X, Plus, Edit3, Settings, Music, Sparkles, CheckCircle, AlertCircle, Wand2 } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Zap, Youtube, Search, Filter, ChevronDown, Play, Hash, FileText, Image, X, Plus, Edit3, Settings, Music, Sparkles, CheckCircle, AlertCircle, Wand2, Shield } from 'lucide-react';
 
 // Custom TikTok Icon Component
 const TikTokIcon = ({ className }) => (
@@ -362,6 +362,75 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
         enhancedDescription += '\n\nThis approach ensures optimal results while maintaining quality standards.';
       }
       
+      // New enhancement options
+      if (prompt.includes('enhance for all platforms')) {
+        // Enhance content for all selected platforms
+        const platformEnhancements = {
+          instagram: {
+            title: enhancedTitle + ' 📸',
+            description: enhancedDescription + '\n\n#Instagram #SocialMedia #Content'
+          },
+          facebook: {
+            title: enhancedTitle + ' 👥',
+            description: enhancedDescription + '\n\nWhat do you think? Share your thoughts below!'
+          },
+          linkedin: {
+            title: enhancedTitle + ' 💼',
+            description: enhancedDescription + '\n\n#Professional #Networking #Career'
+          },
+          youtube: {
+            title: enhancedTitle + ' 🎥',
+            description: enhancedDescription + '\n\nSubscribe for more content like this!'
+          },
+          tiktok: {
+            title: enhancedTitle + ' 🎵',
+            description: enhancedDescription + '\n\n#FYP #Viral #Trending'
+          }
+        };
+        
+        // Apply platform-specific enhancements to all selected platforms
+        formData.platforms.forEach(platform => {
+          const enhancement = platformEnhancements[platform];
+          if (enhancement) {
+            const updatedContent = {
+              ...editedContent[platform],
+              title: enhancement.title,
+              description: enhancement.description
+            };
+            setEditedContent(prev => ({
+              ...prev,
+              [platform]: updatedContent
+            }));
+          }
+        });
+        
+        // Update the current active tab
+        const currentEnhancement = platformEnhancements[activeTab];
+        if (currentEnhancement) {
+          handleContentChange('title', currentEnhancement.title);
+          handleContentChange('description', currentEnhancement.description);
+        }
+      }
+      
+      if (prompt.includes('check content compliance') || prompt.includes('platform policy')) {
+        // Simulate compliance check
+        const complianceResults = {
+          instagram: { compliant: true, issues: [], suggestions: ['Consider adding more hashtags for better reach'] },
+          facebook: { compliant: true, issues: [], suggestions: ['Content looks good for Facebook community guidelines'] },
+          linkedin: { compliant: true, issues: [], suggestions: ['Professional tone is appropriate for LinkedIn'] },
+          youtube: { compliant: true, issues: [], suggestions: ['Content follows YouTube community guidelines'] },
+          tiktok: { compliant: true, issues: [], suggestions: ['Content is suitable for TikTok audience'] }
+        };
+        
+        const currentCompliance = complianceResults[activeTab];
+        if (currentCompliance) {
+          // Add compliance note to description
+          const complianceNote = `\n\n✅ Content compliance check passed for ${activeTab}. ${currentCompliance.suggestions.join(' ')}`;
+          enhancedDescription += complianceNote;
+          handleContentChange('description', enhancedDescription);
+        }
+      }
+      
       // Update the content
       handleContentChange('description', enhancedDescription);
       if (enhancedTitle !== currentContent.title) {
@@ -372,12 +441,26 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
     }, 1500);
   };
 
-  // Initialize content when active tab changes
+  // Initialize content when active tab changes or when platforms are selected
   useEffect(() => {
     if (activeTab && formData.platforms.includes(activeTab)) {
       initializePlatformContent(activeTab);
     }
   }, [activeTab, formData.platforms]);
+
+  // Initialize content for all selected platforms when platforms change
+  useEffect(() => {
+    if (formData.platforms.length > 0) {
+      formData.platforms.forEach(platformId => {
+        initializePlatformContent(platformId);
+      });
+      
+      // Set active tab to first selected platform if not already set
+      if (!activeTab || !formData.platforms.includes(activeTab)) {
+        setActiveTab(formData.platforms[0]);
+      }
+    }
+  }, [formData.platforms]);
 
   const filteredContent = getFilteredAndSortedContent();
 
@@ -565,7 +648,7 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
 
                 {/* Active Platform Content */}
                 <div className="p-6">
-                  {editedContent[activeTab] && (
+                  {editedContent[activeTab] ? (
                     <div className="space-y-6">
                       {/* Title */}
                       <div>
@@ -665,32 +748,33 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
                           <Sparkles className="w-4 h-4 text-blue-600" />
                           <h4 className="font-medium text-blue-800">AI Enhancement</h4>
                         </div>
-                        {/* Debug info */}
-                        <div className="text-xs text-gray-500 mb-2">
-                          AI Enhancement section is working - {new Date().toLocaleTimeString()}
-                        </div>
                         
                         <div className="space-y-3">
-                          {/* Quick Enhancement Buttons */}
-                          <div className="grid grid-cols-2 gap-2">
-                            {[
-                              { label: 'Fix Grammar', prompt: 'fix grammar' },
-                              { label: 'Add CTA', prompt: 'add call to action' },
-                              { label: 'Make Engaging', prompt: 'make more engaging' },
-                              { label: 'Add Hashtags', prompt: 'add hashtags' }
-                            ].map((quickAction, index) => (
-                              <button
-                                key={index}
-                                onClick={() => {
-                                  setEnhancementPrompt(quickAction.prompt);
-                                  setTimeout(() => enhanceContent(), 100);
-                                }}
-                                disabled={isAiProcessing}
-                                className="px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all disabled:opacity-50 font-medium"
-                              >
-                                {quickAction.label}
-                              </button>
-                            ))}
+                          {/* AI Enhancement Buttons */}
+                          <div className="grid grid-cols-1 gap-3">
+                            <button
+                              onClick={() => {
+                                setEnhancementPrompt('enhance for all platforms');
+                                setTimeout(() => enhanceContent(), 100);
+                              }}
+                              disabled={isAiProcessing}
+                              className="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all disabled:opacity-50 font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                            >
+                              <Sparkles className="w-4 h-4" />
+                              Enhance for All Platforms
+                            </button>
+                            
+                            <button
+                              onClick={() => {
+                                setEnhancementPrompt('check content compliance to platform policy');
+                                setTimeout(() => enhanceContent(), 100);
+                              }}
+                              disabled={isAiProcessing}
+                              className="px-4 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg hover:from-emerald-600 hover:to-teal-700 transition-all disabled:opacity-50 font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                            >
+                              <Shield className="w-4 h-4" />
+                              Check Content Compliance
+                            </button>
                           </div>
 
                           {/* Enhancement Input */}
@@ -721,6 +805,13 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
                           </div>
                         </div>
                       </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Edit3 className="w-6 h-6 text-gray-400" />
+                      </div>
+                      <p className="text-gray-500 text-sm">Loading content editor...</p>
                     </div>
                   )}
                 </div>

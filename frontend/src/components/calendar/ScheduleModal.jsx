@@ -136,6 +136,7 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
                   formData={formData}
                   onSchedule={onSchedule}
                   errors={errors}
+                  onBack={prevStep}
                 />
               )}
             </div>
@@ -143,16 +144,10 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
             {/* Footer */}
             <div className="border-t border-gray-200 p-8 bg-gray-50">
               <div className="flex justify-between items-center">
-                {/* Back Button */}
+                {/* Back Button - Only show on step 1 */}
                 <div>
-                  {currentStep > 1 && (
-                    <button
-                      type="button"
-                      onClick={prevStep}
-                      className="px-6 py-2.5 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
-                    >
-                      ← Back
-                    </button>
+                  {currentStep === 1 && (
+                    <div></div>
                   )}
                 </div>
 
@@ -219,16 +214,10 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
         {/* Footer */}
         <div className="border-t border-gray-100/40 p-8 bg-gray-50/40">
           <div className="flex justify-between items-center">
-            {/* Back Button */}
+            {/* Back Button - Only show on step 1 */}
             <div>
-              {currentStep > 1 && (
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="px-6 py-2.5 text-gray-600 hover:text-gray-800 text-sm font-medium transition-colors"
-                >
-                  ← Back
-                </button>
+              {currentStep === 1 && (
+                <div></div>
               )}
             </div>
 

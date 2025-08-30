@@ -120,12 +120,21 @@ export const useSchedulingActions = ({
   };
 
   const handleManualTimeChange = (platform, field, value) => {
-    updateSchedulingData({
-      [platform]: {
-        ...schedulingData[platform],
-        [field]: value,
-        scheduleType: 'manual'
-      }
+    console.log('handleManualTimeChange called:', { platform, field, value });
+    
+    // Use functional update to ensure we have the latest state
+    updateSchedulingData(prevData => {
+      const updatedData = {
+        ...prevData,
+        [platform]: {
+          ...prevData[platform],
+          [field]: value,
+          scheduleType: 'manual'
+        }
+      };
+      
+      console.log('Updated scheduling data:', updatedData);
+      return updatedData;
     });
   };
 
@@ -133,15 +142,31 @@ export const useSchedulingActions = ({
     const timeSlot = { day, hour, time: `${hour.toString().padStart(2, '0')}:00` };
     setSelectedTimeSlot(timeSlot);
     
+    console.log('Time slot clicked:', { day, hour, timeSlot, schedulingMode });
+    
     // In manual mode, apply to the selected platform
     if (schedulingMode === 'manual') {
       const targetDate = new Date(selectedDate);
       targetDate.setDate(selectedDate.getDate() + ((day - selectedDate.getDay() + 7) % 7));
       const dateString = targetDate.toISOString().split('T')[0];
       
-      // Apply to the currently selected platform for heatmap
-      handleManualTimeChange(selectedPlatformForHeatmap, 'customTime', timeSlot.time);
-      handleManualTimeChange(selectedPlatformForHeatmap, 'customDate', dateString);
+      console.log('Applying to platform:', {
+        platform: selectedPlatformForHeatmap,
+        time: timeSlot.time,
+        date: dateString
+      });
+      
+      // Apply to the currently selected platform for heatmap using direct state update
+      const updatedData = { ...schedulingData };
+      updatedData[selectedPlatformForHeatmap] = {
+        ...updatedData[selectedPlatformForHeatmap],
+        customTime: timeSlot.time,
+        customDate: dateString,
+        scheduleType: 'manual'
+      };
+      
+      console.log('Updated data for time slot click:', updatedData);
+      updateSchedulingData(updatedData);
       
       // Store the suggested date for display purposes
       setSelectedDate(targetDate);

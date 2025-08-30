@@ -83,8 +83,8 @@ export const EngagementHeatmap = ({
         </div>
       </div>
 
-      <div className="p-8">
-        <div className="grid grid-cols-8 gap-3">
+      <div className="p-6">
+        <div className="grid grid-cols-8 gap-2">
           {/* Header Row */}
           <div className="text-xs text-slate-500 text-right pr-2 font-medium flex items-center justify-end">
             <div className="bg-slate-100 px-2 py-1 rounded-lg text-slate-600 font-medium text-xs">Time</div>
@@ -96,13 +96,13 @@ export const EngagementHeatmap = ({
             
             return (
               <div key={day} className="text-center py-2">
-                <div className={`inline-flex flex-col items-center justify-center w-14 h-12 rounded-2xl transition-all duration-300 hover:scale-105 shadow-sm ${
+                <div className={`inline-flex flex-col items-center justify-center w-12 h-10 rounded-xl transition-all duration-300 hover:scale-105 shadow-sm ${
                   index < 5 
                     ? 'bg-gradient-to-br from-blue-50 to-cyan-50 text-blue-700 border border-blue-200/60' 
                     : 'bg-gradient-to-br from-amber-50 to-orange-50 text-orange-700 border border-orange-200/60'
                 }`}>
                   <div className="text-xs font-bold">{day}</div>
-                  <div className="text-lg font-bold">{dateNumber}</div>
+                  <div className="text-sm font-bold">{dateNumber}</div>
                 </div>
               </div>
             );
@@ -142,12 +142,12 @@ export const EngagementHeatmap = ({
                   return (
                     <div
                       key={`${day}-${hour}`}
-                      className={`h-8 rounded-2xl cursor-pointer transition-all duration-300 relative border-2 transform hover:scale-110 hover:shadow-xl hover:z-10 group ${
+                      className={`h-6 rounded-xl cursor-pointer transition-all duration-300 relative border-2 transform hover:scale-110 hover:shadow-lg hover:z-10 group ${
                         isSelected 
-                          ? 'bg-gradient-to-br from-indigo-500 to-purple-600 border-indigo-400 ring-4 ring-indigo-500/30 shadow-2xl scale-110 z-20' 
+                          ? 'bg-gradient-to-br from-indigo-500 to-purple-600 border-indigo-400 ring-4 ring-indigo-500/30 shadow-xl scale-110 z-20' 
                           : hasEvent
-                            ? 'bg-gradient-to-br from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 border-emerald-400/60 shadow-lg'
-                            : `${intensityClasses[intensity]} hover:shadow-lg`
+                            ? 'bg-gradient-to-br from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 border-emerald-400/60 shadow-md'
+                            : `${intensityClasses[intensity]} hover:shadow-md`
                       }`}
                       onClick={() => onTimeSlotClick(day, hour)}
                     >
@@ -186,7 +186,7 @@ export const EngagementHeatmap = ({
         </div>
 
         {/* Legend */}
-        <div className="bg-gradient-to-r from-slate-50/80 to-slate-100/80 rounded-2xl p-6 mt-8 border border-slate-200/60 backdrop-blur-sm">
+        <div className="bg-gradient-to-r from-slate-50/80 to-slate-100/80 rounded-xl p-4 mt-6 border border-slate-200/60 backdrop-blur-sm">
           <div className="flex items-center justify-between flex-wrap gap-6">
             <div className="flex items-center gap-8 flex-wrap">
               {/* Engagement Legend */}
