@@ -21,9 +21,10 @@ import {
   Play,
   Loader2,
   CheckCircle,
+  ExternalLink,
 } from "lucide-react"
 
-// Mock data for trending posts
+// Mock data for trending posts with URLs
 const trendingPosts = [
   {
     id: 1,
@@ -33,6 +34,7 @@ const trendingPosts = [
     timeRange: "7d",
     engagement: "12.5K",
     image: "/covid-health-products-blue-medical.png",
+    url: "https://www.instagram.com/p/example-covid-health-products/",
   },
   {
     id: 2,
@@ -42,6 +44,7 @@ const trendingPosts = [
     timeRange: "30d",
     engagement: "8.2K",
     image: "/health-steps-infographic-green.png",
+    url: "https://www.tiktok.com/@example/video/health-steps-maintain",
   },
   {
     id: 3,
@@ -51,6 +54,7 @@ const trendingPosts = [
     timeRange: "90d",
     engagement: "15.7K",
     image: "/business-presentation-corporate-blue.png",
+    url: "https://www.linkedin.com/posts/example-company-presentation",
   },
   {
     id: 4,
@@ -60,6 +64,7 @@ const trendingPosts = [
     timeRange: "7d",
     engagement: "22.1K",
     image: "/medical-equipment-stethoscope.png",
+    url: "https://www.youtube.com/watch?v=JddoeK5JcRw",
   },
   {
     id: 5,
@@ -69,6 +74,7 @@ const trendingPosts = [
     timeRange: "7d",
     engagement: "9.8K",
     image: "/medical-checkup-doctor-patient.png",
+    url: "https://www.instagram.com/p/example-medical-checkup-process/",
   },
 ]
 
@@ -144,6 +150,10 @@ export default function CompetitorAnalysis() {
     setCurrentPostIndex((prev) => (prev - 1 + filteredPosts.length) % filteredPosts.length)
   }
 
+  const handlePostClick = (post) => {
+    window.open(post.url, '_blank')
+  }
+
   const visiblePosts = filteredPosts.slice(currentPostIndex, currentPostIndex + 3)
   if (visiblePosts.length < 3 && filteredPosts.length > 0) {
     visiblePosts.push(...filteredPosts.slice(0, 3 - visiblePosts.length))
@@ -158,20 +168,11 @@ export default function CompetitorAnalysis() {
             <h1 className="text-3xl font-bold text-[#3264DF]">Competitor Analysis</h1>
           </div>
           <div className="flex items-center gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="pl-10 w-64 h-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add</button>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-white border border-gray-200 rounded-lg mb-6 p-4">
+        <div className="bg-white border border-gray-200 rounded-lg mb-2 p-4">
           <div className="flex items-center gap-2 mb-4 text-gray-700 font-medium">
             <Filter className="w-5 h-5" /> Filters
           </div>
@@ -222,10 +223,10 @@ export default function CompetitorAnalysis() {
         </div>
 
         {/* Trending Posts Section */}
-        <div className="bg-white border border-gray-200 rounded-lg mb-6 p-4">
+        <div className="bg-white border border-gray-200 rounded-lg mb-2 p-4">
           <h2 className="text-lg font-semibold mb-2">Analyzing Competitor's Current Trends</h2>
           <p className="text-sm text-gray-500 mb-4">
-            Trending posts from your competitors across platforms
+            Trending posts from your competitors across platforms (click to visit)
           </p>
 
           {filteredPosts.length === 0 ? (
@@ -235,16 +236,26 @@ export default function CompetitorAnalysis() {
               <div className="flex justify-center gap-4 overflow-hidden">
                 {visiblePosts.map((post, index) => (
                   <div key={`${post.id}-${index}`} className="flex-shrink-0 w-80">
-                    <div className="bg-white border-2 border-dashed border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div 
+                      className="bg-white border-2 border-dashed border-gray-300 rounded-lg shadow-sm hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer group"
+                      onClick={() => handlePostClick(post)}
+                    >
                       <div className="p-4">
-                        <img
-                          src={post.image || "/placeholder.svg"}
-                          alt={post.title}
-                          className="w-full h-48 object-cover rounded-lg mb-3"
-                        />
-                        <h3 className="font-semibold mb-2">{post.title}</h3>
+                        <div className="relative">
+                          <img
+                            src={post.image || "/placeholder.svg"}
+                            alt={post.title}
+                            className="w-full h-48 object-cover rounded-lg mb-3 group-hover:opacity-90 transition-opacity"
+                          />
+                          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="bg-white rounded-full p-1 shadow-md">
+                              <ExternalLink className="w-4 h-4 text-gray-600" />
+                            </div>
+                          </div>
+                        </div>
+                        <h3 className="font-semibold mb-2 group-hover:text-blue-600 transition-colors">{post.title}</h3>
                         <div className="flex items-center justify-between text-sm">
-                          <span className="px-2 py-1 bg-gray-100 rounded">{post.platform}</span>
+                          <span className="px-2 py-1 bg-gray-100 rounded capitalize">{post.platform}</span>
                           <span className="text-gray-500">{post.engagement} engagements</span>
                         </div>
                       </div>

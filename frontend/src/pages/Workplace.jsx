@@ -106,11 +106,9 @@ export default function WorkplacePage() {
 
   const getTasksByStatus = (status) => tasks.filter((task) => task.status === status)
 
-  // ✅ FIXED: This function now properly handles task creation from content planning
   const handleCreateTaskFromContent = (taskData) => {
     console.log("Creating task from content planning:", taskData)
     
-    // Create the new task with proper structure
     const newTask = {
       id: Date.now().toString(),
       title: taskData.title || "",
@@ -137,9 +135,9 @@ export default function WorkplacePage() {
   if (currentView === "content-planning") {
     return (
       <div className="flex h-screen bg-background">
-        <main className="flex-1 p-6">
+        <main className="flex-1">
           <div className="mb-6 flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-[#3264DF]">Content Planning</h1>
+            <h1 className="text-3xl font-bold text-[#475ECD]">Content Planning</h1>
             <Button variant="outline" onClick={() => setCurrentView("kanban")}>
               Back to Workplace
             </Button>
@@ -154,10 +152,10 @@ export default function WorkplacePage() {
   // --- Workplace (Kanban) View ---
   return (
     <div className="flex h-screen bg-background">
-      <main className="flex-1 p-6">
+      <main className="flex-1">
         <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-[#3264DF]">Workplace</h1>
-          <Button onClick={() => setCurrentView("content-planning")} className="flex items-center gap-2">
+          <h1 className="text-3xl font-bold text-[#475ECD]">Workplace</h1>
+          <Button onClick={() => setCurrentView("content-planning")} className="flex items-center bg-[#475ECD] gap-2">
             <Lightbulb className="h-4 w-4" />
             Generate Content Ideas
           </Button>

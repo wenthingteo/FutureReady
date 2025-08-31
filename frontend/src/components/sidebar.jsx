@@ -11,7 +11,7 @@ const sidebarItems = [
     icon: <FiEdit3 />,
     subItems: [
       { label: "Workplace", link: "/content/workplace" },
-      { label: "Ideation", link: "/content/ideation" },
+      //{ label: "Ideation", link: "/content/ideation" },
       { label: "Competitor Analysis", link: "/content/competitor" },
     ],
   },

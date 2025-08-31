@@ -384,7 +384,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
   ]
 
   return (
-    <div className="bg-white p-6">
+    <div className="bg-white rounded-lg p-6">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between mb-6 h-16">
@@ -441,7 +441,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
           <div className="flex items-center gap-4 h-full">
             <button
               onClick={() => onSchedulePost && onSchedulePost()}
-              className="bg-[#3264DF] text-white px-6 py-3 rounded-xl text-base font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-md hover:shadow-lg h-12 flex items-center"
+              className="bg-[#475ECD] text-white px-6 py-3 rounded-xl text-base font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-md hover:shadow-lg h-12 flex items-center"
             >
               Schedule Now
             </button>

@@ -211,11 +211,11 @@ const AIAgent = () => {
   return (
     <div className="h-full flex flex-col bg-[#EFF6FF]">
       {/* Page Header */}
-      <div className="flex-shrink-0 p-6 pb-4">
+      <div className="flex-shrink-0 pb-4">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-[#3264DF] mb-2">AI Campaign Assistant</h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 mb-2">
               {isActionMode 
                 ? "Create engaging social media campaigns with AI-powered guidance" 
                 : "Ask me anything about marketing, campaigns, or performance optimization"
@@ -235,7 +235,7 @@ const AIAgent = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex bg-white rounded-2xl shadow-lg overflow-hidden mx-6 mb-6">
+      <div className="flex-1 flex bg-white rounded-2xl shadow-lg overflow-hidden mb-2">
         {/* Workspace Panel - Left (only show in action mode) */}
         {isActionMode && (
           <div className="w-1/2 bg-gray-50 overflow-y-auto border-r border-gray-200" ref={workspaceRef}>

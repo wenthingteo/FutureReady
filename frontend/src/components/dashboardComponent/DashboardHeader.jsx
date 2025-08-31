@@ -81,7 +81,7 @@ const DashboardHeader = () => {
 
   return (
     <div className="flex flex-wrap items-center justify-between mb-6">
-      <h1 className="text-3xl font-bold text-[#3264DF]">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-[#475ECD]">Dashboard</h1>
 
       <div className="flex items-center gap-3">
         <div className="relative">
@@ -114,14 +114,14 @@ const DashboardHeader = () => {
 
         <button
           onClick={handleDownload}
-          className="p-2 bg-[#3264DF] text-white rounded-lg hover:bg-indigo-700 transition-colors cursor-pointer"
+          className="p-2 bg-[#475ECD] text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
         >
           <Download className="w-5 h-5" />
         </button>
 
         <button
           onClick={handleRefresh}
-          className="p-2 bg-[#3264DF] text-white rounded-lg hover:bg-indigo-700 transition-colors cursor-pointer"
+          className="p-2 bg-[#475ECD] text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
         >
           <RefreshCcw className="w-5 h-5" />
         </button>

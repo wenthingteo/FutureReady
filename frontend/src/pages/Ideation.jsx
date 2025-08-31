@@ -498,7 +498,6 @@ export default function ContentPlanningTool({ onCreateTask }) {
           ) : (
             <div className="max-w-4xl mx-auto">
               <div className={`transition-all duration-500 ${step === 2 ? "pt-8" : "pt-24"}`}>
-                <h1 className="text-3xl font-bold text-center text-[#3264DF] mb-8">Content Planning Assistant</h1>
 
                 <div className="mb-8">
                   <h2 className="text-lg font-medium text-center text-gray-900 mb-4">
@@ -545,8 +544,8 @@ export default function ContentPlanningTool({ onCreateTask }) {
                         className={`h-auto py-3 px-4 text-sm border rounded-lg transition-colors
                           ${
                             topic === exampleTopic
-                              ? "bg-blue-200 border-blue-200 font-semibold"
-                              : "bg-transparent border-gray-300 hover:bg-blue-100"
+                              ? "bg-blue-100 border border-[#475ECD] hover:bg-blue-50"
+                              : "border border-gray-300 hover:bg-blue-50"
                           }`}
                         onClick={() => setTopic(exampleTopic)}
                       >
