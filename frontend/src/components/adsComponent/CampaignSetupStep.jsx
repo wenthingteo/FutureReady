@@ -9,7 +9,7 @@ export default function CampaignSetupStep({ campaignData, setCampaignData }) {
       {/* Campaign Objective */}
       <div>
         <div className="inline-flex items-center gap-4 mb-8 text-center w-full justify-center">
-          <h3 className="text-3xl font-normal text-gray-800 tracking-tight">Set Your Campaign Goal & Schedule</h3>
+          <h3 className="text-3xl font-normal text-gray-800 tracking-tight">Set Your Ads Goal & Schedule</h3>
         </div>
         <div className="grid grid-cols-2 gap-4 mt-4">
           {["Awareness", "Engagement", "Conversions", "Sales"].map((obj) => (

@@ -64,8 +64,8 @@ export default function ReviewLaunch({ campaignData, onLaunch, onBack }) {
     <div className="max-w-8xl mx-auto p-6 space-y-8 bg-white rounded-2xl shadow-lg">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Review & Launch Campaign</h1>
-        <p className="text-gray-600">Review your campaign settings and AI-generated recommendations before launching</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Review & Launch Ads</h1>
+        <p className="text-gray-600">Review your Ads settings and AI-generated recommendations before launching</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -242,11 +242,11 @@ export default function ReviewLaunch({ campaignData, onLaunch, onBack }) {
           {isLaunching ? (
             <>
               <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Launching Campaign...
+              Launching Ads...
             </>
           ) : (
             <>
-              Launch Campaign
+              Launch Ads
               <ArrowRight className="w-4 h-4" />
             </>
           )}

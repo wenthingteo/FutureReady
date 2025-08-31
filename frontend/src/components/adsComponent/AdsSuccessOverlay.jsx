@@ -46,9 +46,9 @@ export const AdsSuccessOverlay = ({ isVisible, onClose, campaignData }) => {
 
           {/* Success Message */}
           <div className={`transition-all duration-500 ${animationPhase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <h3 className="text-xl font-bold text-gray-800 mb-1">Campaign Launched Successfully!</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-1">Ad Launched Successfully!</h3>
             <p className="text-gray-600 text-sm">
-              Your AI-powered ad campaign is now live across selected platforms
+              Your AI-powered ad is now live across selected platforms
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export const AdsSuccessOverlay = ({ isVisible, onClose, campaignData }) => {
           <div className={`bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 transition-all duration-500 delay-200 ${animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="flex items-center justify-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-indigo-600" />
-              <span className="text-sm font-semibold text-indigo-800">Campaign Overview</span>
+              <span className="text-sm font-semibold text-indigo-800">Ads Overview</span>
             </div>
             
             <div className="grid grid-cols-2 gap-3 text-sm">
@@ -91,7 +91,7 @@ export const AdsSuccessOverlay = ({ isVisible, onClose, campaignData }) => {
             <div className="space-y-1 text-sm">
               <div className="flex items-center gap-2 text-green-700">
                 <CheckCircle className="w-3 h-3" />
-                <span>Campaign activated across all platforms</span>
+                <span>Ads activated across all platforms</span>
               </div>
               <div className="flex items-center gap-2 text-green-700">
                 <CheckCircle className="w-3 h-3" />
@@ -126,7 +126,7 @@ export const AdsSuccessOverlay = ({ isVisible, onClose, campaignData }) => {
 
           {/* Next Steps Hint */}
           <div className="text-xs text-gray-500 bg-gray-50 rounded-lg p-2">
-            Monitor your campaign performance in the Live Monitoring tab
+            Monitor your Ads performance in the Live Monitoring tab
           </div>
 
         </div>

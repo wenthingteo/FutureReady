@@ -42,13 +42,13 @@ const ROIForecasting = () => {
             </div>
           </div>        {/* Summary cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-white/70 backdrop-blur-sm p-4 rounded-2xl border border-white/50">
+          <div className="bg-gradient-to-r from-blue-500/10 to-blue-500/10 backdrop-blur-sm p-4 rounded-2xl border border-blue-200/30">
             <div className="flex items-center gap-2 mb-2">
-              <Target className="w-4 h-4 text-gray-600" />
-              <span className="text-sm text-gray-600 font-medium">Current Average</span>
+              <Target className="w-4 h-4 text-blue-600" />
+              <span className="text-sm text-blue-600 font-medium">Current Average</span>
             </div>
-            <p className="text-2xl font-bold text-gray-800">{averageGrowth}%</p>
-            <p className="text-xs text-gray-500 mt-1">ROI this year</p>
+            <p className="text-2xl font-bold text-blue-800">{averageGrowth} %</p>
+            <p className="text-xs text-blue-500 mt-1">ROI this year</p>
           </div>
           
           <div className="bg-gradient-to-r from-violet-500/10 to-indigo-500/10 backdrop-blur-sm p-4 rounded-2xl border border-violet-200/30">

@@ -56,6 +56,10 @@ const Ads = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
   const [generationProgress, setGenerationProgress] = useState(0)
+
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [campaignStep])
   
   // Add state for success overlay
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false)
@@ -210,10 +214,8 @@ const Ads = () => {
         {/* Header with Font Awesome logo */}
         <div className="flex items-center justify-between mb-8 relative z-10">
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 ${currentPlatform.bgColor} rounded-full flex items-center justify-center text-white shadow-lg`}>
               <i className={`${currentPlatform.icon} text-lg`}></i>
-            </div>
-            <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold mb-4">
               {currentPlatform.platform} Performance
             </h3>
           </div>
@@ -236,43 +238,41 @@ const Ads = () => {
         </div>
 
         {/* KPI Metrics */}
-        <div className="grid grid-cols-3 gap-6 mb-6 relative z-10">
-          <div className="group cursor-pointer">
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                <DollarSign className="w-6 h-6 text-white" />
+          <div className="grid grid-cols-3 gap-6 mb-6 relative z-10">
+            <div className="group cursor-pointer">
+              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
+                {/* DollarSign with gradient color */}
+                <DollarSign className="w-8 h-8 mx-auto mb-3 text-[#475ECD] bg-clip-text bg-gradient-to-r from-blue-500 to-blue-600 group-hover:scale-110 transition-transform duration-300" />
+                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">
+                  ${currentPlatform.spend}
+                </div>
+                <div className="text-sm font-medium text-gray-600">Spend Today</div>
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">
-                ${currentPlatform.spend}
+            </div>
+
+            <div className="group cursor-pointer">
+              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
+                {/* MousePointer with gradient color */}
+                <MousePointer className="w-8 h-8 mx-auto mb-3 text-[#475ECD] bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-600 group-hover:scale-110 transition-transform duration-300" />
+                <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent mb-1">
+                  {currentPlatform.clicks.toLocaleString()}
+                </div>
+                <div className="text-sm font-medium text-gray-600">Clicks</div>
               </div>
-              <div className="text-sm font-medium text-gray-600">Spend Today</div>
+            </div>
+
+            <div className="group cursor-pointer">
+              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
+                {/* TrendingUp with gradient color */}
+                <TrendingUp className="w-8 h-8 mx-auto mb-3 text-[#475ECD] bg-clip-text bg-gradient-to-r from-purple-500 to-purple-600 group-hover:scale-110 transition-transform duration-300" />
+                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent mb-1">
+                  {currentPlatform.roas}x
+                </div>
+                <div className="text-sm font-medium text-gray-600">ROAS</div>
+              </div>
             </div>
           </div>
 
-          <div className="group cursor-pointer">
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                <MousePointer className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent mb-1">
-                {currentPlatform.clicks.toLocaleString()}
-              </div>
-              <div className="text-sm font-medium text-gray-600">Clicks</div>
-            </div>
-          </div>
-
-          <div className="group cursor-pointer">
-            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 text-center shadow-sm border border-white/50 hover:shadow-md hover:scale-105 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent mb-1">
-                {currentPlatform.roas}x
-              </div>
-              <div className="text-sm font-medium text-gray-600">ROAS</div>
-            </div>
-          </div>
-        </div>
 
         {/* Progress Indicators */}
         <div className="flex justify-center gap-2 relative z-10">
@@ -495,10 +495,10 @@ const Ads = () => {
 
 
             <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
+              <div className="relative bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 rounded-2xl p-8 shadow-lg border border-gray-100/50 backdrop-blur-sm overflow-hidden">
                 <h3 className="text-lg font-semibold mb-4">AI Alerts</h3>
                 {mockData.alerts.map((a, i) => (
-                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 mb-2">
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 mb-2 shadow-sm border border-gray-100">
                     <AlertIcon type={a.type} />
                     <div>
                       <p className="text-sm">{a.message}</p>
