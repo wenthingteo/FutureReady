@@ -19,16 +19,15 @@ const getPlatformIcon = (platform) => {
   }
 };
 
-export const SchedulingOverlay = ({ 
-  isScheduling, 
+const AILoadingOverlay = ({ 
+  isLoading, 
   isCompleted, 
-  schedulingMode, 
-  schedulingProgress, 
+  loadingProgress, 
   currentStep, 
-  formData, 
+  platforms = ['facebook', 'instagram', 'linkedin', 'tiktok', 'youtube'], 
   onClose 
 }) => {
-  if (!isScheduling) return null;
+  if (!isLoading) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -39,20 +38,20 @@ export const SchedulingOverlay = ({
             <div className="relative w-20 h-20 mx-auto">
               <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
               <div 
-                className="absolute inset-0 border-4 border-transparent border-t-blue-600 rounded-full animate-spin"
+                className="absolute inset-0 border-4 border-transparent border-t-[#475ECD] rounded-full animate-spin"
                 style={{
-                  background: `conic-gradient(from 0deg, #3264DF ${schedulingProgress * 3.6}deg, transparent ${schedulingProgress * 3.6}deg)`
+                  background: `conic-gradient(from 0deg, #475ECD ${loadingProgress * 3.6}deg, transparent ${loadingProgress * 3.6}deg)`
                 }}
               ></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-blue-600 animate-pulse" />
+                <Sparkles className="w-8 h-8 text-[#475ECD] animate-pulse" />
               </div>
             </div>
 
             {/* Progress Info */}
             <div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">
-                {schedulingMode === 'ai' ? 'AI Scheduling in Progress' : 'Processing Your Schedule'}
+                AI Campaign Processing
               </h3>
               <p className="text-gray-600 text-sm">{currentStep}</p>
             </div>
@@ -60,21 +59,21 @@ export const SchedulingOverlay = ({
             {/* Progress Bar */}
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300 ease-out"
-                style={{ width: `${schedulingProgress}%` }}
+                className="bg-gradient-to-r from-[#475ECD] to-purple-600 h-2 rounded-full transition-all duration-300 ease-out"
+                style={{ width: `${loadingProgress}%` }}
               ></div>
             </div>
 
             {/* Progress Percentage */}
-            <div className="text-2xl font-bold text-blue-600">
-              {schedulingProgress}%
+            <div className="text-2xl font-bold text-[#475ECD]">
+              {loadingProgress}%
             </div>
 
             {/* Platform Icons */}
             <div className="flex justify-center gap-2">
-              {formData.platforms.map((platform, index) => {
-                const platformThreshold = ((index + 1) / formData.platforms.length) * 100;
-                const isProcessed = schedulingProgress >= platformThreshold;
+              {platforms.map((platform, index) => {
+                const platformThreshold = ((index + 1) / platforms.length) * 100;
+                const isProcessed = loadingProgress >= platformThreshold;
                 const Icon = getPlatformIcon(platform);
                 
                 // Platform-specific colors
@@ -118,45 +117,45 @@ export const SchedulingOverlay = ({
             {/* Success Message */}
             <div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">
-                🎉 Scheduling Complete!
+                🎉 Campaign Ready!
               </h3>
               <p className="text-gray-600 text-sm">
-                Your content has been successfully scheduled across {formData.platforms.length} platform{formData.platforms.length > 1 ? 's' : ''}
+                Your social media campaign has been successfully created and is ready to launch
               </p>
             </div>
 
-            {/* Scheduled Platforms */}
+            {/* Campaign Platforms */}
             <div className="bg-green-50 rounded-xl p-4">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Calendar className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium text-green-800">Scheduled Platforms</span>
+                <span className="text-sm font-medium text-green-800">Campaign Platforms</span>
               </div>
-                             <div className="flex justify-center gap-2">
-                 {formData.platforms.map(platform => {
-                   const Icon = getPlatformIcon(platform);
-                   
-                   // Platform-specific colors
-                   const getPlatformColors = (platform) => {
-                     switch (platform) {
-                       case 'instagram': return 'bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400';
-                       case 'facebook': return 'bg-gradient-to-br from-blue-600 to-blue-700';
-                       case 'linkedin': return 'bg-gradient-to-br from-blue-700 to-blue-800';
-                       case 'youtube': return 'bg-gradient-to-br from-red-500 to-red-600';
-                       case 'tiktok': return 'bg-gradient-to-br from-black via-red-500 to-white';
-                       default: return 'bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-600';
-                     }
-                   };
-                   
-                   return (
-                     <div 
-                       key={platform}
-                       className={`w-8 h-8 rounded-lg ${getPlatformColors(platform)} flex items-center justify-center shadow-sm`}
-                     >
-                       <Icon className="w-4 h-4 text-white" />
-                     </div>
-                   );
-                 })}
-               </div>
+              <div className="flex justify-center gap-2">
+                {platforms.map(platform => {
+                  const Icon = getPlatformIcon(platform);
+                  
+                  // Platform-specific colors
+                  const getPlatformColors = (platform) => {
+                    switch (platform) {
+                      case 'instagram': return 'bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400';
+                      case 'facebook': return 'bg-gradient-to-br from-blue-600 to-blue-700';
+                      case 'linkedin': return 'bg-gradient-to-br from-blue-700 to-blue-800';
+                      case 'youtube': return 'bg-gradient-to-br from-red-500 to-red-600';
+                      case 'tiktok': return 'bg-gradient-to-br from-black via-red-500 to-white';
+                      default: return 'bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-600';
+                    }
+                  };
+                  
+                  return (
+                    <div 
+                      key={platform}
+                      className={`w-8 h-8 rounded-lg ${getPlatformColors(platform)} flex items-center justify-center shadow-sm`}
+                    >
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Close Button */}
@@ -172,3 +171,5 @@ export const SchedulingOverlay = ({
     </div>
   );
 };
+
+export default AILoadingOverlay;

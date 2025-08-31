@@ -8,6 +8,7 @@ import Ideation from "./pages/Ideation";
 import Competitor from "./pages/Competitor";
 import CampaignsContainer from "./pages/campaign/CampaignsContainer";
 import Ads from "./pages/Ads";
+import AIAgent from "./pages/AIAgent";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/content/competitor" element={<Competitor />} />
           <Route path="/campaigns" element={<CampaignsContainer />} />
           <Route path="/ads" element={<Ads />} />
+          <Route path="/ai-agent" element={<AIAgent />} />
         </Routes>
       </main>
     </div>

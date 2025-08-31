@@ -8,7 +8,8 @@ export const PlatformScheduling = ({
   selectedTimeSlot,
   selectedPlatformForHeatmap,
   selectedDate,
-  onManualTimeChange
+  onManualTimeChange,
+  updateSchedulingData
 }) => {
   return (
     <div className="p-8 border-t border-gray-200">
@@ -30,21 +31,37 @@ export const PlatformScheduling = ({
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => {
-                const targetDate = new Date(selectedDate);
-                targetDate.setDate(selectedDate.getDate() + ((selectedTimeSlot.day - selectedDate.getDay() + 7) % 7));
-                const dateString = targetDate.toISOString().split('T')[0];
-                
-                platforms.forEach(platform => {
-                  onManualTimeChange(platform, 'customTime', selectedTimeSlot.time);
-                  onManualTimeChange(platform, 'customDate', dateString);
-                });
-              }}
-              className="px-4 py-2 bg-[#3264DF] text-white rounded-lg hover:bg-[#2952cc] transition-colors text-sm font-medium"
-            >
-              Apply to All
-            </button>
+                         <button
+               onClick={() => {
+                 const targetDate = new Date(selectedDate);
+                 targetDate.setDate(selectedDate.getDate() + ((selectedTimeSlot.day - selectedDate.getDay() + 7) % 7));
+                 const dateString = targetDate.toISOString().split('T')[0];
+                 
+                 console.log('Applying to all platforms:', {
+                   time: selectedTimeSlot.time,
+                   date: dateString,
+                   platforms: platforms
+                 });
+                 
+                 // Update all platforms at once using direct state update
+                 const updatedData = { ...schedulingData };
+                 platforms.forEach(platform => {
+                   console.log(`Setting ${platform} to time: ${selectedTimeSlot.time}, date: ${dateString}`);
+                   updatedData[platform] = {
+                     ...updatedData[platform],
+                     customTime: selectedTimeSlot.time,
+                     customDate: dateString,
+                     scheduleType: 'manual'
+                   };
+                 });
+                 
+                 console.log('Final updated data:', updatedData);
+                 updateSchedulingData(updatedData);
+               }}
+               className="px-6 py-3 bg-[#3264DF] text-white rounded-xl hover:bg-[#2952cc] transition-all duration-200 text-sm font-medium shadow-md hover:shadow-lg"
+             >
+               Apply to All Platforms
+             </button>
           </div>
         </div>
       )}
@@ -90,12 +107,17 @@ export const PlatformScheduling = ({
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
-                  <input
-                    type="time"
-                    value={platformScheduling?.customTime || ''}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3264DF]/20 focus:border-[#3264DF] transition-all duration-200"
-                    onChange={(e) => onManualTimeChange(platform, 'customTime', e.target.value)}
-                  />
+                                     <input
+                     type="time"
+                     value={platformScheduling?.customTime || ''}
+                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3264DF]/20 focus:border-[#3264DF] transition-all duration-200"
+                     onChange={(e) => onManualTimeChange(platform, 'customTime', e.target.value)}
+                   />
+                   {platformScheduling?.customTime && (
+                     <div className="mt-1 text-xs text-gray-500">
+                       Selected: {platformScheduling.customTime}
+                     </div>
+                   )}
                 </div>
               </div>
               

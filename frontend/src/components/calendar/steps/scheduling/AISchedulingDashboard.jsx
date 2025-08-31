@@ -10,7 +10,7 @@ export const AISchedulingDashboard = ({
   schedulingData, 
   selectedStrategy, 
   onStrategyChange, 
-  onAlternativeTimeClick 
+  onAlternativeTimeClick
 }) => {
   const getOverallScore = () => {
     const scores = formData.platforms.map(platform => schedulingData[platform]?.confidence || 0);
@@ -32,7 +32,7 @@ export const AISchedulingDashboard = ({
   };
 
   return (
-    <>
+    <div className="space-y-6">
       {/* Smart Overview Dashboard */}
       <AIOptimizationOverview
         overallScore={getOverallScore()}
@@ -54,7 +54,8 @@ export const AISchedulingDashboard = ({
         schedulingData={schedulingData}
         selectedStrategy={selectedStrategy}
         onAlternativeTimeClick={onAlternativeTimeClick}
+        formData={formData}
       />
-    </>
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { FiGrid, FiEdit3, FiFileText, FiTrendingUp, FiChevronRight } from "react-icons/fi"
+import { FiGrid, FiEdit3, FiFileText, FiTrendingUp, FiChevronRight, FiZap } from "react-icons/fi"
 import { Link, useLocation } from "react-router-dom"
 
 const sidebarItems = [
@@ -15,8 +15,9 @@ const sidebarItems = [
       { label: "Competitor Analysis", link: "/content/competitor" },
     ],
   },
-  { label: "Campaign Hub", icon: <FiFileText />, link: "/campaigns" },
+  { label: "Post Scheduler", icon: <FiFileText />, link: "/campaigns" },
   { label: "Ads Manager", icon: <FiTrendingUp />, link: "/ads" },
+  { label: "CamPlanner", icon: <FiZap />, link: "/ai-agent" },
 ]
 
 const Sidebar = () => {

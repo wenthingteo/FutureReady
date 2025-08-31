@@ -9,15 +9,15 @@ export const StrategySelection = ({ selectedStrategy, onStrategyChange, strategi
   };
 
   return (
-    <div className="bg-gradient-to-br from-white to-indigo-50/50 rounded-2xl border border-indigo-100/60 shadow-lg p-8 mt-8">
-      <div className="text-center mb-8">
+    <div className="bg-gradient-to-br from-white to-indigo-50/50 rounded-xl border border-indigo-100/60 shadow-md p-6">
+      <div className="text-center mb-6">
         <h4 className="text-lg font-medium text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text mb-2">
-          🎯 Choose Your Strategy
+          🎯 Strategy
         </h4>
-        <p className="text-gray-600 text-base">Select how you want AI to optimize your posting schedule</p>
+        <p className="text-gray-600 text-sm">Choose optimization approach</p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {Object.entries(strategies).map(([key, strategy]) => {
           const Icon = strategyIcons[key];
           const strategyColors = {
@@ -31,31 +31,31 @@ export const StrategySelection = ({ selectedStrategy, onStrategyChange, strategi
             <button
               key={key}
               onClick={() => onStrategyChange(key)}
-              className={`p-6 border rounded-2xl text-center transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg ${
+              className={`p-4 border rounded-lg transition-all duration-300 hover:shadow-md flex flex-col items-center gap-3 text-center ${
                 selectedStrategy === key
-                  ? `${colors.border} ${colors.bg} shadow-lg ring-1 ring-${colors.border.split('-')[1]}-200/50`
-                  : 'border-gray-200/60 hover:border-indigo-200/40 bg-white hover:shadow-md hover:bg-indigo-50/30'
+                  ? `${colors.border} ${colors.bg} shadow-md ring-1 ring-${colors.border.split('-')[1]}-200/50`
+                  : 'border-gray-200/60 hover:border-indigo-200/40 bg-white hover:bg-indigo-50/30'
               }`}
             >
-              <div className="mb-4">
-                <div className={`w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center shadow-lg ${colors.shadow} transition-all duration-300 ${
-                  selectedStrategy === key 
-                    ? 'scale-110 shadow-xl' 
-                    : 'hover:scale-105'
-                }`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-              </div>
-              <div className={`font-medium text-base mb-2 ${
+              <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colors.gradient} flex items-center justify-center shadow-md ${colors.shadow} transition-all duration-300 ${
                 selectedStrategy === key 
-                  ? colors.text 
-                  : 'text-gray-700'
-              }`}>{strategy.title}</div>
-              <div className="text-sm text-gray-600 leading-relaxed">{strategy.description}</div>
+                  ? 'scale-110 shadow-lg' 
+                  : 'hover:scale-105'
+              }`}>
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex flex-col items-center">
+                <div className={`font-medium text-base ${
+                  selectedStrategy === key 
+                    ? colors.text 
+                    : 'text-gray-700'
+                }`}>{strategy.title}</div>
+                <div className="text-sm text-gray-600 text-center">{strategy.description}</div>
+              </div>
             </button>
           );
         })}
       </div>
-    </div>
-  );
-};
+     </div>
+   );
+ };
