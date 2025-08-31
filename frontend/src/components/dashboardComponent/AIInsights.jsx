@@ -47,7 +47,7 @@ const AIInsights = () => {
 
   return (
     <div className="space-y-8 pt-8">
-      <h1 className="text-3xl font-bold" style={{ color: '#3264DF' }}>AI Analytics</h1>
+      <h1 className="text-3xl font-bold" style={{ color: '#475ECD' }}>AI Analytics</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* AI Summary */}

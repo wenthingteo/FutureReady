@@ -469,7 +469,7 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
       {/* Header */}
       <div className="text-center space-y-3">
         <div className="flex items-center justify-center gap-3">
-          <div className="w-8 h-8 bg-[#3264DF]/80 rounded-full flex items-center justify-center text-white font-medium text-sm shadow-sm">
+          <div className="w-8 h-8 bg-[#475ECD] rounded-full flex items-center justify-center text-white font-medium text-sm shadow-sm">
             1
           </div>
           <h2 className="text-2xl font-semibold text-gray-800">

@@ -91,9 +91,9 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
   // Full Page Mode
   if (isFullPage) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen">
         {/* Header with Back Button */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="bg-white rounded-lg border-b border-gray-200 px-6 py-4">
           <div className="flex items-center gap-4">
             <button
               onClick={handleClose}
@@ -116,7 +116,7 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
 
         {/* Main Content */}
         <div className="max-w-7xl mx-auto py-8">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             {/* Step Content */}
             <div className="p-8">
               {/* Step 1: Unified Content Step (Platforms + Content Selection + Editing) */}
@@ -158,7 +158,7 @@ const ScheduleModal = ({ isOpen, onClose, onSchedule, editingPost = null, isFull
                       type="button"
                       onClick={nextStep}
                       disabled={formData.platforms.length === 0}
-                      className="px-10 py-3 bg-[#3264DF] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+                      className="px-10 py-3 bg-[#475ECD] text-white text-sm rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium disabled:opacity-40 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                     >
                       Continue to Scheduling
                     </button>
