@@ -17,7 +17,7 @@ const sidebarItems = [
   },
   { label: "Post Scheduler", icon: <FiFileText />, link: "/campaigns" },
   { label: "Ads Manager", icon: <FiTrendingUp />, link: "/ads" },
-  { label: "CamPlanner", icon: <FiZap />, link: "/ai-agent" },
+  { label: "Campify AI", icon: <FiZap />, link: "/ai-agent" },
 ]
 
 const Sidebar = () => {
@@ -56,7 +56,9 @@ const Sidebar = () => {
                   to={item.link}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     isActiveTopLevel
-                      ? "bg-[#475ECD] text-white shadow-md"
+                      ? item.label === "Campify AI"
+                        ? "bg-gradient-to-r from-[#3264DF] to-purple-600 text-white shadow-lg transform scale-105"
+                        : "bg-[#475ECD] text-white shadow-md"
                       : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                   }`}
                 >
