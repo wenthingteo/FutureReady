@@ -44,39 +44,7 @@ const BudgetStep = ({ campaignData, setCampaignData }) => {
         </div>
       </div>
 
-      {/* Scheduling */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Start Date
-          </label>
-          <input
-            type="date"
-            className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#475ECD] focus:border-transparent transition-all"
-            onChange={(e) =>
-              setCampaignData({
-                ...campaignData,
-                schedule: { ...campaignData.schedule, start: e.target.value },
-              })
-            }
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            End Date
-          </label>
-          <input
-            type="date"
-            className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#475ECD] focus:border-transparent transition-all"
-            onChange={(e) =>
-              setCampaignData({
-                ...campaignData,
-                schedule: { ...campaignData.schedule, end: e.target.value },
-              })
-            }
-          />
-        </div>
-      </div>
+      
 
       {/* AI Forecast */}
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-8 border border-indigo-100 shadow-sm">
