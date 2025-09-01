@@ -16,7 +16,7 @@ const AIInsights = () => {
       value: "18.4%",
       trend: "up",
       reason: "new users joined from shares",
-      suggestion: "Try shorter videos to boost responses",
+      suggestion: "Leverage trending hashtags to expand visibility further",
       color: "green",
     },
     {
@@ -24,7 +24,7 @@ const AIInsights = () => {
       value: "15.5%",
       trend: "down",
       reason: "viewers dropping off earlier",
-      suggestion: "Try shorter videos to boost responses",
+      suggestion: "Reorganize content flow and add engaging hooks at the start",
       color: "red",
     },
     {
@@ -32,17 +32,17 @@ const AIInsights = () => {
       value: "16.2%",
       trend: "up",
       reason: "slightly better click-through rate",
-      suggestion: "Try shorter videos to boost responses",
+      suggestion: "Highlight limited-time offers",
       color: "green",
     },
   ]
 
   const topKeywords = [
-    { keyword: "skincare routine", engagement: 85 },
-    { keyword: "natural beauty", engagement: 72 },
-    { keyword: "glowing skin", engagement: 68 },
-    { keyword: "anti-aging", engagement: 54 },
-    { keyword: "moisturizer", engagement: 49 },
+    { keyword: "Cloud Storage", engagement: 85 },
+    { keyword: "Computer Power", engagement: 72 },
+    { keyword: "Data Sscirity", engagement: 68 },
+    { keyword: "DevOps", engagement: 54 },
+    { keyword: "Multi-cloud", engagement: 49 },
   ]
 
   return (

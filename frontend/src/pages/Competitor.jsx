@@ -28,62 +28,63 @@ import {
 const trendingPosts = [
   {
     id: 1,
-    title: "COVID-19 Health Products",
-    platform: "instagram",
-    topic: "health",
-    timeRange: "7d",
-    engagement: "12.5K",
-    image: "/covid-health-products-blue-medical.png",
-    url: "https://www.instagram.com/p/example-covid-health-products/",
+    title: "AWS vs Azure: Cloud Market Share Insights",
+    platform: "linkedin",
+    topic: "business",
+    timeRange: "30d",
+    engagement: "14.3K",
+    image: "/aws-vs-azure.png",
+    url: "https://www.linkedin.com/company/amazon-web-services/",
   },
   {
     id: 2,
-    title: "5 Steps to Maintain Your Health",
-    platform: "tiktok",
-    topic: "health",
-    timeRange: "30d",
-    engagement: "8.2K",
-    image: "/health-steps-infographic-green.png",
-    url: "https://www.tiktok.com/@example/video/health-steps-maintain",
+    title: "5 Key Benefits of Using Google Cloud AI Tools",
+    platform: "youtube",
+    topic: "ai",
+    timeRange: "7d",
+    engagement: "19.6K",
+    image: "/google-cloud-ai.png",
+    url: "https://www.youtube.com/watch?v=4D3X6Xl5c_Y",
   },
   {
     id: 3,
-    title: "International Company Presentation",
-    platform: "linkedin",
-    topic: "business",
-    timeRange: "90d",
-    engagement: "15.7K",
-    image: "/business-presentation-corporate-blue.png",
-    url: "https://www.linkedin.com/posts/example-company-presentation",
+    title: "Modern Oracle Cloud Strategies Explained",
+    platform: "tiktok",
+    topic: "finance",
+    timeRange: "7d",
+    engagement: "11.2K",
+    image: "/oracle-cloud.png",
+    url: "https://www.tiktok.com/@example/video/oracle-pricing",
   },
   {
     id: 4,
-    title: "Medical Equipment Guide",
-    platform: "youtube",
-    topic: "health",
-    timeRange: "7d",
-    engagement: "22.1K",
-    image: "/medical-equipment-stethoscope.png",
-    url: "https://www.youtube.com/watch?v=JddoeK5JcRw",
+    title: "Alibaba Cloud: Growing Presence in Asia",
+    platform: "instagram",
+    topic: "global",
+    timeRange: "90d",
+    engagement: "8.5K",
+    image: "/alibaba-cloud.jpg",
+    url: "https://www.instagram.com/p/example-alibaba-cloud-asia/",
   },
   {
     id: 5,
-    title: "Medical Check-up Process",
-    platform: "instagram",
-    topic: "health",
-    timeRange: "7d",
-    engagement: "9.8K",
-    image: "/medical-checkup-doctor-patient.png",
-    url: "https://www.instagram.com/p/example-medical-checkup-process/",
+    title: "Develop Smarter with IBM Cloud App Service",
+    platform: "youtube",
+    topic: "technology",
+    timeRange: "30d",
+    engagement: "16.4K",
+    image: "/ibm-cloud.jpg",
+    url: "https://www.youtube.com/watch?v=2HvaRT7lCng",
   },
 ]
 
+
 // Mock chart data
 const pieChartData = [
-  { name: "health", value: 35, color: "#3b82f6" },
-  { name: "business", value: 25, color: "#10b981" },
-  { name: "technology", value: 20, color: "#f59e0b" },
-  { name: "lifestyle", value: 20, color: "#ef4444" },
+  { name: "Ai", value: 35, color: "#3b82f6" },
+  { name: "Business", value: 25, color: "#10b981" },
+  { name: "Technology", value: 20, color: "#f59e0b" },
+  { name: "Finance", value: 20, color: "#ef4444" },
 ]
 
 const barChartData = [
@@ -377,8 +378,9 @@ export default function CompetitorAnalysis() {
                 <div>
                   <h4 className="font-semibold mb-2">Content Arrangement:</h4>
                   <p className="text-gray-600">
-                    Health-focused content dominates with 35% share. Post 1 shows highest engagement with medical
-                    product focus. Visual consistency across health-related posts suggests strong brand alignment.
+                    Cloud-focused content dominates with 35% share. Post 1 shows the highest engagement with cloud migration 
+                    and infrastructure optimization focus. Visual consistency across cloud-related posts suggests strong 
+                    alignment with the overall cloud strategy and branding.
                   </p>
                 </div>
               </div>

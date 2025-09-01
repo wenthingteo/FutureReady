@@ -30,11 +30,11 @@ function Button({ children, className = "", variant = "solid", ...props }) {
 const initialTasks = [
   {
     id: "1",
-    title: "This or That",
-    description: "Show two options, and the player only choose one, to left or right",
-    topic: "Interactive Content",
-    targetAudience: "Gen Z",
-    platform: "TikTok",
+    title: "Cloud Migration 101",
+    description: "Create a short explainer video showing benefits of moving business apps to the cloud.",
+    topic: "Cloud Adoption",
+    targetAudience: "SMEs",
+    platform: "LinkedIn",
     assignee: "Kelly Tan",
     status: "unassigned",
     createdAt: new Date(),
@@ -155,10 +155,6 @@ export default function WorkplacePage() {
       <main className="flex-1">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-3xl font-bold text-[#475ECD]">Workplace</h1>
-          <Button onClick={() => setCurrentView("content-planning")} className="flex items-center bg-[#475ECD] gap-2">
-            <Lightbulb className="h-4 w-4" />
-            Generate Content Ideas
-          </Button>
         </div>
 
         <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>

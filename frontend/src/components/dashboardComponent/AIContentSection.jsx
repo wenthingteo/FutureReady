@@ -14,31 +14,31 @@ const AIContentSection = () => {
   const contentScoring = [
     {
       platform: "instagram",
-      content: "Skinific - moisturiser promotion ads",
+      content: "Case study: Migrating enterprise workloads to AWS",
       date: "19 Aug 2025",
       score: 88,
     },
     {
       platform: "instagram",
-      content: "Summer skincare routine tips",
+      content: "Top 5 benefits of hybrid cloud for startups",
       date: "18 Aug 2025",
       score: 78,
     },
     {
       platform: "twitter",
-      content: "Quick skincare hack thread",
+      content: "Step-by-step guide to Kubernetes deployment",
       date: "17 Aug 2025",
       score: 68,
     },
     {
       platform: "instagram",
-      content: "Before & after transformation",
+      content: "Explainer video: Cloud cost optimization strategies",
       date: "16 Aug 2025",
       score: 58,
     },
     {
       platform: "facebook",
-      content: "Customer testimonial video",
+      content: "Customer testimonial: Faster scaling with Azure",
       date: "15 Aug 2025",
       score: 48,
     },
