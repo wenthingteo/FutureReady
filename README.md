@@ -48,6 +48,8 @@ An all-in-one AI-powered marketing platform that makes marketing faster, smarter
 - API for Statistics: Meta Conversions API (Meta Graph API), Google Ads API
 - Version Control & CI/CD: GitHub,
 - AWS Services: Amazon S3, AWS EC2
+<img width="1394" height="670" alt="image" src="https://github.com/user-attachments/assets/29835a66-1733-4567-9b85-c9016e883d57" />
+
 
 ## Setup Instructions
 ```
