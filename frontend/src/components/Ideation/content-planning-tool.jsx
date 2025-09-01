@@ -381,7 +381,7 @@ export default function ContentPlanningTool({ onCreateTask }) {
                   }}
                   className="w-full bg-[#475ECD] hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
                 >
-                  Chat with AI
+                  Generate content with AI
                 </button>
               </div>
             </div>
