@@ -52,7 +52,7 @@ An all-in-one AI-powered marketing platform that makes marketing faster, smarter
 ## Setup Instructions
 ```
 # Clone repo
-git clone https://github.com/your-org/campify.git
+git clone https://github.com/wenthingteo/FutureReady.git
 cd campify
 ```
 
@@ -72,13 +72,14 @@ npm run dev
 
 ## Reflection
 ### Challenges
-- Integrating multiple APIs with different data formats
-- Making AI outputs practical and actionable
-- Handling real-time ad spend optimization
-- Designing a simple UX for non-marketers
+- Content strategy complexity as understanding how to balance promotional, educational, and engaging content was harder than expected.
+- Ad budgeting uncertainty when deciding how much to spend on each platform (Meta, TikTok, etc.) without wasting money.
+- Data overload where raw analytics gave too many numbers, but not enough clarity for decision-making.
+- Knowing when to post for maximum visibility required analyzing patterns across different audiences.
 
 ### Learnings
-- Importance of clean API architecture with Node + Supabase
-- How to normalize marketing data across platforms
-- How AI can save marketers time while boosting ROI
-- Collaboration & prioritization under hackathon deadlines
+- Focus on audience-first approach as digital marketing is not about posting more, but posting smarter based on audience behavior.
+- Value of predictive insights when AI can help forecast ad performance and reduce wasted spend.
+- Campaigns work better when content feels relevant and human, not just like an ad.
+- Turning complex data into simple insights is what helps CEOs and marketers act faster.
+- Automating planning, scheduling, budgeting, and monitoring allows small teams to compete like professional marketing agencies.
