@@ -1,6 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FiSend, FiZap, FiUser } from 'react-icons/fi';
 
+// Utility function to render formatted text
+const renderFormattedText = (text) => {
+  if (!text) return '';
+  
+  // Split by line breaks first
+  const lines = text.split('\n');
+  
+  return lines.map((line, lineIndex) => {
+    if (!line.trim()) {
+      return <br key={lineIndex} />;
+    }
+    
+    // Process bold text (**text**)
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+    
+    return (
+      <div key={lineIndex} className="mb-2">
+        {parts.map((part, partIndex) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            // Bold text
+            const boldText = part.slice(2, -2);
+            return <strong key={partIndex} className="font-bold">{boldText}</strong>;
+          } else if (part.trim()) {
+            // Regular text
+            return <span key={partIndex}>{part}</span>;
+          }
+          return null;
+        })}
+      </div>
+    );
+  });
+};
+
 const AIChatInterface = ({
   messages,
   inputValue,
@@ -63,18 +96,6 @@ const AIChatInterface = ({
   }, [currentStep]);
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-[#3264DF]/5 to-purple-500/5 border-b border-gray-200 p-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-r from-[#3264DF] to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-            <FiZap className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">AI Campaign Assistant</h2>
-            <p className="text-sm text-gray-500">Powered by advanced AI technology</p>
-          </div>
-        </div>
-      </div>
 
              {/* Messages Area */}
        <div className="flex-1 overflow-y-auto p-6 space-y-4 min-h-0 messages-container">
@@ -163,7 +184,9 @@ const AIChatInterface = ({
                   : 'bg-gradient-to-r from-[#3264DF] to-purple-600 text-white'
               }`}>
                 {typeof message.content === 'string' ? (
-                  <p className="text-sm leading-relaxed">{message.content}</p>
+                  <div className="text-sm leading-relaxed whitespace-pre-wrap">
+                    {renderFormattedText(message.content)}
+                  </div>
                 ) : (
                   message.content
                 )}

@@ -214,7 +214,7 @@ const AIAgent = () => {
       <div className="flex-shrink-0 p-6 pb-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-[#3264DF] mb-2">AI Campaign Assistant</h1>
+            <h1 className="text-3xl font-bold text-[#3264DF] mb-2">Campify AI</h1>
             <p className="text-gray-600">
               {isActionMode 
                 ? "Create engaging social media campaigns with AI-powered guidance" 
