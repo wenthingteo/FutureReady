@@ -96,17 +96,29 @@ const AIChatInterface = ({
   }, [currentStep]);
   return (
     <div className="flex flex-col h-full">
+      {/* Header */}
+      {/* <div className="bg-gradient-to-r from-[#3264DF]/5 to-purple-500/5 border-b border-gray-200 p-6">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 bg-gradient-to-r from-[#3264DF] to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+            <FiZap className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">AI Campaign Assistant</h2>
+            <p className="text-sm text-gray-500">Powered by advanced AI technology</p>
+          </div>
+        </div>
+      </div> */}
 
              {/* Messages Area */}
        <div className="flex-1 overflow-y-auto p-6 space-y-4 min-h-0 messages-container">
         {/* Empty State */}
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center">
-            <div className="w-20 h-20 bg-gradient-to-r from-[#3264DF]/10 to-purple-500/10 rounded-full flex items-center justify-center mb-6">
-              <FiZap className="w-10 h-10 text-[#3264DF]" />
+            <div className="mb-4 w-12 h-12 bg-gradient-to-r from-[#3264DF] to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+              <FiZap className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Welcome to AI Campaign Assistant</h3>
-            <p className="text-gray-600 mb-6 max-w-md">
+            <p className="text-gray-600 mb-6 ">
               I'm here to help you create amazing social media campaigns. 
               Tell me what you'd like to promote and I'll guide you through the entire process.
             </p>

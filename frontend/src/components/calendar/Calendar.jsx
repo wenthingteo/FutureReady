@@ -42,83 +42,83 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
 
   // Sample posts data - you can replace this with actual data
   const samplePosts = [
-    {
-      id: 1,
-      title: "🚀 5 AI Tools That Will Revolutionize Your Workflow",
-      content: "Discover cutting-edge AI tools that are transforming how modern businesses operate and scale in 2024",
-      time: "11:00",
-      date: getTodayDate(),
-      platforms: ["instagram", "linkedin"],
-      image: "/src/assets/random_photos/random_photo_1.jpg",
-      optimalTiming: true,
-      engagement: "92%",
-      type: "educational"
-    },
-    {
-      id: 2,
-      title: "✨ The Magic Behind Our Creative Process",
-      content: "An intimate look at how we transform wild ideas into stunning visual experiences that captivate audiences",
-      time: "14:00",
-      date: getTodayDate(),
-      platforms: ["instagram", "facebook"],
-      image: "/src/assets/random_photos/random_photo_2.jpg",
-      optimalTiming: true,
-      engagement: "88%",
-      type: "behind-the-scenes"
-    },
-    {
-      id: 3,
-      title: "🌍 Remote Work Setup Tour",
-      content: "Take a virtual tour of our team's amazing home office setups from around the world",
-      time: "19:00",
-      date: getDateOffset(1), // Tomorrow
-      platforms: ["youtube", "linkedin"],
-      image: "/src/assets/random_photos/random_photo_3.jpg",
-      optimalTiming: false,
-      engagement: "76%",
-      type: "tutorial",
-      duration: "3:28"
-    },
-    {
-      id: 4,
-      title: "🎨 Brand Transformation That Broke the Internet",
-      content: "The complete visual makeover that turned a struggling brand into a social media sensation overnight",
-      time: "20:00",
-      date: getDateOffset(2), // Day after tomorrow
-      platforms: ["instagram", "youtube"],
-      image: "/src/assets/random_photos/random_photo_4.jpg",
-      optimalTiming: true,
-      engagement: "94%",
-      type: "case-study"
-    },
-    {
-      id: 5,
-      title: "Engagement Strategies",
-      content: "Discover strategies to increase engagement and interaction on your posts.",
-      time: "09:00",
-      date: getDateOffset(-1), // Yesterday
-      platforms: ["facebook", "linkedin"],
-      image: "/neoneo.jpeg",
-    },
-    {
-      id: 6,
-      title: "Video Marketing Insights",
-      content: "Uncover the power of video marketing and how it can drive conversions.",
-      time: "11:00",
-      date: getDateOffset(3), // 3 days from now
-      platforms: ["youtube", "instagram"],
-      image: "/neoneo.jpeg",
-    },
-    {
-      id: 7,
-      title: "Brand Building Techniques",
-      content: "Effective techniques to build and maintain a strong brand identity.",
-      time: "13:00",
-      date: getDateOffset(4), // 4 days from now
-      platforms: ["linkedin", "youtube"],
-      image: "/neoneo.jpeg",
-    },
-  ]
+  {
+    id: 1,
+    title: "🚀 5 Cloud Innovations That Will Transform Enterprise IT",
+    content: "Explore groundbreaking cloud technologies that are reshaping how businesses scale and operate in 2024",
+    time: "11:00",
+    date: getTodayDate(),
+    platforms: ["instagram", "linkedin"],
+    image: "/src/assets/random_photos/random_photo_1.png",
+    optimalTiming: true,
+    engagement: "92%",
+    type: "educational"
+  },
+  {
+    id: 2,
+    title: "✨ Behind the Scenes of Cloud Architecture",
+    content: "An inside look at how enterprises design secure and scalable cloud-native systems to support global operations",
+    time: "14:00",
+    date: getTodayDate(),
+    platforms: ["instagram", "facebook"],
+    image: "/src/assets/random_photos/random_photo_2.png",
+    optimalTiming: true,
+    engagement: "88%",
+    type: "behind-the-scenes"
+  },
+  {
+    id: 3,
+    title: "🌍 Virtual Tour of a Modern Cloud Data Center",
+    content: "Step inside the infrastructure powering mission-critical apps with state-of-the-art servers and energy-efficient cooling",
+    time: "19:00",
+    date: getDateOffset(1), // Tomorrow
+    platforms: ["youtube", "linkedin"],
+    image: "/src/assets/random_photos/random_photo_3.png",
+    optimalTiming: false,
+    engagement: "76%",
+    type: "tutorial",
+    duration: "3:28"
+  },
+  {
+    id: 4,
+    title: "🎨 Cloud Migration That Transformed a Business",
+    content: "A real-world case study of how moving to the cloud unlocked scalability, agility, and significant cost savings",
+    time: "20:00",
+    date: getDateOffset(2), // Day after tomorrow
+    platforms: ["instagram", "youtube"],
+    image: "/src/assets/random_photos/random_photo_4.png",
+    optimalTiming: true,
+    engagement: "94%",
+    type: "case-study"
+  },
+  {
+    id: 5,
+    title: "Cloud Optimization Strategies",
+    content: "Discover techniques to reduce cloud costs, improve efficiency, and maximize performance in hybrid environments",
+    time: "09:00",
+    date: getDateOffset(-1), // Yesterday
+    platforms: ["facebook", "linkedin"],
+    image: "/neoneo.jpeg",
+  },
+  {
+    id: 6,
+    title: "Multi-Cloud Deployment Insights",
+    content: "Uncover the benefits of multi-cloud strategies and how they improve resilience, scalability, and compliance",
+    time: "11:00",
+    date: getDateOffset(3), // 3 days from now
+    platforms: ["youtube", "instagram"],
+    image: "/neoneo.jpeg",
+  },
+  {
+    id: 7,
+    title: "Building Cloud-Native Applications",
+    content: "Effective techniques for designing, deploying, and managing cloud-native apps with containers and microservices",
+    time: "13:00",
+    date: getDateOffset(4), // 4 days from now
+    platforms: ["linkedin", "youtube"],
+    image: "/neoneo.jpeg",
+  },
+]
 
   const allPosts = posts.length > 0 ? posts : samplePosts
 
@@ -384,7 +384,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
   ]
 
   return (
-    <div className="bg-white p-6">
+    <div className="bg-white rounded-lg p-6">
       {/* Header */}
       <div>
         <div className="flex items-center justify-between mb-6 h-16">
@@ -441,7 +441,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
           <div className="flex items-center gap-4 h-full">
             <button
               onClick={() => onSchedulePost && onSchedulePost()}
-              className="bg-[#3264DF] text-white px-6 py-3 rounded-xl text-base font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-md hover:shadow-lg h-12 flex items-center"
+              className="bg-[#475ECD] text-white px-6 py-3 rounded-xl text-base font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-md hover:shadow-lg h-12 flex items-center"
             >
               Schedule Now
             </button>

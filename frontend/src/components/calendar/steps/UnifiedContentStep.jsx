@@ -92,39 +92,39 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
   const sampleContentIdeas = [
     {
       id: 1,
-      title: "🚀 5 AI Tools That Will Revolutionize Your Workflow",
-      description: "Discover cutting-edge AI tools that are transforming how modern businesses operate and scale in 2024",
+      title: "🚀 5 Cloud Innovations That Will Transform Enterprise IT",
+      description: "Explore groundbreaking cloud technologies that are reshaping how businesses scale and operate in 2024",
       type: "Video",
       contentType: "video",
       tags: ["AI", "Productivity", "Innovation"],
-      image: "/src/assets/random_photos/random_photo_1.jpg",
+      image: "/src/assets/random_photos/random_photo_1.png",
       duration: "5:42",
       createdAt: "2024-01-15"
     },
     {
       id: 2,
-      title: "✨ The Magic Behind Our Creative Process",
-      description: "An intimate look at how we transform wild ideas into stunning visual experiences that captivate audiences",
+      title: "✨ Behind the Scenes of Cloud Architecture",
+      description: "An inside look at how enterprises design secure and scalable cloud-native systems to support global operations",
       type: "Behind-the-scenes",
       contentType: "image",
-      tags: ["Design", "Creativity", "Process"],
-      image: "/src/assets/random_photos/random_photo_2.jpg",
+      tags: ["Enterprise", "Creativity", "Process"],
+      image: "/src/assets/random_photos/random_photo_2.png",
       createdAt: "2024-01-14"
     },
     {
       id: 3,
-      title: "Monday Motivation: You've Got This! 💪",
-      description: "Quick motivational post to kickstart the week with positive energy and determination",
+      title: "Cloud Motivation Monday: Scale Without Limits! 💪",
+      description: "Kickstart the week with inspiration on how cloud platforms empower teams to innovate and grow fearlessly",
       type: "Social Post",
       contentType: "hashtag",
       tags: ["Motivation", "Monday", "Inspiration"],
-      hashtags: ["MondayMotivation", "Hustle", "Success", "Entrepreneur", "Mindset", "Goals", "Inspiration", "WorkHard", "DreamBig", "NeverGiveUp"],
+      hashtags: ["MondayMotivation", "CloudComputing", "Innovation", "Scalability", "Agility", "FutureOfWork", "Growth", "CloudFirst", "TechTrends", "NeverStopBuilding"],
       createdAt: "2024-01-13"
     },
     {
       id: 4,
-      title: "💡 10 Engagement Hacks That Actually Work",
-      description: "Proven tactics that top influencers use to create viral content and build loyal communities.",
+      title: "💡 10 Cloud Optimization Hacks That Actually Work",
+      description: "Proven strategies top enterprises use to reduce costs, boost performance, and secure cloud environments effectively.",
       type: "Text Post",
       contentType: "text",
       tags: ["Engagement", "Tips", "Social Media"],
@@ -132,12 +132,12 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
     },
     {
       id: 5,
-      title: "🌍 Remote Work Setup Tour",
-      description: "Take a virtual tour of our team's amazing home office setups from around the world",
+      title: "🌍 Global Cloud Infrastructure Tour",
+      description: "Take a virtual journey through world-class data centers powering modern applications and global connectivity",
       type: "Video",
       contentType: "video",
       tags: ["Remote", "Setup", "Tour"],
-      image: "/src/assets/random_photos/random_photo_3.jpg",
+      image: "/src/assets/random_photos/random_photo_3.png",
       duration: "3:28",
       createdAt: "2024-01-11"
     }
@@ -285,7 +285,7 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
 
   const addMedia = () => {
     // In a real app, this would open a file picker
-    const newMedia = `/src/assets/random_photos/random_photo_${Math.floor(Math.random() * 4) + 1}.jpg`;
+    const newMedia = `/src/assets/random_photos/random_photo_${Math.floor(Math.random() * 4) + 1}.png`;
     const currentMedia = editedContent[activeTab]?.media || [];
     handleContentChange('media', [...currentMedia, newMedia]);
   };
@@ -469,7 +469,7 @@ const UnifiedContentStep = ({ formData, onPlatformToggle, onContentSelect, onCon
       {/* Header */}
       <div className="text-center space-y-3">
         <div className="flex items-center justify-center gap-3">
-          <div className="w-8 h-8 bg-[#3264DF]/80 rounded-full flex items-center justify-center text-white font-medium text-sm shadow-sm">
+          <div className="w-8 h-8 bg-[#475ECD] rounded-full flex items-center justify-center text-white font-medium text-sm shadow-sm">
             1
           </div>
           <h2 className="text-2xl font-semibold text-gray-800">
