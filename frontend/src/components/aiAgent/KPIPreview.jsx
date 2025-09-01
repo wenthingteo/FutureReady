@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { FiCheck, FiStar, FiTrendingUp, FiTarget, FiDollarSign, FiUsers, FiEye, FiMousePointer } from 'react-icons/fi';
 
-const KPIPreview = ({ kpiData, onKPIConfirm, aiRecommendation, onTriggerAIResponse }) => {
+const KPIPreview = ({ kpiData, onKPIConfirm, aiRecommendation, onTriggerAIResponse, workspaceRef }) => {
   // Ensure kpiData has the proper structure with fallback values
   const defaultKpis = {
-    reach: 75000,
-    impressions: 150000,
-    clicks: 5000,
-    conversions: 750,
-    revenue: 15000,
-    roas: 3.5,
-    ctr: 3.33,
-    cpa: 20,
+    reach: 125000,
+    impressions: 250000,
+    clicks: 8750,
+    conversions: 1312,
+    revenue: 26250,
+    roas: 4.2,
+    ctr: 3.5,
+    cpa: 18,
     conversionRate: 15,
-    budget: 5000
+    budget: 6250
   };
 
-  const [kpis, setKpis] = useState(kpiData || defaultKpis);
+  const [kpis, setKpis] = useState(() => {
+    // Merge provided kpiData with defaults, ensuring all values exist
+    if (kpiData && typeof kpiData === 'object') {
+      return { ...defaultKpis, ...kpiData };
+    }
+    return defaultKpis;
+  });
   const [aiOptimized, setAiOptimized] = useState(false);
   const [showModification, setShowModification] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState('30');
@@ -44,20 +50,30 @@ const KPIPreview = ({ kpiData, onKPIConfirm, aiRecommendation, onTriggerAIRespon
     if (aiRecommendation && !aiOptimized) {
       setTimeout(() => {
         setAiOptimized(true);
-        // Enhance KPIs based on AI recommendation
+        // Enhance KPIs based on AI optimization
         const enhancedKpis = {
           ...kpis,
-          reach: Math.round((kpis.reach || 75000) * (aiRecommendation.budget / 5000)),
-          impressions: Math.round((kpis.impressions || 150000) * (aiRecommendation.budget / 5000)),
-          clicks: Math.round((kpis.clicks || 5000) * (aiRecommendation.budget / 5000)),
-          conversions: Math.round((kpis.conversions || 750) * (aiRecommendation.budget / 5000)),
-          revenue: Math.round((kpis.revenue || 15000) * (aiRecommendation.budget / 5000)),
-          roas: (kpis.roas || 3.5) * 1.15 // 15% improvement from AI optimization
+          reach: Math.round(kpis.reach * (aiRecommendation.budget / 6250)),
+          impressions: Math.round(kpis.impressions * (aiRecommendation.budget / 6250)),
+          clicks: Math.round(kpis.clicks * (aiRecommendation.budget / 6250)),
+          conversions: Math.round(kpis.conversions * (aiRecommendation.budget / 6250)),
+          revenue: Math.round(kpis.revenue * (aiRecommendation.budget / 6250)),
+          roas: kpis.roas * 1.15 // 15% improvement from AI optimization
         };
         setKpis(enhancedKpis);
       }, 1000);
     }
   }, [aiRecommendation, aiOptimized, kpis]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (workspaceRef && workspaceRef.current) {
+      // Add a small delay to ensure the component is fully rendered
+      setTimeout(() => {
+        workspaceRef.current.scrollTop = 0;
+      }, 100);
+    }
+  }, [workspaceRef]);
 
   const handleContinue = () => {
     setClickedButtons(prev => new Set([...prev, 'continue']));
@@ -153,6 +169,18 @@ const KPIPreview = ({ kpiData, onKPIConfirm, aiRecommendation, onTriggerAIRespon
   };
 
   const aiAnalysis = getAIKPIAnalysis();
+
+  // Safety check - ensure kpis is properly initialized
+  if (!kpis || typeof kpis !== 'object') {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <div className="w-16 h-16 mx-auto bg-gray-200 rounded-full animate-pulse mb-4"></div>
+          <p className="text-gray-600">Loading campaign data...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -355,19 +383,19 @@ const KPIPreview = ({ kpiData, onKPIConfirm, aiRecommendation, onTriggerAIRespon
         <h3 className="font-medium text-gray-900 mb-4">Campaign Summary</h3>
         <div className="grid grid-cols-4 gap-4">
           <div className="text-center">
-                            <div className="text-2xl font-bold text-gray-900">${(kpis.budget || 0).toLocaleString()}</div>
+            <div className="text-2xl font-bold text-gray-900">${(kpis.budget || 0).toLocaleString()}</div>
             <div className="text-sm text-gray-600">Total Budget</div>
           </div>
           <div className="text-center">
-                            <div className="text-2xl font-bold text-gray-900">${(kpis.revenue || 0).toLocaleString()}</div>
+            <div className="text-2xl font-bold text-gray-900">${(kpis.revenue || 0).toLocaleString()}</div>
             <div className="text-sm text-gray-600">Expected Revenue</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-900">{kpis.cpa}</div>
+            <div className="text-2xl font-bold text-gray-900">${kpis.cpa || 0}</div>
             <div className="text-sm text-gray-600">Cost per Acquisition</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-gray-900">{kpis.conversionRate}%</div>
+            <div className="text-2xl font-bold text-gray-900">{kpis.conversionRate || 0}%</div>
             <div className="text-sm text-gray-600">Conversion Rate</div>
           </div>
         </div>

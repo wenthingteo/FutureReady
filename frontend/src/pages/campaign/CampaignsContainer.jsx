@@ -10,6 +10,8 @@ const CampaignsContainer = () => {
 
   // Handle scheduling a new post or updating an existing one
   const handleSchedulePost = (postData) => {
+    console.log('handleSchedulePost called with:', postData);
+    
     if (editingPost) {
       // Update existing post
       setPosts(prevPosts => 
@@ -19,8 +21,19 @@ const CampaignsContainer = () => {
       );
       setEditingPost(null);
     } else {
-      // Add new post
-      setPosts(prevPosts => [...prevPosts, postData]);
+      // Handle new scheduling data - check if it contains posts array
+      if (postData.posts && Array.isArray(postData.posts)) {
+        // AI scheduling completed - add all the scheduled posts
+        console.log('Adding scheduled posts to calendar:', postData.posts);
+        setPosts(prevPosts => [...prevPosts, ...postData.posts]);
+      } else if (postData.id) {
+        // Single post object - add it directly
+        console.log('Adding single post to calendar:', postData);
+        setPosts(prevPosts => [...prevPosts, postData]);
+      } else {
+        // Legacy format or unexpected data
+        console.warn('Unexpected post data format:', postData);
+      }
     }
     setIsSchedulingMode(false);
     setIsScheduleModalOpen(false);

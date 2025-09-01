@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiCheck, FiStar, FiDollarSign } from 'react-icons/fi';
 
-const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResponse }) => {
+const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResponse, workspaceRef }) => {
   const [config, setConfig] = useState(adsConfig || {
     budget: {
       total: 5000,
@@ -15,7 +15,7 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
     targeting: {
       ageRange: '25-45',
       interests: ['Technology', 'Business', 'Innovation'],
-      location: 'United States'
+      location: 'Malaysia'
     }
   });
   const [aiOptimized, setAiOptimized] = useState(false);
@@ -51,13 +51,23 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
           targeting: {
             ageRange: aiRecommendation.targetAge || '25-45',
             interests: aiRecommendation.interests || ['Technology', 'Business', 'Innovation'],
-            location: aiRecommendation.location || 'United States'
+            location: aiRecommendation.location || 'Malaysia'
           }
         };
         setConfig(optimizedConfig);
       }, 1000);
     }
   }, [aiRecommendation, aiOptimized, config]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (workspaceRef && workspaceRef.current) {
+      // Add a small delay to ensure the component is fully rendered
+      setTimeout(() => {
+        workspaceRef.current.scrollTop = 0;
+      }, 100);
+    }
+  }, [workspaceRef]);
 
   const handleLaunch = () => {
     setClickedButtons(prev => new Set([...prev, 'launch']));
@@ -89,7 +99,7 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
     targeting: {
       ageRange: config?.targeting?.ageRange || '25-45',
       interests: config?.targeting?.interests || ['Technology', 'Business', 'Innovation'],
-      location: config?.targeting?.location || 'United States'
+      location: config?.targeting?.location || 'Malaysia'
     }
   };
 
@@ -125,7 +135,7 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">Total Budget</label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">RM</span>
               <input
                 type="number"
                 value={safeConfig.budget.total}
@@ -148,7 +158,7 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
                   <span className="text-sm font-bold text-blue-600">{Math.round(percentage * 100)}%</span>
                 </div>
                 <div className="text-sm text-gray-600">
-                  ${Math.round(safeConfig.budget.total * percentage).toLocaleString()}
+                  RM {Math.round(safeConfig.budget.total * percentage).toLocaleString()}
                 </div>
               </div>
             ))}
@@ -189,7 +199,7 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
                   targeting: { ...prev.targeting, location: e.target.value }
                 }))}
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="United States"
+                placeholder="Malaysia"
               />
             </div>
           </div>
@@ -231,18 +241,18 @@ const AdsWizard = ({ adsConfig, onAdsComplete, aiRecommendation, onTriggerAIResp
       </div>
 
       {/* Launch Button */}
-      <div className="text-center">
-                      <button
-                onClick={handleLaunch}
-                disabled={clickedButtons.has('launch')}
-                className={`px-8 py-3 rounded-lg font-medium text-lg transition-all cursor-pointer ${
-                  clickedButtons.has('launch')
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-green-600 text-white hover:bg-green-700'
-                }`}
-              >
-                Launch Campaign
-              </button>
+      <div className="flex justify-end">
+        <button
+          onClick={handleLaunch}
+          disabled={clickedButtons.has('launch')}
+          className={`px-8 py-3 rounded-lg font-medium text-lg transition-all cursor-pointer ${
+            clickedButtons.has('launch')
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-blue-600 text-white hover:bg-blue-700'
+          }`}
+        >
+          Preview Launch Plan
+        </button>
       </div>
     </div>
   );

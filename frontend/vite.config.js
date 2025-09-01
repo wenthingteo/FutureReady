@@ -5,7 +5,10 @@ import path from "path"
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      jsxImportSource: 'react',
+      jsxRuntime: 'automatic'
+    }),
     tailwindcss(),
   ],
   resolve: {
@@ -16,6 +19,9 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+  },
+  define: {
+    __DEV__: true,
   },
 })
 

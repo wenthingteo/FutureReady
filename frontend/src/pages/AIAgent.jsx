@@ -83,6 +83,7 @@ const AIAgent = () => {
       case 'welcome':
         return (
           <BriefInput 
+            workspaceRef={workspaceRef}
             onBriefComplete={(data) => {
               // Handle brief completion and move to strategy cards
               console.log('Brief completed:', data);
@@ -104,28 +105,11 @@ const AIAgent = () => {
           <StrategyCards 
             strategies={strategyCards}
             aiRecommendation={briefData?.recommendation}
+            workspaceRef={workspaceRef}
             onStrategySelect={(strategy) => {
               console.log('Strategy selected:', strategy);
-              // Move to Kanban board
+              // Move directly to calendar scheduling (skip kanban board)
               handleStrategyMessage(strategy.title);
-            }}
-            onTriggerAIResponse={(action) => {
-              // Add user message for user actions
-              setTimeout(() => {
-                addUserMessage(action);
-              }, 100);
-            }}
-          />
-        );
-      case 'kanban-board':
-        return (
-          <KanbanBoard 
-            tasks={kanbanTasks}
-            aiRecommendation={briefData?.recommendation}
-            onTasksComplete={(tasks) => {
-              console.log('Tasks completed:', tasks);
-              // Move to calendar scheduling
-              handleKanbanMessage('tasks completed');
             }}
             onTriggerAIResponse={(action) => {
               // Add user message for user actions
@@ -140,9 +124,10 @@ const AIAgent = () => {
           <CalendarScheduling 
             scheduleData={scheduleData}
             aiRecommendation={briefData?.recommendation}
+            workspaceRef={workspaceRef}
             onScheduleComplete={(schedule) => {
               console.log('Schedule completed:', schedule);
-              // Move to ads wizard
+              // Move to ads wizard (skip content generation)
               handleCalendarMessage('schedule completed');
             }}
             onTriggerAIResponse={(action) => {
@@ -157,6 +142,7 @@ const AIAgent = () => {
         return (
           <AdsWizard 
             adsConfig={adsConfig}
+            workspaceRef={workspaceRef}
             onAdsComplete={(config) => {
               console.log('Ads configuration completed:', config);
               // Move to KPI preview
@@ -174,6 +160,7 @@ const AIAgent = () => {
         return (
           <KPIPreview 
             kpiData={kpiData}
+            workspaceRef={workspaceRef}
             onKPIConfirm={(kpis) => {
               console.log('KPIs confirmed:', kpis);
               // Move to launch

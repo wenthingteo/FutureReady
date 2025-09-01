@@ -1,166 +1,6 @@
 import { useState } from 'react';
 import { AI_TEMPLATES } from '../AITemplates';
 
-// Mock data for specific Q&A responses
-const MOCK_RESPONSES = {
-  "which platforms should i focus on": `🎯 **Platform Selection Strategy** - Here's how to choose the right platforms for your business:
-
-**📊 Audience Analysis First:**
-• **Facebook**: 2.9B+ users, ages 25-65+, great for broad reach and community building
-• **Instagram**: 2B+ users, ages 18-34, perfect for visual storytelling and brand awareness  
-• **LinkedIn**: 900M+ users, B2B professionals, ideal for thought leadership and networking
-• **TikTok**: 1B+ users, ages 13-35, excellent for viral content and Gen Z engagement
-• **YouTube**: 2.5B+ users, all ages, best for educational content and long-form video
-
-**🎯 Choose Based on Your Goals:**
-
-**For Brand Awareness:**
-• Instagram (visual appeal) + TikTok (viral potential) + Facebook (broad reach)
-
-**For Lead Generation:**
-• LinkedIn (B2B) + Facebook (detailed targeting) + Instagram (engagement)
-
-**For E-commerce Sales:**
-• Instagram (shopping features) + Facebook (conversion ads) + TikTok (trending products)
-
-**For B2B Marketing:**
-• LinkedIn (professional audience) + Facebook (supplementary reach)
-
-**💡 Pro Tips:**
-• Start with 2-3 platforms maximum to maintain quality
-• Focus on platforms where your target audience is most active
-• Consider your content creation capacity and resources
-• Test performance on each platform before scaling up
-• Use platform-specific features (Stories, Reels, LinkedIn Articles)
-
-**📈 Recommended Starting Mix:**
-• **B2C Businesses**: Instagram + Facebook + TikTok
-• **B2B Services**: LinkedIn + Facebook + Instagram
-• **E-commerce**: Instagram + Facebook + YouTube
-• **Local Businesses**: Facebook + Instagram + Google My Business
-
-Remember: It's better to excel on 2-3 platforms than to be mediocre on 5-6!`,
-
-  "how can i improve my campaign performance": `📊 **Campaign Performance Optimization Guide** - Here are proven strategies to boost your results:
-
-**🎯 Key Performance Metrics to Track:**
-• **Reach & Impressions**: Track how many people see your content
-• **Engagement Rate**: Measure likes, comments, shares, and clicks
-• **Conversion Rate**: Monitor desired actions (purchases, sign-ups)
-• **ROAS (Return on Ad Spend)**: Calculate revenue per dollar spent
-• **Click-Through Rate (CTR)**: Measure ad effectiveness
-
-**🚀 Optimization Strategies:**
-
-**1. Audience Targeting:**
-• Refine demographics based on performance data
-• Look for patterns in who's engaging most
-• Use lookalike audiences for better reach
-• Test different interest combinations
-
-**2. Ad Creative Optimization:**
-• A/B test different images and videos
-• Test various headlines and CTAs
-• Use platform-specific formats (Stories, Reels, etc.)
-• Keep testing until you find winners
-
-**3. Timing & Frequency:**
-• Post when your audience is most active
-• Use platform analytics for peak times
-• Avoid over-posting (quality over quantity)
-• Consider time zones for global audiences
-
-**4. Budget Allocation:**
-• Shift budget to top-performing campaigns
-• Don't be afraid to pause underperforming ads
-• Increase spend on winners gradually (20-30% at a time)
-• Set aside 10-20% for testing new strategies
-
-**5. A/B Testing Framework:**
-• Test one variable at a time
-• Run tests for at least 7-14 days
-• Use statistical significance for decisions
-• Document what works for future campaigns
-
-**💡 Pro Tips:**
-• Monitor performance daily for the first week
-• Set up automated rules for optimization
-• Use retargeting to reach warm audiences
-• Always have a clear goal and success metrics
-
-Remember: Optimization is an ongoing process, not a one-time fix!`,
-
-  "what's the best budget allocation strategy": `💰 **Strategic Budget Allocation Guide** - Here's how to maximize your marketing ROI:
-
-**📊 Budget Planning Framework:**
-
-**1. Start Small & Scale:**
-• Begin with $500-1000 to test performance
-• Understand what works before scaling up
-• Test across different platforms and formats
-• Document learnings for future campaigns
-
-**2. Track Key Metrics:**
-• **ROAS (Return on Ad Spend)**: Revenue ÷ Ad Spend
-• **CPA (Cost Per Acquisition)**: Ad Spend ÷ Conversions
-• **CPC (Cost Per Click)**: Ad Spend ÷ Clicks
-• **CTR (Click-Through Rate)**: Clicks ÷ Impressions
-
-**3. Smart Allocation Strategy:**
-
-**By Platform Performance:**
-• Allocate 60-70% to top-performing platforms
-• Use 20-30% for testing new channels
-• Reserve 10% for experimental campaigns
-
-**By Campaign Type:**
-• **Awareness**: 30-40% of budget
-• **Consideration**: 40-50% of budget
-• **Conversion**: 20-30% of budget
-
-**By Ad Format:**
-• Video ads: 40-50% (highest engagement)
-• Image ads: 30-40% (cost-effective)
-• Story/Reel ads: 20-30% (trending formats)
-
-**4. Seasonal Budget Planning:**
-• **Q4 (Holiday Season)**: Increase budget by 50-100%
-• **Q1 (New Year)**: Focus on brand awareness
-• **Q2-Q3**: Balanced approach with testing
-
-**5. Scaling Guidelines:**
-• Increase budget by 20-30% increments
-• Monitor performance for 3-7 days after changes
-• Scale winners, pause losers
-• Never double spend overnight
-
-**💡 Pro Tips:**
-• Set daily and lifetime budget caps
-• Use automated bidding for efficiency
-• Consider lifetime value (LTV) in calculations
-• Always have a clear goal before spending
-
-**📈 Sample Budget Allocation:**
-• **Facebook**: 40% ($2,000 of $5,000)
-• **Instagram**: 30% ($1,500 of $5,000)
-• **LinkedIn**: 20% ($1,000 of $5,000)
-• **Testing**: 10% ($500 of $5,000)
-
-Remember: It's better to start small and scale up than to overspend on unproven strategies!`,
-
-  "default": `I'm here to help with your marketing and campaign questions! I can provide guidance on:
-
-📊 **Performance metrics and analytics** - Understanding what to track and how to interpret your data
-🎯 **Campaign optimization strategies** - Proven techniques to improve your results
-📱 **Platform-specific best practices** - How to maximize your presence on each social media platform
-💰 **Budget planning and allocation** - Strategic approaches to spending your marketing budget effectively
-🚀 **Campaign planning and execution** - Step-by-step guidance for creating successful campaigns
-
-Just ask me about any of these topics, or if you're ready to create a new campaign, say "plan a campaign" and I'll guide you through the entire process from brief to launch!
-
-What would you like to know more about?`
-};
-
 // Function to find the best matching response
 const findMockResponse = (userMessage) => {
   const lowerMessage = userMessage.toLowerCase();
@@ -1194,7 +1034,7 @@ export const useAIAgent = () => {
   ]);
   const [adsConfig, setAdsConfig] = useState({
     budget: {
-      total: 5000,
+      total: 20000,
       distribution: {
         facebook: 0.35,
         instagram: 0.30,
@@ -1205,21 +1045,21 @@ export const useAIAgent = () => {
     targeting: {
       ageRange: '25-45',
       interests: ['Technology', 'Business', 'Innovation'],
-      location: 'United States',
+      location: 'Malaysia',
       behavior: ['Engaged Shoppers', 'Business Decision Makers']
     }
   });
   const [kpiData, setKpiData] = useState({
-    reach: 75000,
-    impressions: 150000,
-    clicks: 5000,
-    conversions: 750,
+    reach: 7500,
+    impressions: 15000,
+    clicks: 500,
+    conversions: 75,
     revenue: 15000,
     roas: 3.5,
     ctr: 3.33,
-    cpa: 20,
+    cpa: 200,
     conversionRate: 15,
-    budget: 5000
+    budget: 20000
   });
   const [isLaunched, setIsLaunched] = useState(false);
   const [optimizationData, setOptimizationData] = useState({
@@ -1323,13 +1163,9 @@ export const useAIAgent = () => {
   };
 
   const handleWelcomeMessage = async (briefText) => {
-    // Start with a detailed thinking process
+    // Start with a shorter thinking process
     await simulateTyping("🤔 Analyzing your campaign request...");
-    await simulateTyping("📊 Researching market trends and competitor strategies in your industry...");
-    await simulateTyping("🎯 Identifying your target audience and their behavior patterns...");
-    await simulateTyping("💡 Generating strategic campaign approaches based on your goals...");
-    await simulateTyping("📈 Evaluating platform performance data for optimal reach...");
-    await simulateTyping("✨ Crafting personalized campaign strategies tailored to your needs...");
+    await simulateTyping("🎯 Generating strategic campaign approaches based on your goals...");
     await simulateTyping("✅ Based on my analysis, I've generated strategic campaign options for you to review.");
     
     // Generate strategy cards based on the AI recommendation from brief
@@ -1339,10 +1175,10 @@ export const useAIAgent = () => {
         title: "Multi-Platform Awareness",
         description: "Build brand recognition across all major platforms with consistent messaging",
         platforms: ["Facebook", "Instagram", "LinkedIn"],
-        budget: "$2,000",
+        budget: "RM 8,000",
         duration: "4 weeks",
         targetAudience: "Professionals aged 25-45",
-        expectedReach: "50K-100K",
+        expectedReach: "5K-10K",
         expectedEngagement: "8-12%"
       },
       {
@@ -1350,10 +1186,10 @@ export const useAIAgent = () => {
         title: "Engagement-Focused",
         description: "Drive meaningful interactions and community building through interactive content",
         platforms: ["Instagram", "TikTok"],
-        budget: "$1,500",
+        budget: "RM 6,000",
         duration: "3 weeks",
         targetAudience: "Gen Z and Millennials",
-        expectedReach: "25K-50K",
+        expectedReach: "2.5K-5K",
         expectedEngagement: "15-25%"
       },
       {
@@ -1361,10 +1197,10 @@ export const useAIAgent = () => {
         title: "Conversion-Driven",
         description: "Focus on driving sales and lead generation with targeted advertising",
         platforms: ["Facebook", "LinkedIn"],
-        budget: "$2,500",
+        budget: "RM 10,000",
         duration: "5 weeks",
         targetAudience: "B2B professionals",
-        expectedReach: "30K-60K",
+        expectedReach: "3K-6K",
         expectedEngagement: "5-8%"
       }
     ];
@@ -1375,78 +1211,78 @@ export const useAIAgent = () => {
     // Automatic AI dialog after step transition
     setTimeout(async () => {
       await simulateTyping("🎯 Perfect! I've analyzed your brief and created strategic campaign options.");
-      await simulateTyping("📊 Each strategy is optimized for your specific goals and target audience.");
-      await simulateTyping("💡 Review the options below and select the one that best aligns with your vision.");
     }, 500);
   };
 
   const handleStrategyMessage = async (strategyTitle) => {
-    await simulateTyping("🎉 Excellent choice! Now let me create a comprehensive content creation workflow...");
-    await simulateTyping("📝 Planning content types and formats for each platform...");
-    await simulateTyping("🎨 Designing visual elements and brand consistency guidelines...");
-    await simulateTyping("✍️ Crafting compelling copy that resonates with your audience...");
-    await simulateTyping("📱 Optimizing content for each social media platform's unique requirements...");
-    await simulateTyping("⏰ Creating a structured workflow with clear deadlines and responsibilities...");
-    await simulateTyping("✅ Your content creation workflow is ready! Here's your organized task board:");
+    await simulateTyping("🎉 Excellent choice! Now let me create an AI-optimized content scheduling strategy...");
+    await simulateTyping("📅 Analyzing your target audience's peak activity times...");
+    await simulateTyping("✅ Your AI-optimized content schedule is ready! Here's your strategic posting plan:");
     
-    // Generate sample Kanban tasks
-    const tasks = [
+    // Generate schedule data directly (skip kanban tasks)
+    const schedule = [
       {
         id: 1,
-        title: "Create Brand Video",
-        description: "30-second brand awareness video for all platforms",
-        status: "todo",
-        assignee: "Content Team",
-        priority: "high",
-        deadline: "3 days"
+        title: "Brand Video Launch",
+        platform: "All Platforms",
+        date: "2024-01-15",
+        time: "10:00 AM",
+        type: "video"
       },
       {
         id: 2,
-        title: "Design Social Posts",
-        description: "10 engaging social media posts with consistent branding",
-        status: "todo",
-        assignee: "Design Team",
-        priority: "high",
-        deadline: "2 days"
+        title: "Social Post Series",
+        platform: "Instagram",
+        date: "2024-01-16",
+        time: "2:00 PM",
+        type: "post"
       },
       {
         id: 3,
-        title: "Write Ad Copy",
-        description: "Compelling ad copy for each platform",
-        status: "todo",
-        assignee: "Copy Team",
-        priority: "medium",
-        deadline: "2 days"
+        title: "LinkedIn Article",
+        platform: "LinkedIn",
+        date: "2024-01-17",
+        time: "9:00 AM",
+        type: "article"
       },
       {
         id: 4,
-        title: "Create Landing Page",
-        description: "Conversion-optimized landing page for ads",
-        status: "todo",
-        assignee: "Web Team",
-        priority: "high",
-        deadline: "4 days"
+        title: "Facebook Ad Campaign",
+        platform: "Facebook",
+        date: "2024-01-18",
+        time: "7:00 PM",
+        type: "ad"
+      },
+      {
+        id: 5,
+        title: "TikTok Challenge",
+        platform: "TikTok",
+        date: "2024-01-19",
+        time: "6:00 PM",
+        type: "challenge"
+      },
+      {
+        id: 6,
+        title: "YouTube Tutorial",
+        platform: "YouTube",
+        date: "2024-01-20",
+        time: "11:00 AM",
+        type: "video"
       }
     ];
     
-    setKanbanTasks(tasks);
-    setCurrentStep('kanban-board');
+    setScheduleData(schedule);
+    setCurrentStep('calendar-scheduling');
     
     // Automatic AI dialog after step transition
     setTimeout(async () => {
-      await simulateTyping("🎉 Excellent choice! I've created a comprehensive content creation workflow.");
-      await simulateTyping("📝 Each task is designed to maximize your campaign's impact and engagement.");
-      await simulateTyping("⏰ You can track progress and manage deadlines through this organized board.");
+      await simulateTyping("🎯 Perfect! I've created an AI-optimized content scheduling strategy.");
     }, 500);
   };
 
   const handleKanbanMessage = async (message) => {
     await simulateTyping("🎯 Perfect! Now let me create an AI-optimized content scheduling strategy...");
-    await simulateTyping("📅 Analyzing your target audience's peak activity times across platforms...");
-    await simulateTyping("🌍 Considering time zones and global audience reach...");
-    await simulateTyping("📊 Reviewing historical engagement data for optimal posting windows...");
-    await simulateTyping("🔄 Creating a balanced content distribution schedule...");
-    await simulateTyping("⚡ Optimizing for maximum visibility and engagement potential...");
+    await simulateTyping("📅 Analyzing your target audience's peak activity times...");
     await simulateTyping("✅ Your AI-optimized content schedule is ready! Here's your strategic posting plan:");
     
     // Generate sample schedule data
@@ -1483,48 +1319,61 @@ export const useAIAgent = () => {
     // Automatic AI dialog after step transition
     setTimeout(async () => {
       await simulateTyping("🎯 Perfect! I've created an AI-optimized content scheduling strategy.");
-      await simulateTyping("📅 Each time slot is carefully selected based on your audience's peak activity.");
-      await simulateTyping("⚡ This schedule will maximize your content's visibility and engagement potential.");
     }, 500);
   };
 
   const handleCalendarMessage = async (message) => {
     await simulateTyping("💰 Great! Now let me configure your AI-powered advertising campaigns...");
-    await simulateTyping("🎯 Setting up precise audience targeting based on demographics and interests...");
-    await simulateTyping("📊 Analyzing platform-specific performance metrics and cost structures...");
-    await simulateTyping("🎨 Optimizing ad formats and creative elements for each platform...");
-    await simulateTyping("📈 Implementing smart bidding strategies for maximum ROI...");
-    await simulateTyping("🔄 Creating cross-platform campaign coordination for consistent messaging...");
+    await simulateTyping("🎯 Setting up precise audience targeting and budget optimization...");
     await simulateTyping("✅ Your AI-optimized advertising configuration is ready! Here's your campaign setup:");
     
     // Generate sample ads configuration
     const ads = {
-      facebook: {
-        budget: 800,
-        targeting: {
-          age: [25, 45],
-          interests: ["Technology", "Business"],
-          location: "United States"
-        },
-        adFormats: ["Video", "Carousel", "Single Image"]
+      budget: {
+        total: 10000,
+        daily: 333,
+        remaining: 10000
       },
-      instagram: {
-        budget: 600,
-        targeting: {
-          age: [18, 35],
-          interests: ["Lifestyle", "Technology"],
-          location: "United States"
+      targeting: {
+        demographics: {
+          ageRange: [25, 45],
+          gender: "All",
+          locations: ["Malaysia", "Singapore", "Indonesia"],
+          languages: ["English", "Bahasa Malaysia"]
         },
-        adFormats: ["Story", "Feed", "Reels"]
+        interests: [
+          "Digital Marketing",
+          "Business Strategy",
+          "Professional Development",
+          "Industry Trends"
+        ],
+        behaviors: [
+          "Business Decision Makers",
+          "Professional Networkers",
+          "Content Consumers"
+        ]
       },
-      linkedin: {
-        budget: 600,
-        targeting: {
-          jobTitles: ["Manager", "Director", "CEO"],
-          industries: ["Technology", "Marketing"],
-          location: "United States"
+      platforms: {
+        facebook: {
+          budget: 4000,
+          percentage: 40,
+          adTypes: ["Image Ads", "Video Ads", "Carousel Ads"]
         },
-        adFormats: ["Sponsored Content", "Message Ads"]
+        instagram: {
+          budget: 3000,
+          percentage: 30,
+          adTypes: ["Story Ads", "Feed Ads", "Reels Ads"]
+        },
+        linkedin: {
+          budget: 3000,
+          percentage: 30,
+          adTypes: ["Sponsored Content", "Message Ads", "Dynamic Ads"]
+        }
+      },
+      creatives: {
+        adCopy: "Transform your business with AI-powered marketing strategies. Join industry leaders who are already seeing results.",
+        callToAction: "Get Started Today",
+        landingPage: "https://yourlandingpage.com/campaign"
       }
     };
     
@@ -1533,29 +1382,34 @@ export const useAIAgent = () => {
     
     // Automatic AI dialog after step transition
     setTimeout(async () => {
-      await simulateTyping("💰 Great! I've configured your AI-powered advertising campaigns.");
-      await simulateTyping("🎯 Each platform is optimized with precise targeting and smart bidding strategies.");
-      await simulateTyping("📊 This setup will maximize your ROI while reaching your ideal audience.");
+      await simulateTyping("💰 Perfect! I've configured your AI-powered advertising campaigns.");
     }, 500);
   };
 
   const handleAdsMessage = async (message) => {
     await simulateTyping("📊 Excellent! Now let me calculate your AI-forecasted campaign performance...");
-    await simulateTyping("🔍 Analyzing historical campaign data and industry benchmarks...");
     await simulateTyping("📈 Running predictive models based on your targeting and budget allocation...");
-    await simulateTyping("🎯 Calculating expected reach, engagement, and conversion rates...");
-    await simulateTyping("💰 Estimating ROI and cost-per-acquisition metrics...");
-    await simulateTyping("⚠️ Identifying potential risk factors and optimization opportunities...");
     await simulateTyping("✅ Your comprehensive performance forecast is ready! Here's what you can expect:");
     
-    // Generate sample KPI data
+    // Generate comprehensive KPI data with proper structure
     const kpis = {
-      expectedReach: "75K-150K",
+      reach: 125000,
+      impressions: 250000,
+      clicks: 8750,
+      conversions: 1312,
+      revenue: 26250,
+      roas: 4.2,
+      ctr: 3.5,
+      cpa: 18,
+      conversionRate: 15,
+      budget: 6250,
+      // Additional forecast data
+      expectedReach: "7.5K-15K",
       expectedEngagement: "10-15%",
-      expectedConversions: "500-1000",
+      expectedConversions: "50-100",
       expectedROAS: "3.5x",
-      costPerClick: "$0.50",
-      costPerConversion: "$15.00"
+      costPerClick: "RM 2.50",
+      costPerConversion: "RM 75.00"
     };
     
     setKpiData(kpis);
@@ -1564,8 +1418,6 @@ export const useAIAgent = () => {
     // Automatic AI dialog after step transition
     setTimeout(async () => {
       await simulateTyping("📊 Excellent! I've calculated your AI-forecasted campaign performance.");
-      await simulateTyping("📈 These projections are based on historical data and industry benchmarks.");
-      await simulateTyping("🎯 Review the metrics below and let me know if you'd like any adjustments.");
     }, 500);
   };
 
@@ -1680,7 +1532,7 @@ export const useAIAgent = () => {
     ]);
     setAdsConfig({
       budget: {
-        total: 5000,
+        total: 20000,
         distribution: {
           facebook: 0.35,
           instagram: 0.30,
@@ -1691,21 +1543,21 @@ export const useAIAgent = () => {
       targeting: {
         ageRange: '25-45',
         interests: ['Technology', 'Business', 'Innovation'],
-        location: 'United States',
+        location: 'Malaysia',
         behavior: ['Engaged Shoppers', 'Business Decision Makers']
       }
     });
     setKpiData({
-      reach: 75000,
-      impressions: 150000,
-      clicks: 5000,
-      conversions: 750,
-      revenue: 15000,
-      roas: 3.5,
-      ctr: 3.33,
-      cpa: 20,
+      reach: 125000,
+      impressions: 250000,
+      clicks: 8750,
+      conversions: 1312,
+      revenue: 26250,
+      roas: 4.2,
+      ctr: 3.5,
+      cpa: 18,
       conversionRate: 15,
-      budget: 5000
+      budget: 6250
     });
   };
 

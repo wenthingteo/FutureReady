@@ -98,7 +98,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
     time: "09:00",
     date: getDateOffset(-1), // Yesterday
     platforms: ["facebook", "linkedin"],
-    image: "/neoneo.jpeg",
+    image: "/neoneo.png",
   },
   {
     id: 6,
@@ -107,7 +107,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
     time: "11:00",
     date: getDateOffset(3), // 3 days from now
     platforms: ["youtube", "instagram"],
-    image: "/neoneo.jpeg",
+    image: "/neoneo.png",
   },
   {
     id: 7,
@@ -116,7 +116,7 @@ const Calendar = ({ view = "week", setView, posts = [], onSchedulePost, onEditPo
     time: "13:00",
     date: getDateOffset(4), // 4 days from now
     platforms: ["linkedin", "youtube"],
-    image: "/neoneo.jpeg",
+    image: "/neoneo.png",
   },
 ]
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiSend, FiTarget, FiUsers, FiDollarSign, FiCalendar, FiGlobe, FiCheck, FiEdit3, FiArrowLeft } from 'react-icons/fi';
 
-const BriefInput = ({ onBriefComplete, onBack, onTriggerAIResponse }) => {
+const BriefInput = ({ onBriefComplete, onBack, onTriggerAIResponse, workspaceRef }) => {
   const [briefText, setBriefText] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [aiRecommendation, setAiRecommendation] = useState(null);
@@ -24,6 +24,16 @@ const BriefInput = ({ onBriefComplete, onBack, onTriggerAIResponse }) => {
       }, 500);
     }
   }, [aiRecommendation]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (workspaceRef && workspaceRef.current) {
+      // Add a small delay to ensure the component is fully rendered
+      setTimeout(() => {
+        workspaceRef.current.scrollTop = 0;
+      }, 100);
+    }
+  }, [workspaceRef]);
 
   const handleSubmit = async () => {
     if (!briefText.trim()) return;
@@ -305,7 +315,7 @@ const BriefInput = ({ onBriefComplete, onBack, onTriggerAIResponse }) => {
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
               <div className="text-sm font-medium text-gray-700">Budget</div>
-              <div className="text-lg font-bold text-gray-900">${aiRecommendation.budget.toLocaleString()}</div>
+              <div className="text-lg font-bold text-gray-900">RM {aiRecommendation.budget.toLocaleString()}</div>
             </div>
             <div className="bg-white rounded-lg p-3 border border-gray-200">
               <div className="text-sm font-medium text-gray-700">Duration</div>

@@ -76,17 +76,17 @@ const BudgetApproval = ({ budget, onApprove, onModify }) => {
           <h4 className="font-medium text-blue-900">Total Social Media Budget</h4>
           <div className="flex items-center gap-2">
             <FiDollarSign className="text-blue-600" size={20} />
-            <span className="text-2xl font-bold text-blue-900">${getTotalBudget().toLocaleString()}</span>
+            <span className="text-2xl font-bold text-blue-900">RM {getTotalBudget().toLocaleString()}</span>
           </div>
         </div>
         <div className="grid grid-cols-3 gap-4 text-sm">
           <div>
             <span className="text-blue-600">Allocated:</span>
-            <span className="ml-2 font-medium">${getTotalBudget().toLocaleString()}</span>
+            <span className="ml-2 font-medium">RM {getTotalBudget().toLocaleString()}</span>
           </div>
           <div>
             <span className="text-blue-600">Remaining:</span>
-            <span className="ml-2 font-medium">$0</span>
+            <span className="ml-2 font-medium">RM 0</span>
           </div>
           <div>
             <span className="text-blue-600">Platforms:</span>
@@ -139,7 +139,7 @@ const BudgetApproval = ({ budget, onApprove, onModify }) => {
               {editingBudget[category.key] ? (
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Budget Amount ($)</label>
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Budget Amount (RM)</label>
                     <input
                       type="number"
                       value={amount}
@@ -169,7 +169,7 @@ const BudgetApproval = ({ budget, onApprove, onModify }) => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <FiDollarSign className="text-gray-400" size={16} />
-                      <span className="text-lg font-semibold text-gray-900">${amount.toLocaleString()}</span>
+                      <span className="text-lg font-semibold text-gray-900">RM {amount.toLocaleString()}</span>
                     </div>
                     <div className={`px-2 py-1 rounded text-xs font-medium ${getBudgetColor(percentage)}`}>
                       {percentage}% of total

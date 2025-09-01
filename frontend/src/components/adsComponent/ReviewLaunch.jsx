@@ -13,7 +13,7 @@ export default function ReviewLaunch({ campaignData, onLaunch, onBack }) {
     targetAudience: {
       demographics: "Ages 25-45, College-educated professionals",
       interests: ["Technology", "Business", "Marketing", "Innovation"],
-      locations: ["United States", "Canada", "United Kingdom"],
+      locations: ["Malaysia", "Singapore", "Thailand"],
       size: "10,000 people",
     },
     budgeting: {

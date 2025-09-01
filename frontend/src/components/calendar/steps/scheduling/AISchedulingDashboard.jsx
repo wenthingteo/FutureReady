@@ -1,5 +1,5 @@
-import React from 'react';
-import { Users, Globe, Target, TrendingUp, Clock, BarChart3 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Users, Globe, Target, TrendingUp, Clock, BarChart3, Star, Check, Zap } from 'lucide-react';
 import { getPlatformConfig, schedulingStrategies } from './utils/platformConfig.jsx';
 import { AIOptimizationOverview } from './components/AIOptimizationOverview';
 import { StrategySelection } from './components/StrategySelection';
@@ -12,6 +12,9 @@ export const AISchedulingDashboard = ({
   onStrategyChange, 
   onAlternativeTimeClick
 }) => {
+  const [isEnhancing, setIsEnhancing] = useState(false);
+  const [enhancementApplied, setEnhancementApplied] = useState(false);
+
   const getOverallScore = () => {
     const scores = formData.platforms.map(platform => schedulingData[platform]?.confidence || 0);
     return Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length);
@@ -29,6 +32,15 @@ export const AISchedulingDashboard = ({
     if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
     if (num >= 1000) return `${(num / 1000).toFixed(0)}K`;
     return num.toString();
+  };
+
+  const handleAIEnhancement = () => {
+    setIsEnhancing(true);
+    // Simulate AI enhancement process
+    setTimeout(() => {
+      setIsEnhancing(false);
+      setEnhancementApplied(true);
+    }, 2000);
   };
 
   return (

@@ -32,7 +32,7 @@ const Sidebar = () => {
       <div className="flex flex-col items-center py-8 border-b border-gray-100">
         <div className="relative">
           <img
-            src="/neoneo.jpeg"
+            src="/neoneo.png"
             alt="Profile"
             className="w-20 h-20 rounded-full object-cover ring-4 ring-blue-50"
           />

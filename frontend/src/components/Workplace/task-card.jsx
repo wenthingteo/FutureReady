@@ -23,7 +23,7 @@ export function TaskCard({ task, onClick }) {
   }
 
   const assigneeColors = {
-    "Kelly Tan": "bg-green-200 text-green-800",
+    "Admin": "bg-green-200 text-green-800",
     "John Doe": "bg-orange-200 text-orange-800",
     "Jane Smith": "bg-purple-200 text-purple-800",
     "Mike Johnson": "bg-teal-200 text-teal-800",

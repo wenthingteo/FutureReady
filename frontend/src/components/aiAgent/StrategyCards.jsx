@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiCheck, FiArrowRight, FiTarget, FiUsers, FiDollarSign, FiClock, FiGlobe, FiTrendingUp, FiStar, FiEdit3, FiArrowLeft } from 'react-icons/fi';
 
-const StrategyCards = ({ strategies, onStrategySelect, aiRecommendation, onBack, onTriggerAIResponse }) => {
+const StrategyCards = ({ strategies, onStrategySelect, aiRecommendation, onBack, onTriggerAIResponse, workspaceRef }) => {
   const [selectedStrategy, setSelectedStrategy] = useState(null);
   const [showModification, setShowModification] = useState(false);
   const [clickedButtons, setClickedButtons] = useState(new Set());
@@ -20,6 +20,16 @@ const StrategyCards = ({ strategies, onStrategySelect, aiRecommendation, onBack,
       }
     }
   }, [aiRecommendation, strategies]);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    if (workspaceRef && workspaceRef.current) {
+      // Add a small delay to ensure the component is fully rendered
+      setTimeout(() => {
+        workspaceRef.current.scrollTop = 0;
+      }, 100);
+    }
+  }, [workspaceRef]);
 
   const handleStrategySelect = (strategy) => {
     setSelectedStrategy(strategy.id);

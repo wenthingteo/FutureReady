@@ -1,5 +1,31 @@
 import { getPlatformConfig } from '../utils/platformConfig.jsx';
 
+// Helper function to convert 12-hour time to 24-hour format
+const convertTo24HourFormat = (time12h) => {
+  if (!time12h) return '12:00';
+  
+  // If already in 24-hour format, return as is
+  if (time12h.includes(':')) {
+    const [hours, minutes] = time12h.split(':');
+    if (hours.length === 2 && parseInt(hours) <= 23) {
+      return time12h;
+    }
+  }
+  
+  // Convert 12-hour format to 24-hour
+  const [time, period] = time12h.split(' ');
+  let [hours, minutes] = time.split(':');
+  
+  hours = parseInt(hours);
+  if (period === 'PM' && hours !== 12) {
+    hours += 12;
+  } else if (period === 'AM' && hours === 12) {
+    hours = 0;
+  }
+  
+  return `${hours.toString().padStart(2, '0')}:${minutes || '00'}`;
+};
+
 export const useSchedulingActions = ({
   formData,
   schedulingData,
@@ -48,6 +74,77 @@ export const useSchedulingActions = ({
       };
     });
     updateSchedulingData(updatedScheduling);
+  };
+
+  // Convert scheduling data to post objects for the calendar
+  const convertSchedulingToPosts = () => {
+    const posts = [];
+    const currentTime = Date.now();
+    
+    formData.platforms.forEach((platform, index) => {
+      const platformScheduling = schedulingData[platform];
+      if (!platformScheduling) return;
+      
+      // Determine the date and time for this post
+      let postDate, postTime;
+      
+      if (schedulingMode === 'manual' && platformScheduling.customDate && platformScheduling.customTime) {
+        // Manual scheduling - use custom date and time
+        postDate = platformScheduling.customDate;
+        postTime = convertTo24HourFormat(platformScheduling.customTime);
+      } else {
+        // AI scheduling - calculate optimal date and time
+        const config = getPlatformConfig(platform);
+        const today = new Date();
+        
+        // For AI scheduling, schedule posts for the next few days based on strategy
+        let daysOffset = 0;
+        if (selectedStrategy === 'consistent') {
+          daysOffset = index; // Spread posts across consecutive days
+        } else if (selectedStrategy === 'experimental') {
+          daysOffset = index * 2; // Spread posts with gaps
+        } else {
+          // Optimal strategy - schedule within next 3 days
+          daysOffset = Math.floor(index / 2);
+        }
+        
+        const targetDate = new Date(today);
+        targetDate.setDate(today.getDate() + daysOffset);
+        postDate = targetDate.toISOString().split('T')[0];
+        
+        // Use the suggested time or fall back to platform's best time, convert to 24-hour format
+        const suggestedTime = platformScheduling.suggestedTime || config.bestTimes[0]?.time || '12:00 PM';
+        postTime = convertTo24HourFormat(suggestedTime);
+      }
+      
+      // Create a unique post object for the calendar
+      const post = {
+        id: `scheduled_${platform}_${currentTime}_${index}`,
+        title: formData.editedContent?.title || formData.selectedContent?.title || `Scheduled ${platform} post`,
+        content: formData.editedContent?.content || formData.selectedContent?.content || 'Content to be scheduled',
+        date: postDate,
+        time: postTime,
+        platforms: [platform],
+        status: 'scheduled',
+        optimalTiming: true,
+        engagement: platformScheduling.confidence || 85,
+        scheduledAt: new Date().toISOString(),
+        strategy: selectedStrategy,
+        platform: platform,
+        // Add scheduling-specific data
+        schedulingData: {
+          confidence: platformScheduling.confidence,
+          suggestedTime: platformScheduling.suggestedTime,
+          customTime: platformScheduling.customTime,
+          customDate: platformScheduling.customDate,
+          scheduleType: platformScheduling.scheduleType || 'ai'
+        }
+      };
+      
+      posts.push(post);
+    });
+    
+    return posts;
   };
 
   const handleScheduleAll = () => {
@@ -104,13 +201,19 @@ export const useSchedulingActions = ({
         setTimeout(() => {
           setIsCompleted(true);
           
-          // Call the original onSchedule function
+          // Convert scheduling data to post objects and call onSchedule
+          const posts = convertSchedulingToPosts();
+          
           const scheduleData = {
+            posts: posts, // Pass the actual post objects
             platforms: formData.platforms,
             content: formData.editedContent || formData.selectedContent,
             scheduling: schedulingData,
-            strategy: selectedStrategy
+            strategy: selectedStrategy,
+            schedulingMode: schedulingMode
           };
+          
+          console.log('Scheduling completed, calling onSchedule with:', scheduleData);
           onSchedule(scheduleData);
         }, 1000);
       }
