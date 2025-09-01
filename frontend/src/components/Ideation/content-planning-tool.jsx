@@ -6,7 +6,7 @@ import { Search, Sparkles, FileText, Clock, Users, Target, Video, ImageIcon, Glo
 const EXAMPLE_TOPICS = [
   "Digital Marketing",
   "Health & Wellness",
-  "Technology Trends",
+  "Cloud Technology",
   "Sustainable Living",
   "Personal Finance",
   "Remote Work",
@@ -35,141 +35,144 @@ const SAMPLE_KEYWORDS = {
     "innovation",
   ],
 }
-
 const GENERATED_CONTENT = [
   {
     id: 1,
-    title: "Ultimate Guide to Medical Diagnosis",
+    title: "Ultimate Guide to Cloud Migration",
     type: "Guide",
     method: "website",
     estimatedTime: "3-4 hours",
-    description: "Comprehensive overview of modern diagnostic techniques and their applications in healthcare.",
-    targetAudience: "Healthcare professionals, medical students, and healthcare administrators",
-    keywords: ["diagnosis", "healthcare", "medical technology", "patient care"],
+    description: "Comprehensive overview of modern cloud migration strategies and best practices for businesses.",
+    targetAudience: "IT managers, developers, CTOs, and enterprise decision-makers",
+    keywords: ["cloud migration", "infrastructure", "SaaS", "digital transformation"],
     stepByStep: [
-      "Research current diagnostic methodologies and technologies",
-      "Interview healthcare professionals for expert insights",
-      "Create detailed outline covering key diagnostic areas",
-      "Write comprehensive sections on each diagnostic method",
-      "Include case studies and real-world examples",
-      "Review and fact-check all medical information",
-      "Format content for web publication with proper headings",
-      "Add relevant images and diagrams for clarity",
+      "Research current cloud migration methodologies and providers",
+      "Interview IT professionals for expert insights",
+      "Create detailed outline covering key migration phases",
+      "Write comprehensive sections on lift-and-shift, refactor, and hybrid approaches",
+      "Include case studies and real-world migration stories",
+      "Review and fact-check all technical information",
+      "Format content for web publication with clear sections",
+      "Add diagrams showing migration workflows",
     ],
     guidelines: [
-      "Ensure all medical information is evidence-based and current",
-      "Use clear, professional language accessible to target audience",
-      "Include proper medical disclaimers and citations",
-      "Structure content with logical flow from basic to advanced concepts",
-      "Incorporate interactive elements like checklists or flowcharts",
+      "Ensure technical accuracy and up-to-date cloud practices",
+      "Use clear, professional language accessible to both tech and business readers",
+      "Include proper references to cloud frameworks and standards",
+      "Structure content logically: planning → execution → optimization",
+      "Incorporate visuals like architecture diagrams and flowcharts",
     ],
-    content: `# Ultimate Guide to Medical Diagnosis
+    content: `# Ultimate Guide to Cloud Migration
 
 ## Introduction
-Medical diagnosis is the cornerstone of effective healthcare delivery. This comprehensive guide explores the latest diagnostic techniques, technologies, and methodologies that are revolutionizing patient care.
+Cloud migration is essential for modern businesses to stay agile and competitive. This guide explores strategies, methodologies, and tools to ensure a smooth transition to the cloud.
 
-## Key Diagnostic Methods
-- Clinical examination and patient history
-- Laboratory testing and biomarkers
-- Medical imaging technologies
-- Genetic testing and personalized medicine
+## Key Migration Strategies
+- Lift-and-shift migration
+- Application refactoring
+- Hybrid and multi-cloud approaches
+- Containerization and Kubernetes
 
 ## Emerging Technologies
-The field of medical diagnosis continues to evolve with artificial intelligence, machine learning algorithms, and point-of-care testing devices becoming increasingly important in clinical decision-making.
+AI-powered workload optimization, serverless computing, and automated migration tools are revolutionizing how businesses move to the cloud.
 
 ## Best Practices
-Healthcare professionals should maintain a systematic approach to diagnosis, considering differential diagnoses and utilizing evidence-based protocols to ensure accurate and timely patient care.`,
+Companies should plan systematically, perform risk assessments, and utilize proven frameworks to ensure cost-effective and secure migration.`,
   },
   {
     id: 2,
-    title: "Common Medical Mistakes to Avoid",
+    title: "Common Cloud Mistakes to Avoid",
     type: "Article",
     method: "video",
     estimatedTime: "2-3 hours",
-    description: "Essential insights into preventing common medical errors and improving patient safety.",
-    targetAudience: "Medical practitioners, nursing staff, and healthcare quality assurance teams",
-    keywords: ["medical errors", "patient safety", "healthcare quality", "prevention"],
+    description: "Essential insights into preventing common cloud adoption errors and improving ROI.",
+    targetAudience: "Developers, IT admins, and digital transformation leaders",
+    keywords: ["cloud adoption", "cost optimization", "security", "best practices"],
     stepByStep: [
-      "Research statistics on common medical errors",
-      "Gather expert interviews from healthcare professionals",
-      "Create compelling video script with real scenarios",
-      "Plan visual elements and graphics for key points",
-      "Record professional narration or talking head segments",
-      "Edit video with engaging transitions and graphics",
+      "Research statistics on failed cloud migrations",
+      "Gather expert interviews from cloud architects",
+      "Create engaging video script with real-world mistakes",
+      "Plan animations to illustrate pitfalls",
+      "Record professional narration or on-camera discussion",
+      "Edit with key takeaways and visuals",
       "Add captions and accessibility features",
-      "Create thumbnail and promotional materials",
+      "Prepare promotional materials for LinkedIn and YouTube",
     ],
     guidelines: [
       "Focus on actionable prevention strategies rather than blame",
       "Use anonymized case studies to illustrate points",
-      "Maintain professional tone while being engaging",
-      "Include clear calls-to-action for implementation",
-      "Ensure content complies with healthcare privacy regulations",
+      "Maintain professional tone while being practical",
+      "Highlight quick wins for IT teams",
+      "Ensure compliance references for data security",
     ],
-    content: `# Common Medical Mistakes to Avoid
+    content: `# Common Cloud Mistakes to Avoid
 
 ## Overview
-Medical errors can have serious consequences for patient safety and healthcare outcomes. Understanding common pitfalls helps healthcare professionals provide better care.
+Cloud adoption offers major benefits, but many organizations make costly mistakes. Avoiding these pitfalls ensures smoother transitions and better ROI.
 
-## Top Medical Mistakes
-1. Misdiagnosis or delayed diagnosis
-2. Medication errors and adverse drug reactions
-3. Communication failures between healthcare teams
-4. Inadequate patient monitoring
-5. Surgical complications and wrong-site procedures
+## Top Cloud Mistakes
+1. Underestimating migration complexity
+2. Poor cost monitoring leading to overspending
+3. Weak security configurations
+4. Lack of governance and compliance checks
+5. Ignoring multi-cloud or hybrid strategies
 
 ## Prevention Strategies
-- Implement robust verification systems
-- Enhance communication protocols
-- Utilize technology for error reduction
-- Maintain continuous education and training
-- Foster a culture of safety reporting`,
+- Use cloud readiness assessments
+- Implement cost-tracking tools
+- Enforce security best practices (IAM, encryption, backups)
+- Establish governance frameworks
+- Invest in cloud training for teams`,
   },
   {
     id: 3,
-    title: "Medical Case Study Analysis",
+    title: "Cloud Case Study Analysis",
     type: "Case Study",
     method: "poster",
     estimatedTime: "1-2 hours",
-    description: "In-depth analysis of complex medical cases and their diagnostic challenges.",
-    targetAudience: "Medical students, residents, and continuing education participants",
-    keywords: ["case study", "clinical analysis", "diagnostic reasoning", "medical education"],
+    description: "In-depth analysis of a company's cloud migration journey and lessons learned.",
+    targetAudience: "Tech leads, solution architects, and cloud enthusiasts",
+    keywords: ["cloud case study", "migration analysis", "cloud success", "enterprise cloud"],
     stepByStep: [
-      "Select compelling and educational medical case",
-      "Gather all relevant clinical data and imaging",
-      "Create structured case presentation format",
+      "Select compelling cloud migration case study",
+      "Gather relevant architecture diagrams and KPIs",
+      "Create structured presentation format",
       "Design visually appealing poster layout",
-      "Include key learning objectives and outcomes",
-      "Add diagnostic flowcharts and decision trees",
-      "Review content with medical experts",
-      "Finalize design with proper medical formatting",
+      "Include key success factors and challenges",
+      "Add cost-saving and performance metrics",
+      "Review content with cloud experts",
+      "Finalize poster with clean design",
     ],
     guidelines: [
-      "Ensure patient confidentiality and anonymization",
-      "Present information in logical, educational sequence",
-      "Use high-quality medical imagery and charts",
-      "Include clear learning objectives and takeaways",
-      "Make content suitable for conference or educational display",
+      "Highlight anonymized but realistic enterprise scenario",
+      "Present info in logical, educational sequence",
+      "Use charts and diagrams to show before/after migration",
+      "Include clear key takeaways for businesses",
+      "Make content suitable for conferences or training sessions",
     ],
-    content: `# Medical Case Study Analysis
+    content: `# Cloud Case Study Analysis
 
 ## Case Presentation
-A 45-year-old patient presents with chest pain, shortness of breath, and fatigue. Initial assessment reveals elevated cardiac enzymes and abnormal ECG findings.
+A mid-sized retailer migrated its on-premise ERP system to the cloud to reduce costs and improve scalability.
 
-## Diagnostic Approach
-The medical team employed a systematic approach including:
-- Detailed patient history and physical examination
-- Cardiac biomarker analysis
-- Echocardiography and stress testing
-- Coronary angiography
+## Migration Approach
+The company applied:
+- Cloud readiness assessment
+- Lift-and-shift for non-critical workloads
+- Refactoring core ERP modules
+- Implementation of cloud monitoring and security tools
 
-## Clinical Decision Making
-Based on the comprehensive evaluation, the patient was diagnosed with acute coronary syndrome and received appropriate interventions including medication therapy and lifestyle modifications.
+## Business Impact
+- 30% cost reduction in infrastructure
+- Improved scalability during seasonal demand spikes
+- Faster deployment of new features
+- Stronger compliance with industry standards
 
 ## Learning Points
-This case highlights the importance of rapid assessment, appropriate diagnostic testing, and multidisciplinary care coordination in managing acute cardiac conditions.`,
+This case study highlights the importance of phased migration, workload prioritization, and monitoring to achieve cloud success.`,
   },
 ]
+
 
 export default function ContentPlanningTool({ onCreateTask }) {
   const [step, setStep] = useState(1)

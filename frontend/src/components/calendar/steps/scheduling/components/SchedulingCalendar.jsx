@@ -26,36 +26,36 @@ export const SchedulingCalendar = ({ schedulingData, formData }) => {
     return [
       {
         id: 1,
-        title: "🚀 5 AI Tools That Will Revolutionize Your Workflow",
-        content: "Discover cutting-edge AI tools that are transforming how modern businesses operate and scale in 2024",
+        title: "🚀 5 Cloud Innovations That Will Transform Enterprise IT",
+        content: "Explore groundbreaking cloud technologies that are reshaping how businesses scale and operate in 2024",
         time: "11:00",
         date: getTodayDate(),
         platforms: ["instagram", "linkedin"],
-        image: "/src/assets/random_photos/random_photo_1.jpg",
+        image: "/src/assets/random_photos/random_photo_1.png",
         optimalTiming: true,
         engagement: "92%",
         type: "educational"
       },
       {
         id: 2,
-        title: "✨ The Magic Behind Our Creative Process",
-        content: "An intimate look at how we transform wild ideas into stunning visual experiences that captivate audiences",
+        title: "✨ Behind the Scenes of Cloud Architecture",
+        content: "An inside look at how enterprises design secure and scalable cloud-native systems to support global operations",
         time: "14:00",
         date: getTodayDate(),
         platforms: ["instagram", "facebook"],
-        image: "/src/assets/random_photos/random_photo_2.jpg",
+        image: "/src/assets/random_photos/random_photo_2.png",
         optimalTiming: true,
         engagement: "88%",
         type: "behind-the-scenes"
       },
       {
         id: 3,
-        title: "🌍 Remote Work Setup Tour",
-        content: "Take a virtual tour of our team's amazing home office setups from around the world",
+        title: "🌍 Global Cloud Infrastructure Tour",
+        content: "Take a virtual journey through world-class data centers powering modern applications and global connectivity",
         time: "19:00",
         date: getDateOffset(1), // Tomorrow
         platforms: ["youtube", "linkedin"],
-        image: "/src/assets/random_photos/random_photo_3.jpg",
+        image: "/src/assets/random_photos/random_photo_3.png",
         optimalTiming: false,
         engagement: "76%",
         type: "tutorial",
@@ -63,20 +63,20 @@ export const SchedulingCalendar = ({ schedulingData, formData }) => {
       },
       {
         id: 4,
-        title: "🎨 Brand Transformation That Broke the Internet",
-        content: "The complete visual makeover that turned a struggling brand into a social media sensation overnight",
+        title: "🎨 Cloud Migration That Transformed an Enterprise",
+        content: "The complete shift to a cloud-first strategy that turned a struggling company into a digital leader overnight",
         time: "20:00",
         date: getDateOffset(2), // Day after tomorrow
         platforms: ["instagram", "youtube"],
-        image: "/src/assets/random_photos/random_photo_4.jpg",
+        image: "/src/assets/random_photos/random_photo_4.png",
         optimalTiming: true,
         engagement: "94%",
         type: "case-study"
       },
       {
         id: 5,
-        title: "Engagement Strategies",
-        content: "Discover strategies to increase engagement and interaction on your posts.",
+        title: "Cloud Cost Optimization Strategies",
+        content: "Proven methods to reduce infrastructure costs while maintaining performance and scalability in the cloud.",
         time: "09:00",
         date: getDateOffset(-1), // Yesterday
         platforms: ["facebook", "linkedin"],
@@ -84,8 +84,8 @@ export const SchedulingCalendar = ({ schedulingData, formData }) => {
       },
       {
         id: 6,
-        title: "Video Marketing Insights",
-        content: "Uncover the power of video marketing and how it can drive conversions.",
+        title: "Cloud Security Insights",
+        content: "Key practices to strengthen cloud environments, protect workloads, and ensure compliance.",
         time: "11:00",
         date: getDateOffset(3), // 3 days from now
         platforms: ["youtube", "instagram"],
@@ -93,8 +93,8 @@ export const SchedulingCalendar = ({ schedulingData, formData }) => {
       },
       {
         id: 7,
-        title: "Brand Building Techniques",
-        content: "Effective techniques to build and maintain a strong brand identity.",
+        title: "Building Resilient Cloud Architectures",
+        content: "Effective techniques to design cloud systems that scale seamlessly and withstand failures.",
         time: "13:00",
         date: getDateOffset(4), // 4 days from now
         platforms: ["linkedin", "youtube"],
@@ -102,6 +102,7 @@ export const SchedulingCalendar = ({ schedulingData, formData }) => {
       },
     ];
   };
+
 
   const existingPosts = getCurrentMonthPosts();
   

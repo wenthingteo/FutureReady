@@ -1,18 +1,33 @@
 const WordCloud = () => {
+  // const keywords = [
+  //   { text: "skincare routine", size: "text-4xl", color: "text-pink-600", weight: 90 },
+  //   { text: "natural beauty", size: "text-2xl", color: "text-emerald-500", weight: 75 },
+  //   { text: "glowing skin", size: "text-3xl", color: "text-orange-500", weight: 85 },
+  //   { text: "moisturizer", size: "text-xl", color: "text-blue-500", weight: 60 },
+  //   { text: "anti-aging", size: "text-2xl", color: "text-purple-500", weight: 70 },
+  //   { text: "hydration", size: "text-lg", color: "text-cyan-500", weight: 55 },
+  //   { text: "collagen", size: "text-xl", color: "text-rose-500", weight: 65 },
+  //   { text: "vitamin C", size: "text-lg", color: "text-amber-500", weight: 50 },
+  //   { text: "serum", size: "text-xl", color: "text-indigo-500", weight: 68 },
+  //   { text: "facial care", size: "text-lg", color: "text-teal-500", weight: 45 },
+  //   { text: "retinol", size: "text-base", color: "text-violet-500", weight: 40 },
+  //   { text: "SPF", size: "text-base", color: "text-yellow-500", weight: 38 },
+  // ]
+
   const keywords = [
-    { text: "skincare routine", size: "text-4xl", color: "text-pink-600", weight: 90 },
-    { text: "natural beauty", size: "text-2xl", color: "text-emerald-500", weight: 75 },
-    { text: "glowing skin", size: "text-3xl", color: "text-orange-500", weight: 85 },
-    { text: "moisturizer", size: "text-xl", color: "text-blue-500", weight: 60 },
-    { text: "anti-aging", size: "text-2xl", color: "text-purple-500", weight: 70 },
-    { text: "hydration", size: "text-lg", color: "text-cyan-500", weight: 55 },
-    { text: "collagen", size: "text-xl", color: "text-rose-500", weight: 65 },
-    { text: "vitamin C", size: "text-lg", color: "text-amber-500", weight: 50 },
-    { text: "serum", size: "text-xl", color: "text-indigo-500", weight: 68 },
-    { text: "facial care", size: "text-lg", color: "text-teal-500", weight: 45 },
-    { text: "retinol", size: "text-base", color: "text-violet-500", weight: 40 },
-    { text: "SPF", size: "text-base", color: "text-yellow-500", weight: 38 },
-  ]
+  { text: "Cloud Storage", size: "text-4xl", color: "text-blue-600", weight: 90 },
+  { text: "Compute Power", size: "text-2xl", color: "text-emerald-500", weight: 75 },
+  { text: "AI APIs", size: "text-3xl", color: "text-indigo-500", weight: 85 },
+  { text: "Data Security", size: "text-xl", color: "text-red-500", weight: 60 },
+  { text: "Scalability", size: "text-2xl", color: "text-purple-500", weight: 70 },
+  { text: "Cloud Migration", size: "text-lg", color: "text-cyan-500", weight: 55 },
+  { text: "Uptime 99.9%", size: "text-xl", color: "text-green-500", weight: 65 },
+  { text: "DevOps", size: "text-lg", color: "text-amber-500", weight: 50 },
+  { text: "API Gateway", size: "text-xl", color: "text-indigo-400", weight: 68 },
+  { text: "Serverless", size: "text-lg", color: "text-teal-500", weight: 45 },
+  { text: "Containers", size: "text-base", color: "text-violet-500", weight: 40 },
+  { text: "Multi-Cloud", size: "text-base", color: "text-pink-500", weight: 38 },
+];
 
   return (
     <div className="relative">

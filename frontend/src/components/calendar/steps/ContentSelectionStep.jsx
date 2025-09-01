@@ -10,85 +10,86 @@ const ContentSelectionStep = ({ formData, onContentSelect }) => {
   const sampleContentIdeas = [
     {
       id: 1,
-      title: "🚀 5 AI Tools That Will Revolutionize Your Workflow",
-      description: "Discover cutting-edge AI tools that are transforming how modern businesses operate and scale in 2024",
+      title: "🚀 5 Cloud Innovations That Will Transform Enterprise IT",
+      description: "Explore groundbreaking cloud technologies that are reshaping how businesses scale and operate in 2024",
       type: "Video",
       contentType: "video",
-      tags: ["AI", "Productivity", "Innovation"],
-      image: "/src/assets/random_photos/random_photo_1.jpg",
+      tags: ["Cloud", "Scalability", "Innovation"],
+      image: "/src/assets/random_photos/random_photo_1.png",
       duration: "5:42",
       createdAt: "2024-01-15"
     },
     {
       id: 2,
-      title: "✨ The Magic Behind Our Creative Process",
-      description: "An intimate look at how we transform wild ideas into stunning visual experiences that captivate audiences",
+      title: "✨ Behind the Scenes of Cloud Architecture",
+      description: "An inside look at how enterprises design secure and scalable cloud-native systems to support global operations",
       type: "Behind-the-scenes",
       contentType: "image",
-      tags: ["Design", "Creativity", "Process"],
-      image: "/src/assets/random_photos/random_photo_2.jpg",
+      tags: ["Cloud", "Architecture", "DevOps"],
+      image: "/src/assets/random_photos/random_photo_2.png",
       createdAt: "2024-01-14"
     },
     {
       id: 3,
-      title: "Monday Motivation: You've Got This! 💪 #MondayMotivation #Hustle #Success #Entrepreneur #Mindset #Goals #Inspiration #WorkHard #DreamBig #NeverGiveUp",
-      description: "Quick motivational post to kickstart the week with positive energy and determination",
+      title: "Cloud Tip Tuesday ☁️ Optimize Costs with Smart Scaling #CloudComputing #FinOps #MultiCloud #HybridCloud #DevOps #Kubernetes #Serverless #DataSecurity #CloudOptimization #CostManagement",
+      description: "Quick weekly tip on reducing cloud expenses through right-sizing, autoscaling, and smarter resource allocation",
       type: "Social Post",
       contentType: "hashtag",
-      tags: ["Motivation", "Monday", "Inspiration"],
-      hashtags: ["MondayMotivation", "Hustle", "Success", "Entrepreneur", "Mindset", "Goals", "Inspiration", "WorkHard", "DreamBig", "NeverGiveUp"],
+      tags: ["Cloud", "FinOps", "Optimization"],
+      hashtags: ["CloudComputing", "FinOps", "MultiCloud", "HybridCloud", "DevOps", "Kubernetes", "Serverless", "DataSecurity", "CloudOptimization", "CostManagement"],
       createdAt: "2024-01-13"
     },
     {
       id: 4,
-      title: "💡 10 Engagement Hacks That Actually Work",
-      description: "Proven tactics that top influencers use to create viral content and build loyal communities. This comprehensive guide covers everything from timing your posts to creating interactive content that sparks conversations.",
+      title: "💡 10 Cloud Security Best Practices for 2024",
+      description: "Proven strategies to safeguard sensitive data, strengthen compliance, and defend against modern cyber threats in cloud environments",
       type: "Text Post",
       contentType: "text",
-      tags: ["Engagement", "Tips", "Social Media"],
+      tags: ["Cloud", "Security", "BestPractices"],
       createdAt: "2024-01-12"
     },
     {
       id: 5,
-      title: "🌍 Remote Work Setup Tour",
-      description: "Take a virtual tour of our team's amazing home office setups from around the world",
+      title: "🌍 Virtual Tour of a Modern Cloud Data Center",
+      description: "Step inside the infrastructure powering mission-critical apps with state-of-the-art servers and energy-efficient cooling",
       type: "Video",
       contentType: "video",
-      tags: ["Remote", "Setup", "Tour"],
-      image: "/src/assets/random_photos/random_photo_3.jpg",
+      tags: ["Cloud", "DataCenter", "Infrastructure"],
+      image: "/src/assets/random_photos/random_photo_3.png",
       duration: "3:28",
       createdAt: "2024-01-11"
     },
     {
       id: 6,
-      title: "🎨 Brand Transformation That Broke the Internet",
-      description: "The complete visual makeover that turned a struggling brand into a social media sensation overnight",
+      title: "🎨 Cloud Migration That Transformed a Business",
+      description: "A real-world case study of how moving to the cloud unlocked scalability, agility, and significant cost savings",
       type: "Case Study",
       contentType: "image",
-      tags: ["Branding", "Viral", "Transformation"],
-      image: "/src/assets/random_photos/random_photo_4.jpg",
+      tags: ["Cloud", "Migration", "Transformation"],
+      image: "/src/assets/random_photos/random_photo_4.png",
       createdAt: "2024-01-10"
     },
     {
       id: 7,
-      title: "Friday feels! 🎉 What's everyone up to this weekend? Drop your plans below! 👇 #FridayFeels #WeekendVibes #Community #Fun #Relax #Adventure #Friends #Family #Plans #Excited",
-      description: "Casual Friday engagement post to connect with our community about weekend plans",
+      title: "Friday Cloud Talk ☁️ What’s Trending This Week? 👇 #CloudTrends #Serverless #Kubernetes #MultiCloud #DataSecurity #HybridCloud #Innovation #Scalability #DevOps #CloudCommunity",
+      description: "Community engagement post to spark conversations about the latest cloud trends, tools, and innovations",
       type: "Social Post",
       contentType: "hashtag",
-      tags: ["Friday", "Weekend", "Community"],
-      hashtags: ["FridayFeels", "WeekendVibes", "Community", "Fun", "Relax", "Adventure", "Friends", "Family", "Plans", "Excited"],
+      tags: ["Cloud", "Community", "Trends"],
+      hashtags: ["CloudTrends", "Serverless", "Kubernetes", "MultiCloud", "DataSecurity", "HybridCloud", "Innovation", "Scalability", "DevOps", "CloudCommunity"],
       createdAt: "2024-01-09"
     },
     {
       id: 8,
-      title: "The Psychology of Color in Marketing",
-      description: "Understanding how different colors influence consumer behavior and purchasing decisions. Learn which colors work best for different industries and how to create emotional connections through your brand palette.",
+      title: "The Business Value of Multi-Cloud Strategies",
+      description: "Learn why leading enterprises adopt multi-cloud setups, how they boost resilience, and what it means for the future of IT",
       type: "Educational",
       contentType: "text",
-      tags: ["Psychology", "Marketing", "Color Theory"],
+      tags: ["Cloud", "MultiCloud", "Strategy"],
       createdAt: "2024-01-08"
     }
   ];
+
 
   // Filter and sort content ideas
   const getFilteredAndSortedContent = () => {
